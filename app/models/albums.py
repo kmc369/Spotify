@@ -34,7 +34,14 @@ class Album(db.Model):
             "user_id":self.user_id,
             
             "songs": [song.to_dict() for song in self.songs],
-            "artists": [{"id": artist.id, "name": artist.name} for artist in self.artists],
-            "user": {"id": self.user.id, "username": self.user.username} if self.user else None,
+             "artist":{
+                "id":self.artists.id ,
+                "name":self.artists.name
+            },
+            
+            "user": {"id": self.user.id, 
+                     "username": self.user.username
+                     }
+             
         }
 

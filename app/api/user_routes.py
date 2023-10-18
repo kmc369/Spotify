@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Album
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +23,12 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route("/albums/<int:userid>", methods=["GET"])
+def get_user_albums(userid):
+    """ Query to get the albums of the user"""
+    albums = Album.query.filter_by(user_id=userid)
+    if not albums:
+        return jsonify({"message":"no albums found"}, 400)
+    return [album.to_dict() for album in albums]

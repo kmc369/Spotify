@@ -22,8 +22,10 @@ def get_user_songs(userid):
     """GET ALL THE SONGS OF THE USER hello""" 
 
     songs = Song.query.filter_by(user_id=userid).all()
-    print("the song is", songs)
+
     if not songs:
         return jsonify({"message":"No song found"},400)
     return [song.to_dict() for song in songs]
+
+
  
