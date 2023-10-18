@@ -24,24 +24,45 @@ import './landing.css'
 
     return(
         <div className="landing-container">
+
+       
+   <div className="landing-sidebar-extra-container"> 
         <div className="landing-sidebar-container">
-            <div><i class="fa-solid fa-music" style={{color: "white"}}><span className="sidebar-words">Slotify</span></i></div>
-            <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-            <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
-        </div>
+          
+                <div><i class="fa-solid fa-music" style={{color: "white"}}><span className="sidebar-words">Slotify</span></i></div>
+                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
+                <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
+            </div>
+      
+         <div className="library-container">
+            <div className="create-first-paylist">
+                <p>Create your first playlist</p>
+                <p>It's easy,we'll help you</p>
+            </div>
+
+            <div className="create-first-paylist">
+                <p>Let find some podcast to add</p>
+                <p>We'll keep you updated on new episodes</p>
+            </div>
+
+
+            </div>
+         </div> 
 
 
         <div className="landing-albums-container">
+        
         {albums.map((element, index)=>(
-            <div id="album-items" className={`album${index}`} key={index}>
-                <img src={element.image} />
-                {element.name} 
-                {element.artist.name}
+            <div id={`album-items`} className={`album${index}`} key={index}>
+               <div> <img className="image-album-item" src={element.image}  style={{width:"150px",height:"150px"}}/> </div>
+                <div className="landing-album-name">{element.name} </div>
+                <div className="landing-artist-name">{element.artist.name}</div>
+                <div class="landing-type">{element.type} </div>
                 </div>
         ))}
 
         </div>
-        </div>
+     </div>
     )
 }
 
