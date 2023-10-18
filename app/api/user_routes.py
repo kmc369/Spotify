@@ -19,7 +19,7 @@ def users():
 @login_required
 def user(id):
     """
-    Query for a user by id and returns that user in a dictionary
+    Query for as user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
     return user.to_dict()
