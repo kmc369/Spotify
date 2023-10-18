@@ -1,0 +1,34 @@
+.landing-container{
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+    background-color: rgb(24, 23, 23);
+    max-width: 95%;
+    height: 80%;
+    border:5px solid red;
+    margin:0 auto;
+}
+
+.landing-sidebar-container{
+    border:5px solid green;
+    width: 25%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    cursor: pointer;
+}
+
+.landing-albums-container{
+    border:5px solid rgb(128, 0, 119);
+    width: 75%;
+}
+#album-items{
+    color: #f3f3f3;
+
+}
+
+.sidebar-words{
+    font-family: Calibri;
+    margin-left: 10px;
+}

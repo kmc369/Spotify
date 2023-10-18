@@ -1,1 +1,8 @@
 /* TODO Add site wide styles */
+body{
+    background-color: black;
+    height:90%;
+    width: 99%;
+    border:3px solid gold;
+    
+}
