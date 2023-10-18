@@ -11,7 +11,7 @@
 
 .landing-sidebar-container{
     /* border:5px solid green; */
-    width: 35%;
+   
     font-size: 20px;
     display: flex;
     flex-direction: column;
@@ -72,13 +72,44 @@ z-index: 2px;
 
 .create-first-paylist{
     background-color: rgb(46, 46, 46); 
-    color: white;
+    color:#ffff;
     padding: 20px;
     border-radius: 10px;
+    /* border:3px solid gold; */
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.create-first-paylist1{
+    background-color: rgb(46, 46, 46); 
+    color:#ffff;
+    padding: 20px;
+    border-radius: 10px;
+    /* border:3px solid gold; */
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
 }
 
 .landing-sidebar-extra-container{
     display: flex;
     flex-direction: column;
+    border:2px solid red;
+    gap:10px;
+    width: fit-content;
+    padding: 10px;
 }
+
+.playlist-laanding{
+   background-color: white;
+   color:black;
+   border-radius: 25px; 
+   border:none;
+   padding: 15px;
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-weight: bold;
+
+}
+
+
+
 
