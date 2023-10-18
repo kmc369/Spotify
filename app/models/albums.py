@@ -1,0 +1,40 @@
+from .db import db, environment, SCHEMA, add_prefix_for_prod
+
+
+class Album(db.Model):
+    __tablename__ = "albums"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    time = db.Column(db.String, nullable=False)
+    releasedate = db.Column(db.String)
+    
+    
+#foreign key 
+    artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("artists.id")),nullable=True)
+    user_id =  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=True)
+    
+ #relationships
+    songs =  db.relationship("Song", back_populates="albums")
+    artists = db.relationship("Artist", back_populates="albums")
+    user = db.relationship("User", back_populates="albums")
+    
+    def add_prefix_for_prod(attr):
+        if environment == "production":
+            return f"{SCHEMA}.{attr}"
+        else:
+            return attr
+    
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "name":self.name,
+            "time":self.time,
+            "releasedate":self.releasedate,
+            "artist_id":self.artist_id,
+            "user_id":self.user_id,
+            
+            "songs": [song.to_dict() for song in self.songs],
+            "artists": [{"id": artist.id, "name": artist.name} for artist in self.artists],
+            "user": {"id": self.user.id, "username": self.user.username} if self.user else None,
+        }
+

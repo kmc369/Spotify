@@ -12,8 +12,13 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    image = db.Column(db.String(1000))
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    #relationships 
+    songs = db.relationship("Song", back_populates="user", cascade="all, delete-orphan")
+    albums = db.relationship("Album", back_populates="user", cascade="all, delete-orphan")
+    
     @property
     def password(self):
         return self.hashed_password
@@ -29,5 +34,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            "image":self.image,
             'email': self.email
+            
         }
