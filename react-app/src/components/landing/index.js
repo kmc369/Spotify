@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import './landing.css'
+import SignupFormModal from "../SignupFormModal";
+import OpenModalButton from "../OpenModalButton";
+import { useModal } from '../../context/Modal';
+import LoginFormModal from "../LoginFormModal";
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
+    const { closeModal } = useModal();
 
     useEffect(()=>{
 
@@ -57,8 +62,9 @@ import './landing.css'
 
     <div className="landing-album-center">
             <div className="landing-login-sign-buttons">
-                <button className="landing-sign-up">Sign Up</button>
-                <button className="landing-login">Login</button>
+                <OpenModalButton className="landing-sign-up"   onItemClick={closeModal}  modalComponent={<SignupFormModal />}  buttonText="Sign Up" />
+                <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}  buttonText="Login" />
+              
             </div>
         <div className="landing-albums-container">
         
