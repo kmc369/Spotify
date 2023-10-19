@@ -1,7 +1,7 @@
 .landing-container{
     display: flex;
     flex-direction: row;
-    gap:15px;
+    gap:0px;
     background-color: rgb(3, 3, 3);
     max-width: 95%;
     height: 80%;
@@ -24,16 +24,26 @@
 
 }
 
+.landing-album-center{
+    /* border:5px solid green; */
+    width: 75%;
+    margin: 0 auto;
+}
+
 .landing-albums-container{
     /* border:5px solid rgb(128, 0, 119); */
-    width: fit-content;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
     gap:20px;
     padding: 20px;
     flex-direction: row;
+
+    justify-content: flex-start; 
+    align-self: center; 
     background-color: rgb(15, 15, 15);
     border-radius: 20px;
+    margin:0 auto;
 
 
 }
@@ -47,9 +57,10 @@
     gap:10px;
     background-color: rgb(10, 10, 10);
     border-radius: 10px;
-    width: fit-content;
+    /* width: fit-content; */
     padding:20px;
     align-items: center;
+    width: 200px;
 
 }
 .image-album-item{
@@ -63,11 +74,14 @@ z-index: 2px;
 }
 .landing-album-name{
     font-family: Arial, Helvetica, sans-serif;
+    /* border:3px solid green; */
+
 }
 
 .landing-type,.landing-artist-name{
     color:rgb(157, 156, 156);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    /* border:3px solid red; */
 }
 
 .create-first-paylist{
@@ -93,7 +107,7 @@ z-index: 2px;
 .landing-sidebar-extra-container{
     display: flex;
     flex-direction: column;
-    border:2px solid red;
+    /* border:2px solid red; */
     gap:10px;
     width: fit-content;
     padding: 10px;

@@ -52,7 +52,7 @@ import './landing.css'
             </div>
          </div> 
 
-
+    <div className="landing-album-center">
         <div className="landing-albums-container">
         
         {albums.map((element, index)=>(
@@ -65,6 +65,7 @@ import './landing.css'
         ))}
 
         </div>
+     </div>
      </div>
     )
 }
