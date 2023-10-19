@@ -23,11 +23,14 @@ import './landing.css'
     }
 
     return(
+        <>
+  
     
     <div className="landing-container">
-
+ 
        
    <div className="landing-sidebar-extra-container"> 
+ 
         <div className="landing-sidebar-container">
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
@@ -53,6 +56,10 @@ import './landing.css'
          </div> 
 
     <div className="landing-album-center">
+            <div className="landing-login-sign-buttons">
+                <button className="landing-sign-up">Sign Up</button>
+                <button className="landing-login">Login</button>
+            </div>
         <div className="landing-albums-container">
         
         {albums.map((element, index)=>(
@@ -67,6 +74,7 @@ import './landing.css'
         </div>
      </div>
      </div>
+     </>
     )
 }
 

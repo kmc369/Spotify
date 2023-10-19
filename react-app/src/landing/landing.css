@@ -1,3 +1,39 @@
+
+/* buttons */
+.landing-login-sign-buttons{
+    /* border:3px solid red; */
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.landing-sign-up{
+    background-color:black;
+    color: rgb(152, 152, 152);
+    font-family: 'Courier New', Courier, monospace;
+    border:none;
+    font-size: medium;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.landing-login{
+    background-color:#ffff;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    border:none;
+    font-size: medium; 
+    border-radius: 30px;
+    padding: 10px;
+    width:100px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
+
+
 .landing-container{
     display: flex;
     flex-direction: row;
@@ -27,18 +63,17 @@
 .landing-album-center{
     /* border:5px solid green; */
     width: 75%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .landing-albums-container{
     /* border:5px solid rgb(128, 0, 119); */
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap:20px;
     padding: 20px;
     flex-direction: row;
-
     justify-content: flex-start; 
     align-self: center; 
     background-color: rgb(15, 15, 15);
@@ -54,13 +89,13 @@
     color: #f3f3f3;
     display: flex;
     flex-direction: column;
-    gap:10px;
+    justify-content: space-around;
+
     background-color: rgb(10, 10, 10);
     border-radius: 10px;
-    /* width: fit-content; */
     padding:20px;
     align-items: center;
-    width: 200px;
+    width: 150px;
 
 }
 .image-album-item{
@@ -111,6 +146,7 @@ z-index: 2px;
     gap:10px;
     width: fit-content;
     padding: 10px;
+    margin-top: 73px;
 }
 
 .playlist-laanding{
