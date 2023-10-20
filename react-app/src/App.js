@@ -25,7 +25,7 @@ function App() {
 
 
           <Route exact path="/user" >
-          <Navigation isLoaded={isLoaded} />
+        
             <UserProfile />
           </Route>
 

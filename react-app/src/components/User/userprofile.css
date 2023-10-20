@@ -2,18 +2,86 @@
 
 .entire-user-container{
     width:100%;
-    border:3px solid green;
+    /* border:3px solid green; */
 }
 
 .user-container{
     width:85%;
     margin:0 auto;
-    border:3px solid red;
+    /* border:3px solid red; */
     display: flex;
     flex-direction: row;
   
 
 }
+
+/* button options  */
+.user-profile-icon{
+    border:1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap:10px;
+}
+.premiumButton{
+    border:none;
+    padding:5px;
+    background-color: white;
+    color:black;
+    font-weight: bolder;
+    border-radius: 20px;
+}
+
+/* image and landing extra */
+
+.user-landing-image{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: left;
+    padding: 15px;
+}
+.song-starred-info{
+    display: flex;
+    flex-direction: column;
+    /* border:3px solid red; */
+    justify-content:center;
+    padding: 3px;
+}
+.user-info{
+    color: white;
+
+    font-weight: lighter;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    gap:3px;
+    margin-top: 0px;
+}
+.user-info-items{
+    font-family:'Times New Roman', Times, serif;
+    margin-left: 5px;
+}
+.song-word{
+    color: white;
+    font-family:sans-serif;
+    font-weight: lighter;
+    margin: 0px;
+    margin-left: 5px;
+}
+
+.your-songs{
+    color: white;
+    font-size: 80px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+/* sidebar items  */
+
+
 
 
 
@@ -21,19 +89,34 @@
 .user-main-content-container{
  
     width: 95%;
+    background: linear-gradient(to bottom, rgb(106, 146, 246), rgb(45, 45, 45));    /* border:3px solid purple; */
+
+}
+
+/* landing images for user  */
+.user-landing-container{
+    
+}
+
+.user-main-table{
+    /* border:4px solid orange; */
+    width:90%;
+    border-collapse: separate; 
+    border-spacing: 20px;
+
 }
 
 
-.table-header-container{
-    border:2px solid green;
-}
 
+/* table items  */
 
 
 .column1-container{
     display: flex;
     flex-direction: row;
+
 }
+
 
 .table-header-container{
     color:white;
@@ -48,13 +131,13 @@
 }
 
 
-/* second column */
-
-.album-name-item,.genre-type-item,.time-item{
+.album-name-item,.genre-type-item,.time-item,.hash-item{
     color:white;
     font-family: 'Courier New', Courier, monospace;
     font-weight: lighter; 
 }
+
+
 
 
 
