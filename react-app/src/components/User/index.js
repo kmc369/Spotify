@@ -37,11 +37,16 @@ function UserProfile(){
         <div className="user-container">
 
             <div className="user-sidebar-container">
-                    <div className="nav-items-container"></div>
+                    <div className="nav-items-container">
+                        <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px"}}></i><span className="nav-words-user">Home</span></div>
+                        <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user">Search</span></div>
+
+                    </div>
                     <div className="library-items-container">
+                        <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                         <div className="library-button-container">
-                            <div>Songs</div>
-                            <div>Albums</div>
+                            <div><button className="song-button-user">Songs</button></div>
+                            <div><button className="song-button-user">Albums</button></div>
                         </div>
                         <div>Search</div>
                     </div>
@@ -57,7 +62,7 @@ function UserProfile(){
                         </div>
                     <div className="user-landing-image">
                         <div className="user-landing-image-item">
-                            <div><img src={songs[0].albums.image} /></div>
+                            <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
                         </div>
                         <div className="song-starred-info">
                             <div className="song-word">Songs</div>
