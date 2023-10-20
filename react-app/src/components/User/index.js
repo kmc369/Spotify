@@ -72,6 +72,10 @@ function UserProfile(){
 
                     </div>
 
+                    <div className="seperator">
+                        <button className="play-button"><i class="fa-solid fa-play"></i></button>
+                    </div>
+
 
                 </div>
                 <table className="user-main-table" >

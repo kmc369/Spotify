@@ -17,11 +17,13 @@
 
 /* button options  */
 .user-profile-icon{
-    border:1px solid red;
+    /* border:1px solid red; */
     display: flex;
     flex-direction: row;
     justify-content: right;
     gap:10px;
+    background: linear-gradient(to right, rgb(134, 123, 252), rgb(83, 68, 251));   
+
 }
 .premiumButton{
     border:none;
@@ -40,6 +42,8 @@
     gap:20px;
     justify-content: left;
     padding: 15px;
+    background: linear-gradient(to right, rgb(134, 123, 252), rgb(83, 68, 251));   
+
 }
 .song-starred-info{
     display: flex;
@@ -78,6 +82,26 @@
 }
 
 
+/* seperat and play button  */
+
+.seperator{
+    height:90px;
+    padding: 20px;
+    border-bottom: 1px solid rgb(179, 178, 178,0.3);
+
+}
+
+.play-button{
+    background-color:rgb(33, 197, 33);
+    border:none;
+    padding:20px;
+    border-radius: 50%;
+}
+.fa-play{
+    font-size: 20px;
+}
+
+
 
 /* sidebar items  */
 
@@ -89,7 +113,7 @@
 .user-main-content-container{
  
     width: 95%;
-    background: linear-gradient(to bottom, rgb(106, 146, 246), rgb(45, 45, 45));    /* border:3px solid purple; */
+    background: linear-gradient(to bottom, rgb(134, 123, 252), rgb(25, 25, 25));    /* border:3px solid purple; */
 
 }
 
