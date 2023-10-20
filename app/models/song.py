@@ -7,6 +7,7 @@ class Song (db.Model):
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
     type =db.Column(db.String, nullable=False)
+    audio_url = db.Column(db.String, nullable=False)
     
     
     #foreign_keys
@@ -31,6 +32,7 @@ class Song (db.Model):
             "name":self.name,
             "time":self.time,
             "type":self.type,
+            "audio_url":self.audio_url,
             "artist_id":self.artist_id,
             "user_id":self.user_id,
             "album_id":self.album_id,

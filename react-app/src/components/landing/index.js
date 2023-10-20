@@ -4,10 +4,13 @@ import SignupFormModal from "../SignupFormModal";
 import OpenModalButton from "../OpenModalButton";
 import { useModal } from '../../context/Modal';
 import LoginFormModal from "../LoginFormModal";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
-
+    const sessionUser = useSelector(state=> state.session.user)
+    const history = useHistory()
     useEffect(()=>{
 
        async  function fetchData (){
@@ -27,18 +30,32 @@ import LoginFormModal from "../LoginFormModal";
 
     return(
         <>
-  
-    
+        <div>
+            {!sessionUser &&
+                    <div className="landing-login-sign-buttons">
+                    <OpenModalButton className="landing-sign-up"   onItemClick={closeModal}  modalComponent={<SignupFormModal />}  buttonText="Sign Up" />
+                    <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}   buttonText="Login" />
+                
+                </div>
+                }
+        </div>
     <div className="landing-container">
- 
+   
        
    <div className="landing-sidebar-extra-container"> 
+
  
         <div className="landing-sidebar-container">
+     
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
                 <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
                 <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
+                {sessionUser &&
+                <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
+                }
+             
+               
             </div>
       
          <div className="library-container">
@@ -58,12 +75,10 @@ import LoginFormModal from "../LoginFormModal";
             </div>
          </div> 
 
-    <div className="landing-album-center">
-            <div className="landing-login-sign-buttons">
-                <OpenModalButton className="landing-sign-up"   onItemClick={closeModal}  modalComponent={<SignupFormModal />}  buttonText="Sign Up" />
-                <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}   buttonText="Login" />
-              
-            </div>
+
+       
+            <div className="landing-album-center">
+         
         <div className="landing-albums-container">
         
         {albums.map((element, index)=>(

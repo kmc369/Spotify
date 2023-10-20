@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import './userprofile.css'
 import { useSelector } from "react-redux";
 import ProfileButton from '../Navigation/ProfileButton';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function UserProfile(){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
-  
+    const history = useHistory()
     useEffect(()=>{
 
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
             const data = await res.json()
-            console.log(data)
+           
             if(data.length>1){
                 setSongs(data)
+                console.log(songs, "SONG")
              
                
             }
@@ -27,7 +29,7 @@ function UserProfile(){
         FetchData()
     },[setSongs])
 
-    if(songs.length===0){
+    if(songs.length===0 || !sessionUser){
         
         return null
     }
@@ -38,7 +40,7 @@ function UserProfile(){
 
             <div className="user-sidebar-container">
                     <div className="nav-items-container">
-                        <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px"}}></i><span className="nav-words-user">Home</span></div>
+                        <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user">Search</span></div>
 
                     </div>

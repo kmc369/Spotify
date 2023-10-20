@@ -53,6 +53,7 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('time', sa.String(), nullable=False),
     sa.Column('type', sa.String(), nullable=False),
+    sa.Column('audio_url', sa.String(), nullable=False),
     sa.Column('artist_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('album_id', sa.Integer(), nullable=False),
