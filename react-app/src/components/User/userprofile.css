@@ -1,0 +1,61 @@
+/* outter containers */
+
+.entire-user-container{
+    width:100%;
+    border:3px solid green;
+}
+
+.user-container{
+    width:85%;
+    margin:0 auto;
+    border:3px solid red;
+    display: flex;
+    flex-direction: row;
+  
+
+}
+
+
+
+/* the headers */
+.user-main-content-container{
+ 
+    width: 95%;
+}
+
+
+.table-header-container{
+    border:2px solid green;
+}
+
+
+
+.column1-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.table-header-container{
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: lighter;
+    
+}
+.title-artist-name-container{
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: lighter; 
+}
+
+
+/* second column */
+
+.album-name-item,.genre-type-item,.time-item{
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: lighter; 
+}
+
+
+
+

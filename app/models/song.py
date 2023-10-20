@@ -41,12 +41,12 @@ class Song (db.Model):
                 "image":self.user.image
             },
             "artist":{
-                "id":self.artists.id if self.artists else None,
-                "name":self.artists.name if self.artists else None
+                "name":self.artists.name if self.artists else None,
+                
             },
             "albums":{
-                "id":self.albums.id if self.albums else None,
-                "name":self.albums.name if self.albums else None
+                "name":self.albums.name if self.albums else None,
+                "image":self.albums.image
             }
             
         }

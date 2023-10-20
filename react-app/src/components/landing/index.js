@@ -19,9 +19,7 @@ import LoginFormModal from "../LoginFormModal";
         fetchData()
     },[setAlbums])
 
-    function handleSearch(){
-        console.log("hello")
-    }
+ 
 
     if(!albums.length){
         return null
@@ -63,7 +61,7 @@ import LoginFormModal from "../LoginFormModal";
     <div className="landing-album-center">
             <div className="landing-login-sign-buttons">
                 <OpenModalButton className="landing-sign-up"   onItemClick={closeModal}  modalComponent={<SignupFormModal />}  buttonText="Sign Up" />
-                <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}  buttonText="Login" />
+                <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}   buttonText="Login" />
               
             </div>
         <div className="landing-albums-container">

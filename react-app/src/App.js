@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Landing from "./components/landing";
+import UserProfile from './components/User'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,9 +22,19 @@ function App() {
           <Route exact path="/login" >
             <LoginFormPage />
           </Route>
+
+
+          <Route exact path="/user" >
+          <Navigation isLoaded={isLoaded} />
+            <UserProfile />
+          </Route>
+
+
           <Route exact path="/" >
             <Landing />
           </Route>
+
+          
           <Route path="/signup">
             <SignupFormPage />
           </Route>
