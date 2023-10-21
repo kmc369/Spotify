@@ -34,6 +34,18 @@ def seed_songs():
     song23 = Song(name="End Game", time="4:04", type="Pop", artist_id=14, album_id=3, user_id=3, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Taylor+Swift+End+Game+ft.+Ed+Sheeran+Future+Lyrics+-zjOddwR4nqw-192k-1697901340.mp3")
     song24 = Song(name="Ready for It?", time="3:27", type="Pop", artist_id=14, album_id=3, user_id=4, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Taylor+Swift+...Ready+For+It+Audio+-T62maKYX9tU-192k-1697901409.mp3")
     
+    song25 = Song(name="Wanna Be Startin' Somethin", time="6:03", type="Pop", artist_id=15, album_id=4, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Michael+Jackson+Wanna+Be+Startin+Somethin+Audio+-1XMvPTFzgVU-192k-1697901864.mp3")
+    song26 = Song(name="Baby Be Mine", time="4:20", type="Pop", artist_id=15, album_id=4, user_id=2, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Michael+Jackson+Baby+Be+Mine+Audio+-O3tnOVideSo-192k-1697901951.mp3")
+    song27 = Song(name="Human Nature", time="4:06", type="Pop", artist_id=15, album_id=4, user_id=3, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Michael+Jackson+Human+Nature+Lyrics+Video+-UxnvqXGYpvY-192k-1697902077.mp3")
+    song28 = Song(name="Thriller", time="5:57", type="Pop", artist_id=15, album_id=4, user_id=4, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Michael+Jackson+Thriller+Official+Video+Shortened+Version+-4V90AmXnguw-192k-1697902344.mp3")
+    song29 = Song(name="Beat It", time="4:18", type="Pop", artist_id=15, album_id=4, user_id=5, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Beat+It+Michael+Jackson+Lyrics+-8fO8jVZ3T9g-192k-1697902469.mp3")
+    song30 = Song(name="Man in the Mirror", time="5:04", type="Pop", artist_id=15, album_id=4, user_id=5, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Man+in+the+Mirror-Z9NYDgbKsBE-192k-1697902176.mp3")
+    
+    song31 = Song(name="34+35", time="2:53", type="Pop", artist_id=16, album_id=5, user_id=2, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+34+35+Ariana+Grande+Lyrics+-7sWO2cHTQx4-192k-1697903000.mp3")
+    song32 = Song(name="POV", time="3:20", type="Pop", artist_id=16, album_id=5, user_id=5, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Ariana+Grande+pov+audio+-nQJEp-k-ogs-192k-1697903169.mp3")
+    song33 = Song(name="Just Like Magic", time="2:29", type="Pop", artist_id=16, album_id=5, user_id=4, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Ariana+Grande+just+like+magic+audio+-zMEzD2G2IKA-192k-1697903099.mp3")
+    song34 = Song(name="Positions", time="2:52", type="Pop", artist_id=16, album_id=5, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+positions-xuOOAQoDKN0-192k-1697903238.mp3")
+
     
     db.session.add(song1)
     db.session.add(song2)
@@ -59,6 +71,16 @@ def seed_songs():
     db.session.add(song22)
     db.session.add(song23)
     db.session.add(song24)
+    db.session.add(song25)
+    db.session.add(song26)
+    db.session.add(song27)
+    db.session.add(song28)
+    db.session.add(song29)
+    db.session.add(song30)
+    db.session.add(song31)
+    db.session.add(song32)
+    db.session.add(song33)
+    db.session.add(song33)
     db.session.commit()
 
   
