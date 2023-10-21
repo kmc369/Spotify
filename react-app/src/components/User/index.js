@@ -13,29 +13,30 @@ function UserProfile(){
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
     const [selectSong, setSelectedSong] =useState(null)
-    const [userAlbums, setUserAlbums]= useState([])
+    const [userPlaylist, setPlaylist]= useState([])
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
-            const resalbums = await fetch(`/api/albums/user/${sessionUser.id}`)
+            const res_playlist = await fetch(`/api/songs/playlist/${sessionUser.id}`)
             const data = await res.json()
-            const resalbumsdata = await resalbums.json()
-            console.log(resalbumsdata)
+            const playlist_data= await res_playlist.json()
+            // console.log(playlist_data, "Playlsit")
   
            
-            if(data.length>1 || resalbumsdata.length>1){
+            if(data.length>=1 || playlist_data.length>=1){
                 setSongs(data)
-               setUserAlbums(resalbumsdata)
-             
+                setPlaylist(playlist_data)
                
             }
-            else{
-              
-            }
-            
+        
+           
+                
         }
 
+       
+
         FetchData()
+   
     },[setSongs])
 
     function playSong(){
@@ -44,7 +45,7 @@ function UserProfile(){
     }
 
 
-    if(songs.length===0 || !sessionUser){
+    if(songs.length===0 || !sessionUser ){
         
         return null
     }
@@ -63,17 +64,19 @@ function UserProfile(){
                         <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                         <div className="library-button-container">
                             <div><button className="song-button-user">Songs</button></div>
-                            <div><button className="song-button-user">Albums</button></div>
+                            <div><button className="song-button-user">Playlist</button></div>
                         </div>
                         <div>Search</div>
                     </div>
-
-                    <div className="user-Albums">
-                    {userAlbums.map(()=>(
-                        <div> </div>
+                   <div className="playlist-container">
+                    {userPlaylist.map((element,index)=>(
+                            <div style={{color:"white"}}>{element.name}</div>
                     ))}
+                   
+                   </div>
 
-                    </div>
+                   
+
             </div>
 
 

@@ -125,12 +125,20 @@
 
 /* sidebar items  */
 .user-sidebar-container{
-    /* border:3px solid limegreen; */
+    border:3px solid limegreen;
     width:25%;
     padding: 5px;
     display: flex;
     flex-direction: column;
     gap:20px;
+}
+
+/* //playlist  */
+.playlist-container{
+    max-width: 90%;
+    padding: 20px;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px;  
 }
 
 
