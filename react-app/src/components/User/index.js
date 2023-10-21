@@ -3,20 +3,25 @@ import './userprofile.css'
 import { useSelector } from "react-redux";
 import ProfileButton from '../Navigation/ProfileButton';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 function UserProfile(){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
     const history = useHistory()
+    const [playing, setPlaying] = useState(false)
+    const [hoverIndex, setHoverIndex] = useState(null)
+    const [selectSong, setSelectedSong] =useState(null)
     useEffect(()=>{
-
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
             const data = await res.json()
+  
            
             if(data.length>1){
                 setSongs(data)
-                console.log(songs, "SONG")
+               
              
                
             }
@@ -28,6 +33,12 @@ function UserProfile(){
 
         FetchData()
     },[setSongs])
+
+    function playSong(){
+        setPlaying(true)
+
+    }
+
 
     if(songs.length===0 || !sessionUser){
         
@@ -80,7 +91,9 @@ function UserProfile(){
                     </div>
 
                     <div className="seperator">
-                        <button className="play-button"><i class="fa-solid fa-play"></i></button>
+                        <button className="play-button"><i class="fa-solid fa-play" onClick={playSong}></i></button>
+                    
+                        
                     </div>
 
 
@@ -97,8 +110,25 @@ function UserProfile(){
                     </thead>
                     <tbody>
                         {songs.map((element, index) => (
+                   
                         <tr key={index}>
-                            <td><div className="hash-item">{index+1}</div></td>
+                            <td>
+
+
+                                <div className="hash-item" 
+                                    onMouseEnter={()=>setHoverIndex(index)}
+                                    onMouseLeave={()=>setHoverIndex(null)}
+                                    >
+                                    {hoverIndex !==index? (
+                                    <div>{index+1}</div>
+                                    ):(
+                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index})} ></i> 
+                                    {console.log(selectSong,"SONG")}
+                                    </div>
+                                    )}
+                                    </div>
+                            
+                            </td>
                             <td className="column1-container">
                                         <img src={element.albums.image} height="50px" width="50px" style={{marginRight:"10px"}}/>
                                         <div className="title-artist-name-container">
@@ -129,11 +159,25 @@ function UserProfile(){
 
                 </table>
               </div>
-
+             
            
 
             </div>
+
        
+                        {selectSong &&
+                                    <div className="audio-container">
+                                        <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
+                                       <AudioPlayer 
+
+                                       id='audio-button '
+                                       src={songs[selectSong.index].audio_url}
+                                       autoPlay={true}
+                                       volume={0.3}
+                                       showSkipControls={false}
+                                       />
+                                       </div>
+                                    }
 
     </div>
     </>

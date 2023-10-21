@@ -102,8 +102,23 @@
     padding:20px;
     border-radius: 50%;
 }
+
+.play-button:hover{
+    background-color:rgb(98, 255, 98);
+    border:none;
+    padding:25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .fa-play{
     font-size: 20px;
+    cursor: pointer;
+}
+.fa-play :hover{
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 2;
+    
 }
 
 
@@ -194,6 +209,8 @@
 .user-main-table{
     /* border:4px solid orange; */
     width:90%;
+    /* padding: 10px; */
+   
     border-collapse: separate; 
     border-spacing: 20px;
 
@@ -202,6 +219,7 @@
 
 
 /* table items  */
+
 
 
 .column1-container{
@@ -230,8 +248,32 @@
     font-weight: lighter; 
 }
 
+/* image audio file */
+.audio-container{
+    /* border:4px solid gold; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+}
 
 
 
+
+.rhap_container{
+    background-color: black !important;
+    /* border:3px solid red; */
+    width:50% !important;
+    margin:0 auto;
+}
+
+/* //hash and pass  */
+
+.hash-item{
+    cursor: pointer;
+}
+.hash-item:hover{
+    
+}
 
 

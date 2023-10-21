@@ -6,3 +6,8 @@ body{
     /* border:3px solid gold; */
     
 }
+
+/* $rhap_theme-color: #ff0000;   // Color of all buttons and volume/progress indicators
+$rhap_background-color: #ff0000 !important; // Color of the player background
+$rhap_bar-color: #ff0000 !default;     // Color of volume and progress bar
+$rhap_time-color: #0000ff !important !default;       // Font color of current time and duration */
