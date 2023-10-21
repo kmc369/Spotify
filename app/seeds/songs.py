@@ -3,17 +3,17 @@ from sqlalchemy.sql import text
 
 def seed_songs():
      
-    song1 = Song(name="Over My Dead Body",  time="4:32",type="R&B" ,artist_id=1,user_id=1,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Over+My+Dead+Body-PMk8L9FNqnY-192k-1697895874.mp3")
-    song2 = Song(name="Shot for Me", time="3:44",type="R&B" , artist_id=1,user_id=2,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Shot+For+Me-wc7JPaRV5uU-192k-1697895570.mp3")
+    song1 = Song(name="Over My Dead Body",  time="4:32",type="R&B" ,artist_id=1,user_id=2,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Over+My+Dead+Body-PMk8L9FNqnY-192k-1697895874.mp3")
+    song2 = Song(name="Shot for Me", time="3:44",type="R&B" , artist_id=1,user_id=1,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Shot+For+Me-wc7JPaRV5uU-192k-1697895570.mp3")
     song3 = Song(name="Headlines", time="3:56",type="R&B" , artist_id=1,user_id=3,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Headlines-Sn3SUnL44w4-192k-1697834302.mp3")
     song4 = Song(name="Crew Love", time="3:29", type="R&B" ,artist_id=1,user_id=4,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Crew+Love-WL-3zvnUomk-192k-1697895793.mp3")
     song5 = Song(name="Take Care", time="4:37",type="R&B" , artist_id=1,user_id=5,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Take+Care.mp3")
 
-    song6 = Song(name="Supermodel", time="3:59", type="R&B", artist_id=8, album_id=6, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Supermodel-tZeKZNcLUpc-192k-1697896710.mp3")
+    song6 = Song(name="Supermodel", time="3:59", type="R&B", artist_id=8, album_id=6, user_id=3, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Supermodel-tZeKZNcLUpc-192k-1697896710.mp3")
     song7 = Song(name="Love Galore (featuring Travis Scott)", time="4:35", type="R&B", artist_id=8, album_id=6, user_id=2, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+Love+Galore+Alt+Version+Audio+-5YOEzmyM-Zs-192k-1697896789.mp3")
     song8 = Song(name="Drew Barrymore", time="3:51", type="R&B", artist_id=8, album_id=6, user_id=3, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+Drew+Barrymore+Official+Video+-dp45V_M4Akw-192k-1697896898.mp3")
     song9 = Song(name="Prom", time="3:16", type="R&B", artist_id=8, album_id=6, user_id=4, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+Prom+Audio+-CAgzfcWAlTo-192k-1697896970.mp3")
-    song10 = Song(name="The Weekend", time="4:32", type="R&B", artist_id=8, album_id=6, user_id=3, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+The+Weekend+Official+Audio+-PALMMqZLAQk-192k-1697897048.mp3")
+    song10 = Song(name="The Weekend", time="4:32", type="R&B", artist_id=8, album_id=6, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+The+Weekend+Official+Audio+-PALMMqZLAQk-192k-1697897048.mp3")
         
 
     
@@ -42,7 +42,7 @@ def seed_songs():
     song30 = Song(name="Man in the Mirror", time="5:04", type="Pop", artist_id=15, album_id=4, user_id=5, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Man+in+the+Mirror-Z9NYDgbKsBE-192k-1697902176.mp3")
     
     song31 = Song(name="34+35", time="2:53", type="Pop", artist_id=16, album_id=5, user_id=2, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+34+35+Ariana+Grande+Lyrics+-7sWO2cHTQx4-192k-1697903000.mp3")
-    song32 = Song(name="POV", time="3:20", type="Pop", artist_id=16, album_id=5, user_id=5, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Ariana+Grande+pov+audio+-nQJEp-k-ogs-192k-1697903169.mp3")
+    song32 = Song(name="POV", time="3:20", type="Pop", artist_id=16, album_id=5, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Ariana+Grande+pov+audio+-nQJEp-k-ogs-192k-1697903169.mp3")
     song33 = Song(name="Just Like Magic", time="2:29", type="Pop", artist_id=16, album_id=5, user_id=4, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Ariana+Grande+just+like+magic+audio+-zMEzD2G2IKA-192k-1697903099.mp3")
     song34 = Song(name="Positions", time="2:52", type="Pop", artist_id=16, album_id=5, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+positions-xuOOAQoDKN0-192k-1697903238.mp3")
 
@@ -80,7 +80,7 @@ def seed_songs():
     db.session.add(song31)
     db.session.add(song32)
     db.session.add(song33)
-    db.session.add(song33)
+    db.session.add(song34)
     db.session.commit()
 
   
