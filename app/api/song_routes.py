@@ -1,16 +1,16 @@
 from flask import Blueprint, jsonify, request 
 from flask_login import login_required
-from app.models import Song,Album,db
+from app.models import Song,Album,db,Playlist
 
 
 songs_bp = Blueprint('songs',__name__)
 
 
-@songs_bp.route("/<int:albumid>", methods=["GET"])
-def get_songs_of_album(albumid):
+@songs_bp.route("/playlist/<int:playlistid>/<int:userid>", methods=["GET"])
+def get_songs_of_album(playlistid,userid):
     """GET ALL THE SONGS ON AN ALBUM"""
 
-    songs = Song.query.filter_by(album_id=albumid).all()
+    songs = Song.query.filter_by(playlist_id=playlistid, user_id =userid ).all()
    
     if not songs:
         return jsonify({"message":"No song found"},400)
@@ -26,6 +26,9 @@ def get_user_songs(userid):
     if not songs:
         return jsonify({"message":"No song found"},400)
     return [song.to_dict() for song in songs]
+
+
+
 
 
  
