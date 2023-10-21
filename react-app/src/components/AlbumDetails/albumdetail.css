@@ -18,13 +18,13 @@
 }
 
 /* button options  */
-.user-profile-icon{
+.user-profile-icon1{
     /* border:1px solid red; */
     display: flex;
     flex-direction: row;
     justify-content: right;
     gap:10px;
-    background: linear-gradient(to right, rgb(134, 123, 252), rgb(83, 68, 251));   
+    background: linear-gradient(to right, rgb(143, 61, 61), rgb(148, 34, 34,0.7));   
     border-radius: 0px;
     padding: 10px;
 }
@@ -41,13 +41,13 @@
 
 /* image and landing extra */
 
-.user-landing-image{
+.user-landing-image1{
     display: flex;
     flex-direction: row;
     gap:20px;
     justify-content: left;
     padding: 15px;
-    background: linear-gradient(to right, rgb(134, 123, 252), rgb(83, 68, 251));   
+    background: linear-gradient(to right, rgb(143, 61, 61), rgb(148, 34, 34,0.7));   
     /* border:4px solid red; */
     max-width: 99%;
 }
@@ -201,10 +201,10 @@
 
 
 /* the headers */
-.user-main-content-container{
+.user-main-content-container1{
  
     width: 75%;
-    background: linear-gradient(to bottom, rgb(134, 123, 252), rgb(25, 25, 25));    /* border:3px solid purple; */
+    background: linear-gradient(to bottom, rgb(143, 61, 61), rgb(43, 43, 43));   
     /* border:3px solid red; */
     border-radius: 10px;
  

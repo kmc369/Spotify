@@ -14,11 +14,13 @@ class Song (db.Model):
     artist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("artists.id")), nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     album_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("albums.id")), nullable=False)
+    playlist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("playlists.id")))
     
     #relationship
     artists = db.relationship("Artist", back_populates="songs")
     user  = db.relationship("User", back_populates="songs")
     albums = db.relationship("Album", back_populates="songs")
+    playlist =  db.relationship("Playlist", back_populates="songs")
     
     def add_prefix_for_prod(attr):
         if environment == "production":

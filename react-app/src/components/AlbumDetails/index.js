@@ -73,13 +73,13 @@ function AlbumDetail(){
 
 
 
-            <div className="user-main-content-container">
+            <div className="user-main-content-container1">
                 <div className="user-landing-container">
-                        <div className="user-profile-icon">
+                        <div className="user-profile-icon1">
                             <button className="premiumButton">Premium Options</button>
                             <ProfileButton user={sessionUser} />
                         </div> 
-                     <div className="user-landing-image">
+                     <div className="user-landing-image1">
                         <div className="user-landing-image-item">
                             <div>< img src={songs[0].albums.image} className="image-user-photo" style={{borderRadius:"5px"}} /></div>
                         </div>
