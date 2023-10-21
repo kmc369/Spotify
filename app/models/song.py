@@ -6,6 +6,8 @@ class Song (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
+    type =db.Column(db.String, nullable=False)
+    audio_url = db.Column(db.String, nullable=False)
     
     
     #foreign_keys
@@ -29,6 +31,8 @@ class Song (db.Model):
             "id":self.id,
             "name":self.name,
             "time":self.time,
+            "type":self.type,
+            "audio_url":self.audio_url,
             "artist_id":self.artist_id,
             "user_id":self.user_id,
             "album_id":self.album_id,
@@ -39,12 +43,12 @@ class Song (db.Model):
                 "image":self.user.image
             },
             "artist":{
-                "id":self.artists.id if self.artists else None,
-                "name":self.artists.name if self.artists else None
+                "name":self.artists.name if self.artists else None,
+                
             },
             "albums":{
-                "id":self.albums.id if self.albums else None,
-                "name":self.albums.name if self.albums else None
+                "name":self.albums.name if self.albums else None,
+                "image":self.albums.image
             }
             
         }

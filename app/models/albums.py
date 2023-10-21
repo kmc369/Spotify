@@ -6,6 +6,8 @@ class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
+    type =db.Column(db.String, nullable=False)
+    image = db.Column(db.String, nullable=False)
     releasedate = db.Column(db.String)
     
     
@@ -29,6 +31,8 @@ class Album(db.Model):
             "id":self.id,
             "name":self.name,
             "time":self.time,
+            "type":self.type,
+            "image":self.image,
             "releasedate":self.releasedate,
             "artist_id":self.artist_id,
             "user_id":self.user_id,

@@ -1,0 +1,165 @@
+
+/* buttons */
+.landing-login-sign-buttons{
+    /* border:3px solid red; */
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.landing-sign-up{
+    background-color:black;
+    color: rgb(152, 152, 152);
+    font-family: 'Courier New', Courier, monospace;
+    border:none;
+    font-size: medium;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.landing-login{
+    background-color:#ffff;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    border:none;
+    font-size: medium; 
+    border-radius: 30px;
+    padding: 10px;
+    width:100px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
+
+
+.landing-container{
+    display: flex;
+    flex-direction: row;
+    gap:0px;
+    background-color: rgb(3, 3, 3);
+    max-width: 95%;
+    height: 80%;
+    /* border:5px solid red; */
+    margin:0 auto;
+}
+
+.landing-sidebar-container{
+    /* border:5px solid green; */
+   
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    cursor: pointer;
+    background-color: rgb(15, 15, 15);
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+
+}
+
+.landing-album-center{
+    /* border:5px solid green; */
+    width: 75%;
+    /* margin: 0 auto; */
+}
+
+.landing-albums-container{
+    /* border:5px solid rgb(128, 0, 119); */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    padding: 20px;
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-self: center; 
+    background-color: rgb(15, 15, 15);
+    border-radius: 20px;
+    margin:0 auto;
+
+
+}
+
+
+/* Loop items  sidebar */
+#album-items{
+    color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    background-color: rgb(10, 10, 10);
+    border-radius: 10px;
+    padding:20px;
+    align-items: center;
+    width: 167px;
+
+}
+.image-album-item{
+border-radius: 10px;
+z-index: 2px;
+}
+
+.sidebar-words{
+    font-family: Calibri;
+    margin-left: 10px;
+}
+.landing-album-name{
+    font-family: Arial, Helvetica, sans-serif;
+    /* border:3px solid green; */
+
+}
+
+.landing-type,.landing-artist-name{
+    color:rgb(157, 156, 156);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* border:3px solid red; */
+}
+
+.create-first-paylist{
+    background-color: rgb(46, 46, 46); 
+    color:#ffff;
+    padding: 20px;
+    border-radius: 10px;
+    /* border:3px solid gold; */
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.create-first-paylist1{
+    background-color: rgb(46, 46, 46); 
+    color:#ffff;
+    padding: 20px;
+    border-radius: 10px;
+    /* border:3px solid gold; */
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+.landing-sidebar-extra-container{
+    display: flex;
+    flex-direction: column;
+    /* border:2px solid red; */
+    gap:10px;
+    width: fit-content;
+    padding: 10px;
+
+}
+
+.playlist-laanding{
+   background-color: white;
+   color:black;
+   border-radius: 25px; 
+   border:none;
+   padding: 15px;
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-weight: bold;
+ 
+}
+
+
+
+
