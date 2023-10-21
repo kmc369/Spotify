@@ -4,3 +4,4 @@ from .db import environment, SCHEMA
 from .albums import Album
 from .artist import Artist
 from .song import Song
+from .playlist import Playlist

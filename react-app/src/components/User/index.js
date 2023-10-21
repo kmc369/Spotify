@@ -13,15 +13,19 @@ function UserProfile(){
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
     const [selectSong, setSelectedSong] =useState(null)
+    const [userAlbums, setUserAlbums]= useState([])
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
+            const resalbums = await fetch(`/api/albums/user/${sessionUser.id}`)
             const data = await res.json()
+            const resalbumsdata = await resalbums.json()
+            console.log(resalbumsdata)
   
            
-            if(data.length>1){
+            if(data.length>1 || resalbumsdata.length>1){
                 setSongs(data)
-               
+               setUserAlbums(resalbumsdata)
              
                
             }
@@ -62,6 +66,13 @@ function UserProfile(){
                             <div><button className="song-button-user">Albums</button></div>
                         </div>
                         <div>Search</div>
+                    </div>
+
+                    <div className="user-Albums">
+                    {userAlbums.map(()=>(
+                        <div> </div>
+                    ))}
+
                     </div>
             </div>
 

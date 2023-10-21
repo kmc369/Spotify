@@ -19,7 +19,7 @@ def get_songs_of_album(albumid):
 
 @songs_bp.route("/user/<int:userid>", methods=["GET"])
 def get_user_songs(userid):
-    """GET ALL THE SONGS OF THE USER hello""" 
+    """GET ALL THE SONGS OF THE USER """ 
 
     songs = Song.query.filter_by(user_id=userid).all()
 
