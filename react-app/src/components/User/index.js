@@ -37,7 +37,7 @@ function UserProfile(){
               
                
                 setPlaylist(playlist_data)
-               
+               console.log(playlist_data, "PLAYLIST")
             }
         
          
@@ -83,12 +83,17 @@ function UserProfile(){
                             <div><button className="song-button-user">Songs</button></div>
                             <div><button className="song-button-user">Playlist</button></div>
                         </div>
-                        <div>Search</div>
+                       
                     </div>
                    <div className="playlist-container">
+                   <h3 className="playlist-header">{sessionUser.username}'s playlist</h3>
                     {userPlaylist.map((element,index)=>(
-                            // <img  src={}/>
+                        <div key={index} className="playlist-items">
+                          
+                            <img height="70px" width="70px" src={element.songs[0].albums.image} style={{borderRadius:"5px"}}/>
                             <div style={{color:"white"}}>{element.name}</div>
+                            {/* <div><button>Create Another Playlist</button> </div> */}
+                        </div>
                     ))}
                    
                    </div>
