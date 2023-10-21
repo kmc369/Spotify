@@ -12,7 +12,7 @@ def seed_albums():
         album6 = Album(name="Ctrl", time="49:24", type="R&B",image="https://www.newburycomics.com/cdn/shop/products/SZA-CTRL-Vinyl-Color-2LP-2295154_1024x1024.jpg?v=1519943221", releasedate="2017-06-09",artist_id=1,user_id=1)
         album7 = Album(name="Playing Games", time="52:30", type="R&B", image="https://i.pinimg.com/originals/a6/18/48/a618486cbff9d4c456525858917bd808.jpg", releasedate="2022-07-01", artist_id=12, user_id=1)
 
-        album8 = Album(name="Master of Puppets", time="54:47", type="Heavy Metal",image="https://i.redd.it/hoos9up9i5251.png",releasedate="1986-03-03", artist_id=3,user_id=1)
+        album8 = Album(name="Master of Puppets", time="54:47", type="Heavy Metal",image="https://www.jamminrecordings.com/cdn/shop/products/Metallica_-_Master_Of_Puppets_-_CD_large.jpg?v=1656291879",releasedate="1986-03-03", artist_id=3,user_id=1)
         album9 = Album(name="Metallica (The Black Album)",time="62:41",type="Heavy Metal",image="https://i.pinimg.com/736x/59/9b/47/599b478f9e19f48e65ab25789a84fca9.jpg",releasedate="1991-08-12",artist_id=3, user_id=1)
         album10 = Album(name="Ride the Lightning",time="47:27",type="Heavy Metal",image="https://anxiousandangry.com/cdn/shop/products/MetallicaRideTheLightning.png?v=1602011579",releasedate="1984-07-27",artist_id=3,user_id=1)
 
@@ -30,9 +30,9 @@ def seed_albums():
         album19 = Album(name="Hotel California", time="43:30", type="Rock", image="https://pure-music.co.uk/wp-content/uploads/2019/04/Hotel-California-Album-Cover.png", releasedate="1976-12-08", artist_id=11, user_id=1)
         
         
-        album8 = Album(name="Break Every Rule", time="39:37", type="Rock", image="https://upload.wikimedia.org/wikipedia/en/4/42/Tina_Turner_-_Break_Every_Rule_%28album%29.png", releasedate="1986-09-23", artist_id=5, user_id=1)
-        album9 = Album(name="Infinity on High", time="47:38", type="Pop Punk", image="https://www.thevro.com/wp-content/uploads/infinity-album-art-790x593.jpg", releasedate="2007-02-06", artist_id=6, user_id=1)
-        album10 = Album(name="Love Drunk", time="39:55", type="Pop Rock", image="https://i.scdn.co/image/ab67616d0000b27308a2b8e9210f518f6f4fbb8a", releasedate="2009-09-08", artist_id=9, user_id=1)
+        album20 = Album(name="Break Every Rule", time="39:37", type="Rock", image="https://upload.wikimedia.org/wikipedia/en/4/42/Tina_Turner_-_Break_Every_Rule_%28album%29.png", releasedate="1986-09-23", artist_id=5, user_id=1)
+        album21 = Album(name="Infinity on High", time="47:38", type="Pop Punk", image="https://www.thevro.com/wp-content/uploads/infinity-album-art-790x593.jpg", releasedate="2007-02-06", artist_id=6, user_id=1)
+        album22 = Album(name="Love Drunk", time="39:55", type="Pop Rock", image="https://i.scdn.co/image/ab67616d0000b27308a2b8e9210f518f6f4fbb8a", releasedate="2009-09-08", artist_id=9, user_id=1)
             
         db.session.add(album1)
         db.session.add(album2)
@@ -53,6 +53,9 @@ def seed_albums():
         db.session.add(album17)
         db.session.add(album18)
         db.session.add(album19)
+        db.session.add(album20)
+        db.session.add(album21)
+        db.session.add(album22)
         db.session.commit()
 
   

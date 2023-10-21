@@ -15,15 +15,21 @@ def seed_users():
         image="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-vnl1thqrh02x7ra2.jpg", 
         password='password')
     bobbie = User(
-        username='Jake',
+        username='bobbie',
         image="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u1.jpg",
         email='bobbie@aa.io',
+        password='password')
+    Olivia = User(
+        username='Olivia',
+        image="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u1.jpg",
+        email='olivia@aa.io',
         password='password')
 
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(Olivia)
     db.session.commit()
 
 
