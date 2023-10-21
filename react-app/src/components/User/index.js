@@ -14,20 +14,35 @@ function UserProfile(){
     const [hoverIndex, setHoverIndex] = useState(null)
     const [selectSong, setSelectedSong] =useState(null)
     const [userPlaylist, setPlaylist]= useState([])
+    const [randomImage, SetRandomImage]=useState(null)
+  
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
             const res_playlist = await fetch(`/api/songs/playlist/${sessionUser.id}`)
             const data = await res.json()
             const playlist_data= await res_playlist.json()
-            // console.log(playlist_data, "Playlsit")
-  
-           
+         
+           const arr = []
             if(data.length>=1 || playlist_data.length>=1){
                 setSongs(data)
+
+                for(let i =0; i<data.length; i++){
+                 
+                    arr.push(data[i].albums.image)
+                }
+                const randomIndex = Math.floor(Math.random() * data.length);
+                SetRandomImage(data[randomIndex])
+
+              
+               
                 setPlaylist(playlist_data)
                
             }
+        
+         
+
+          
         
            
                 
@@ -44,6 +59,8 @@ function UserProfile(){
 
     }
 
+
+   
 
     if(songs.length===0 || !sessionUser ){
         
@@ -70,6 +87,7 @@ function UserProfile(){
                     </div>
                    <div className="playlist-container">
                     {userPlaylist.map((element,index)=>(
+                            // <img  src={}/>
                             <div style={{color:"white"}}>{element.name}</div>
                     ))}
                    
@@ -89,7 +107,12 @@ function UserProfile(){
                         </div>
                     <div className="user-landing-image">
                         <div className="user-landing-image-item">
+                            {randomImage? (
+                              
+                                <div><img src={randomImage.albums.image} style={{borderRadius:"5px"}} height="400px" width="400px"/></div>
+                            ):(
                             <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
+                            )}
                         </div>
                         <div className="song-starred-info">
                             <div className="song-word">Songs</div>
