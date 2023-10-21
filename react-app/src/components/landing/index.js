@@ -6,6 +6,7 @@ import { useModal } from '../../context/Modal';
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Tooltip } from './tooltip';
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
@@ -82,8 +83,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
         <div className="landing-albums-container">
         
         {albums.map((element, index)=>(
-            <div id={`album-items`} className={`album${index}`} key={index}>
-               <div> <img className="image-album-item" src={element.image}  style={{width:"150px",height:"150px"}}/> </div>
+            <div id={`album-items`} className={`album${index}`} key={index} onClick={()=>history.push(`/albumDetails/${element.id}`)}>
+               <div> <img className="image-album-item" src={element.image}  style={{width:"150px",height:"150px"}} /> </div>
+             
                 <div className="landing-album-name">{element.name} </div>
                 <div className="landing-artist-name">{element.artist.name}</div>
                 <div class="landing-type">{element.type} </div>

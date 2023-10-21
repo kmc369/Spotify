@@ -6,7 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Landing from "./components/landing";
-import UserProfile from './components/User'
+import UserProfile from './components/User';
+import AlbumDetail from "./components/AlbumDetails";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,9 +26,13 @@ function App() {
 
 
           <Route exact path="/user" >
-        
             <UserProfile />
           </Route>
+
+
+          <Route exact path="/albumDetails/:album_id"> 
+            <AlbumDetail />
+           </Route>
 
 
           <Route exact path="/" >
