@@ -3,13 +3,13 @@ from sqlalchemy.sql import text
 
 def seed_albums():
      
-        album1 = Album(name= "Thank Me Later", time= "1:02:31", type="R&B", image="https://upload.wikimedia.org/wikipedia/en/9/9c/Drake_-_Thank_Me_Later_cover.jpg",releasedate= "2010-06-15",  artist_id=1,user_id=1)
-        album2 = Album(name="Take Care", time="1:20:24",type="R&B" , image="https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg",releasedate="2011-11-15" ,artist_id=1,user_id=1)
-        album3 = Album(name="Nothing Was the Same", time="1:05:14", type="R&B", image="https://m.media-amazon.com/images/I/61YfOPXVn5L.jpg",releasedate="2013-09-24", artist_id=1,user_id=2)
-        album4 = Album(name="Views", time="1:21:06",type="R&B" ,image="https://www.udiscovermusic.com/wp-content/uploads/2019/04/Drake-Views-album-cover-web-optimised-820-820x820.jpg", releasedate="2016-04-29", artist_id=1,user_id=2)
-        album5 = Album(name="Scorpion", time="1:30:07",type="R&B" ,image="https://compote.slate.com/images/caa4b707-3470-4e0c-93ad-a7457bd02eb3.jpeg?width=780&height=520&rect=1560x1040&offset=0x0", releasedate="2018-06-29", artist_id=1,user_id=1)
+        album1 = Album(name="Purpose", time="0:49:48", type="Pop", image="https://neenahsatellite.com/wp-content/uploads/2015/11/JustinBieberPurpose.jpg", releasedate="2015-11-13", artist_id=13, user_id=1)
+        album2 = Album(name="Take Care", time="1:20:24",type="R&B" , image="https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg",releasedate="2011-11-15" ,artist_id=1,user_id=2)
+        album3 = Album(name="Reputation", time="0:55:38", type="Pop", image="https://i.pinimg.com/originals/e1/53/c3/e153c31333acd233550e0e53ab59db97.jpg", releasedate="2017-11-10", artist_id=14, user_id=3)
+        album4 = Album(name="Thriller", time="0:42:19", type="Pop", image="https://preview.redd.it/eiterwv9fdn51.jpg?auto=webp&s=a6de83ab0203a387021631204251581b05b697be", releasedate="1982-11-30", artist_id=15, user_id=4)
+        album5 = Album(name="Positions", time="0:41:05", type="Pop", image="https://upload.wikimedia.org/wikipedia/en/a/a0/Ariana_Grande_-_Positions.png", releasedate="2020-10-30", artist_id=16, user_id=1)
         
-        album6 = Album(name="Ctrl", time="49:24", type="R&B",image="https://www.newburycomics.com/cdn/shop/products/SZA-CTRL-Vinyl-Color-2LP-2295154_1024x1024.jpg?v=1519943221", releasedate="2017-06-09",artist_id=1,user_id=1)
+        album6 = Album(name="Ctrl", time="49:24", type="R&B",image="https://best-fit.transforms.svdcdn.com/production/images/sza-press-shot-2-main.jpg?w=1200&h=796&q=100&auto=format&fit=crop&dm=1642894517&s=49c3b6d97f8ad9acf40bef6a9f1b298b", releasedate="2017-06-09",artist_id=1,user_id=1)
         album7 = Album(name="Playing Games", time="52:30", type="R&B", image="https://i.pinimg.com/originals/a6/18/48/a618486cbff9d4c456525858917bd808.jpg", releasedate="2022-07-01", artist_id=12, user_id=1)
 
         album8 = Album(name="Master of Puppets", time="54:47", type="Heavy Metal",image="https://www.jamminrecordings.com/cdn/shop/products/Metallica_-_Master_Of_Puppets_-_CD_large.jpg?v=1656291879",releasedate="1986-03-03", artist_id=3,user_id=1)
