@@ -1,8 +1,8 @@
-"""create packages table
+"""empty message
 
-Revision ID: 7ae7ae559de2
+Revision ID: f9e25c3073c2
 Revises: 
-Create Date: 2023-09-30 07:54:00.341809
+Create Date: 2023-10-22 14:49:42.890873
 
 """
 from alembic import op
@@ -11,10 +11,8 @@ import sqlalchemy as sa
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
-
-
 # revision identifiers, used by Alembic.
-revision = '7ae7ae559de2'
+revision = 'f9e25c3073c2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -90,11 +88,3 @@ def downgrade():
     op.drop_table('users')
     op.drop_table('artists')
     # ### end Alembic commands ###
-
-
-
-
-
-
-
-
