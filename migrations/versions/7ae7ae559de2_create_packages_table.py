@@ -17,6 +17,7 @@ SCHEMA = os.environ.get("SCHEMA")
 revision = '7ae7ae559de2'
 down_revision = None
 branch_labels = None
+depends_on = None
 
 
 def upgrade():
