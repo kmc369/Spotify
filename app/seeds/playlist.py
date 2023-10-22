@@ -2,13 +2,18 @@ from app.models import db, Playlist, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_playlist():
+    
     play1= Playlist(
         name="My_pop",
-        user_id=1,
-        
+        user_id=1,   
+    )
+    play2= Playlist(
+        name="HipHop",
+        user_id=1,   
     )
 
     db.session.add(play1)
+    db.session.add(play2)
     db.session.commit()
     
 def undo_playlist():
