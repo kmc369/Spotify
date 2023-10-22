@@ -37,7 +37,7 @@ function UserProfile(){
               
                
                 setPlaylist(playlist_data)
-               console.log(playlist_data, "PLAYLIST")
+           
             }
         
          
@@ -85,18 +85,21 @@ function UserProfile(){
                         </div>
                        
                     </div>
-                   <div className="playlist-container">
-                   <h3 className="playlist-header">{sessionUser.username}'s playlist</h3>
-                    {userPlaylist.map((element,index)=>(
-                        <div key={index} className="playlist-items">
-                          
-                            <img height="70px" width="70px" src={element.songs[0].albums.image} style={{borderRadius:"5px"}}/>
-                            <div style={{color:"white"}}>{element.name}</div>
-                            {/* <div><button>Create Another Playlist</button> </div> */}
+                    <div className="playlist-container">
+                        {console.log(userPlaylist)}
+                        {userPlaylist.length>=1 && (!userPlaylist[0].message) ?(
+                         
+                        userPlaylist.map((element, index) => (
+                            <div key={index} className="playlist-items">
+                                <img height="70px" width="70px" src={element.songs[0].albums.image} style={{ borderRadiu:"5px" }} />
+                                    <div style={{ color: "white" }}>{element.name}</div>
+                                    {/* <div><button>Create Another Playlist</button> </div> */}
+                                    </div>
+                                ))
+                            ) : (
+                            <div>Create Playlist</div>
+                                )}
                         </div>
-                    ))}
-                   
-                   </div>
 
                    
 

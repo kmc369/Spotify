@@ -10,7 +10,7 @@ import ProfileButton from '../Navigation/ProfileButton';
 function AlbumDetail(){
 
     const [songs,setSongs] = useState([])
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session?.user)
     const history = useHistory()
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
@@ -22,7 +22,7 @@ function AlbumDetail(){
         async function FetchData(){
             const res = await fetch(`/api/songs/${album_num}`)
             const data = await res.json()
-            console.log(data)
+            // console.log(data)
   
            
             if(data.length>1){
@@ -45,8 +45,8 @@ function AlbumDetail(){
 
     }
 
-
-    if(songs.length===0 || !sessionUser){
+   
+    if(songs.length===0 ){ 
         
         return null
     }
@@ -75,10 +75,12 @@ function AlbumDetail(){
 
             <div className="user-main-content-container1">
                 <div className="user-landing-container">
+                    {sessionUser &&
                         <div className="user-profile-icon1">
                             <button className="premiumButton">Premium Options</button>
                             <ProfileButton user={sessionUser} />
                         </div> 
+                        }
                      <div className="user-landing-image1">
                         <div className="user-landing-image-item">
                             <div>< img src={songs[0].albums.image} className="image-user-photo" style={{borderRadius:"5px"}} /></div>
