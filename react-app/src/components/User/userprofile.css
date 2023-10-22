@@ -133,6 +133,33 @@
     gap:20px;
 }
 
+/* //playlist  */
+.playlist-header{
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(104, 104, 104, 0.4);
+}
+
+.playlist-container{
+    max-width: 90%;
+    padding: 20px;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px; 
+    height: 100%; 
+}
+
+.playlist-items{
+    /* border:3px solid red; */
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    margin-bottom: 8px;
+}
+
 
 .nav-items-container{
     display: flex;
@@ -255,6 +282,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 20px;
+ 
 }
 
 

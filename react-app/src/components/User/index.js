@@ -13,29 +13,45 @@ function UserProfile(){
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
     const [selectSong, setSelectedSong] =useState(null)
-    const [userAlbums, setUserAlbums]= useState([])
+    const [userPlaylist, setPlaylist]= useState([])
+    const [randomImage, SetRandomImage]=useState(null)
+  
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
-            const resalbums = await fetch(`/api/albums/user/${sessionUser.id}`)
+            const res_playlist = await fetch(`/api/songs/playlist/${sessionUser.id}`)
             const data = await res.json()
-            const resalbumsdata = await resalbums.json()
-            console.log(resalbumsdata)
-  
-           
-            if(data.length>1 || resalbumsdata.length>1){
+            const playlist_data= await res_playlist.json()
+         
+           const arr = []
+            if(data.length>=1 || playlist_data.length>=1){
                 setSongs(data)
-               setUserAlbums(resalbumsdata)
-             
-               
-            }
-            else{
+
+                for(let i =0; i<data.length; i++){
+                 
+                    arr.push(data[i].albums.image)
+                }
+                const randomIndex = Math.floor(Math.random() * data.length);
+                SetRandomImage(data[randomIndex])
+
               
+               
+                setPlaylist(playlist_data)
+           
             }
-            
+        
+         
+
+          
+        
+           
+                
         }
 
+       
+
         FetchData()
+   
     },[setSongs])
 
     function playSong(){
@@ -44,7 +60,9 @@ function UserProfile(){
     }
 
 
-    if(songs.length===0 || !sessionUser){
+   
+
+    if(songs.length===0 || !sessionUser ){
         
         return null
     }
@@ -63,17 +81,28 @@ function UserProfile(){
                         <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                         <div className="library-button-container">
                             <div><button className="song-button-user">Songs</button></div>
-                            <div><button className="song-button-user">Albums</button></div>
+                            <div><button className="song-button-user">Playlist</button></div>
                         </div>
-                        <div>Search</div>
+                       
                     </div>
+                    <div className="playlist-container">
+                        {console.log(userPlaylist)}
+                        {userPlaylist.length>=1 && (!userPlaylist[0].message) ?(
+                         
+                        userPlaylist.map((element, index) => (
+                            <div key={index} className="playlist-items">
+                                <img height="70px" width="70px" src={element.songs[0].albums.image} style={{ borderRadiu:"5px" }} />
+                                    <div style={{ color: "white" }}>{element.name}</div>
+                                    {/* <div><button>Create Another Playlist</button> </div> */}
+                                    </div>
+                                ))
+                            ) : (
+                            <div>Create Playlist</div>
+                                )}
+                        </div>
 
-                    <div className="user-Albums">
-                    {userAlbums.map(()=>(
-                        <div> </div>
-                    ))}
+                   
 
-                    </div>
             </div>
 
 
@@ -86,7 +115,12 @@ function UserProfile(){
                         </div>
                     <div className="user-landing-image">
                         <div className="user-landing-image-item">
+                            {randomImage? (
+                              
+                                <div><img src={randomImage.albums.image} style={{borderRadius:"5px"}} height="400px" width="400px"/></div>
+                            ):(
                             <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
+                            )}
                         </div>
                         <div className="song-starred-info">
                             <div className="song-word">Songs</div>

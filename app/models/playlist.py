@@ -22,18 +22,17 @@ class Playlist(db.Model):
      user  = db.relationship("User", back_populates="playlists")
 
      
-def to_dict(self):
-    return {
-        "id":self.id,
-        "name":self.name,
-        "user_id":self.user_id,
-         "user":{
-               "id": self.user.id,
-                "username": self.user.username,
-                "email": self.user.email ,
-                "image":self.user.image
-            },
-        "songs": [song.to_dict() for song in self.songs]
-         
-        
-    }
+     def to_dict(self):
+        return {
+            "id":self.id,
+            "name":self.name,
+            "user_id":self.user_id,
+            # "user":{
+            #         "username": self.user.username,
+            #         "email": self.user.email ,
+            #         "image":self.user.image
+            #     },
+            "songs": [song.to_dict() for song in self.songs]
+            
+            
+        }
