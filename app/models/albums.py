@@ -16,7 +16,7 @@ class Album(db.Model):
     user_id =  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
     # song_id = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod("songs.id")),nullable=False)
  #relationships
-    songs =  db.relationship("Song", back_populates="albums")
+    songs =  db.relationship("Song", back_populates="albums",cascade="all, delete-orphan")
     artists = db.relationship("Artist", back_populates="albums")
     user = db.relationship("User", back_populates="albums")
     
