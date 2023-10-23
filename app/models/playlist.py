@@ -11,7 +11,7 @@ class Playlist(db.Model):
         
     
      id = db.Column(db.Integer, primary_key=True)
-     name = db.Column(db.Integer, nullable=False)
+     name = db.Column(db.String, nullable=False)
      
      #foreignkeys
      user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
