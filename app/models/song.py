@@ -7,13 +7,14 @@ class Song (db.Model):
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
     type =db.Column(db.String, nullable=False)
-    audio_url = db.Column(db.String, nullable=False)
+  
     
     
     #foreign_keys
     artist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("artists.id")), nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     album_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("albums.id")), nullable=False)
+    audio_url = db.Column(db.String, nullable=False)
     playlist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("playlists.id")))
     
     #relationship
