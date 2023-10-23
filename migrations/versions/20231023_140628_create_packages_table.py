@@ -1,8 +1,8 @@
-"""empty message
+"""create packages table
 
-Revision ID: f9e25c3073c2
+Revision ID: e9edc080d36a
 Revises: 
-Create Date: 2023-10-22 14:49:42.890873
+Create Date: 2023-10-23 14:06:28.311373
 
 """
 from alembic import op
@@ -12,7 +12,8 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-revision = 'f9e25c3073c2'
+# revision identifiers, used by Alembic.
+revision = 'e9edc080d36a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,8 +43,8 @@ def upgrade():
     sa.Column('type', sa.String(), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('releasedate', sa.String(), nullable=True),
-    sa.Column('artist_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('artist_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
