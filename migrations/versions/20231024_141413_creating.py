@@ -12,6 +12,8 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+if environment == 'production':
+    op.execute("CREATE SCHEMA IF NOT EXISTS spotify_schema")
 # revision identifiers, used by Alembic.
 revision = 'e58368a6e281'
 down_revision = None
