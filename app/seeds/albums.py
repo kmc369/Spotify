@@ -32,7 +32,7 @@ def seed_albums():
 
         album20 = Album(name="Break Every Rule", time="39:37", type="Rock", image="https://upload.wikimedia.org/wikipedia/en/4/42/Tina_Turner_-_Break_Every_Rule_%28album%29.png", releasedate="1986-09-23", artist_id=5, user_id=1)
         album21 = Album(name="Infinity on High", time="47:38", type="Pop Punk", image="https://www.thevro.com/wp-content/uploads/infinity-album-art-790x593.jpg", releasedate="2007-02-06", artist_id=6, user_id=1)
-        album22 = Album(name="Love Drunk", time="39:55", type="Pop Rock", image="https://i.scdn.co/image/ab67616d0000b27308a2b8e9210f518f6f4fbb8a", releasedate="2009-09-08", artist_id=9, user_id=1)
+        # album22 = Album(name="Love Drunk", time="39:55", type="Pop Rock", image="https://i.scdn.co/image/ab67616d0000b27308a2b8e9210f518f6f4fbb8a", releasedate="2009-09-08", artist_id=9, user_id=1)
 
         db.session.add(album1)
         db.session.add(album2)
@@ -55,7 +55,7 @@ def seed_albums():
         db.session.add(album19)
         db.session.add(album20)
         db.session.add(album21)
-        db.session.add(album22)
+        # db.session.add(album22)
         db.session.commit()
 
 
