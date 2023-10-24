@@ -10,7 +10,7 @@ class Artist (db.Model):
     
     #relationshops 
     songs = db.relationship("Song", back_populates="artists", cascade="all, delete-orphan")
-    albums = db.relationship("Album", back_populates="artists", cascade="all, delete-orphan")
+    # albums = db.relationship("Album", back_populates="artists", cascade="all, delete-orphan")
     
     def add_prefix_for_prod(attr):
         if environment == "production":

@@ -38,19 +38,19 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    op.create_table('albums',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(), nullable=False),
-    sa.Column('time', sa.String(), nullable=False),
-    sa.Column('type', sa.String(), nullable=False),
-    sa.Column('image', sa.String(), nullable=False),
-    sa.Column('releasedate', sa.String(), nullable=True),
-    sa.Column('artist_id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
+    # op.create_table('albums',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('name', sa.String(), nullable=False),
+    # sa.Column('time', sa.String(), nullable=False),
+    # sa.Column('type', sa.String(), nullable=False),
+    # sa.Column('image', sa.String(), nullable=False),
+    # sa.Column('releasedate', sa.String(), nullable=True),
+    # sa.Column('artist_id', sa.Integer(), nullable=False),
+    # sa.Column('user_id', sa.Integer(), nullable=False),
+    # sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
+    # sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
