@@ -1,7 +1,7 @@
 """create packages table
 
 Revision ID: 51338ac04a19
-Revises: 
+Revises hello: 
 Create Date: 2023-10-24 15:59:08.596301
 
 """
