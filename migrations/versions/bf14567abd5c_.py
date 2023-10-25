@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c3863e17720a
+Revision ID: bf14567abd5c
 Revises: 
-Create Date: 2023-10-21 14:47:43.432872
+Create Date: 2023-10-24 16:57:58.681283
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'c3863e17720a'
+revision = 'bf14567abd5c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,15 +43,15 @@ def upgrade():
     sa.Column('type', sa.String(), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('releasedate', sa.String(), nullable=True),
-    sa.Column('artist_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('artist_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -61,10 +61,10 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('time', sa.String(), nullable=False),
     sa.Column('type', sa.String(), nullable=False),
-    sa.Column('audio_url', sa.String(), nullable=False),
     sa.Column('artist_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('album_id', sa.Integer(), nullable=False),
+    sa.Column('audio_url', sa.String(), nullable=False),
     sa.Column('playlist_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['album_id'], ['albums.id'], ),
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
@@ -75,10 +75,10 @@ def upgrade():
     # ### end Alembic commands ###
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE artists SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE playlists SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
@@ -89,11 +89,3 @@ def downgrade():
     op.drop_table('users')
     op.drop_table('artists')
     # ### end Alembic commands ###
-
-
-
-
-
-
-
-

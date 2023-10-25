@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_songs():
      
+    
     song1 = Song(name="Over My Dead Body",  time="4:32",type="R&B" ,artist_id=1,user_id=2,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Over+My+Dead+Body-PMk8L9FNqnY-192k-1697895874.mp3")
     song2 = Song(name="Shot for Me", time="3:44",type="R&B" , artist_id=1,user_id=1,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Shot+For+Me-wc7JPaRV5uU-192k-1697895570.mp3",playlist_id=1)
     song3 = Song(name="Headlines", time="3:56",type="R&B" , artist_id=1,user_id=3,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Headlines-Sn3SUnL44w4-192k-1697834302.mp3")

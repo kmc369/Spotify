@@ -3,17 +3,22 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Song (db.Model):
     __tablename__ = "songs"
+    
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+        
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
     type =db.Column(db.String, nullable=False)
-    audio_url = db.Column(db.String, nullable=False)
+  
     
-    
+
     #foreign_keys
     artist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("artists.id")), nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     album_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("albums.id")), nullable=False)
+    audio_url = db.Column(db.String, nullable=False)
     playlist_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("playlists.id")))
     
     #relationship

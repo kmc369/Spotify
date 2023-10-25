@@ -11,8 +11,9 @@ class Playlist(db.Model):
         
     
      id = db.Column(db.Integer, primary_key=True)
-     name = db.Column(db.Integer, nullable=False)
-     
+     image = db.Column(db.String(2000), nullable=False)
+     name = db.Column(db.String, nullable=False)
+     description = db.Column(db.String)
      #foreignkeys
      user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
@@ -27,6 +28,8 @@ class Playlist(db.Model):
             "id":self.id,
             "name":self.name,
             "user_id":self.user_id,
+            "description":self.description,
+            "image":self.image,
             # "user":{
             #         "username": self.user.username,
             #         "email": self.user.email ,

@@ -3,6 +3,9 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Album(db.Model):
     __tablename__ = "albums"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+        
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     time = db.Column(db.String, nullable=False)
@@ -12,11 +15,10 @@ class Album(db.Model):
     
     
 #foreign key 
-    artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("artists.id")),nullable=True)
-    user_id =  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=True)
-    
- #relationships
-    songs =  db.relationship("Song", back_populates="albums")
+    artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("artists.id")),nullable=False)
+    user_id =  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
+
+    songs =  db.relationship("Song", back_populates="albums",cascade="all, delete-orphan")
     artists = db.relationship("Artist", back_populates="albums")
     user = db.relationship("User", back_populates="albums")
     

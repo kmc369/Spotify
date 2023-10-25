@@ -91,7 +91,7 @@ function UserProfile(){
                          
                         userPlaylist.map((element, index) => (
                             <div key={index} className="playlist-items">
-                                <img height="70px" width="70px" src={element.songs[0].albums.image} style={{ borderRadiu:"5px" }} />
+                                <img height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} />
                                     <div style={{ color: "white" }}>{element.name}</div>
                                     {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
