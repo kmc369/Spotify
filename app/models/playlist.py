@@ -19,6 +19,8 @@ class Playlist(db.Model):
 
     #relationships 
      songs = db.relationship("Song", back_populates="playlist", cascade="all, delete-orphan")
+      # songs = db.relationship("Song", back_populates="playlist", cascade="all, delete")
+
 
      user  = db.relationship("User", back_populates="playlists")
 
