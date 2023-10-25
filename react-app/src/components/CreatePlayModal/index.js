@@ -15,10 +15,36 @@ const CreatePlaylist = ()=>{
 const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
 const [image,setImage]=useState(null)
-const submitPlaylist = ()=>{
+const [description, setDesc]=useState("")
+
+const submitPlaylist =async (e)=>{
+    e.preventDefault();
+
+    const playlist_form= new FormData();
+    if (image !== null) {
+        const mainFile = await fetch(image)
+            .then(response => response.blob())
+            .then(blob => new File([blob], 'main_image.jpg', { type: blob.type }));
+
+            playlist_form.append('image', mainFile);
+    }
+    playlist_form.append("name", name)
+    playlist_form.append("user_id", sessionUser.id)
+    playlist_form.append("description",description)
 
 
+
+    const res = await fetch('/api/playlist/new_playlist',{
+        method:"POST",
+        // headers: { 'Content-Type': 'application/json' },
+        body: playlist_form
+    })
+    const resData = await res.json();
+    console.log("res",resData)
+   
 }
+
+
 
     return (
         <>
@@ -64,6 +90,9 @@ const submitPlaylist = ()=>{
                 variant="outlined"
             />
             < TextareaAutosize 
+            value = {description}
+            onChange={(e)=>setDesc(e.target.value)}
+
             />
 
         </div>
