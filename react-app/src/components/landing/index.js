@@ -7,6 +7,8 @@ import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Tooltip } from './tooltip';
+import  CreatePlayModal from '../../components/CreatePlayModal'
+import CreatePlaylist from "../../components/CreatePlayModal";
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
@@ -24,6 +26,10 @@ import { Tooltip } from './tooltip';
     },[setAlbums])
 
  
+    function submitPlaylist(){
+
+
+    }
 
     if(!albums.length){
         return null
@@ -63,14 +69,15 @@ import { Tooltip } from './tooltip';
             <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
-                <button className="playlist-laanding">Create Playlist</button>
+                <OpenModalButton modalComponent={<CreatePlaylist/>} className="playlist-laanding" buttonText="Create Playlist"/>
+                
             </div>
 
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
                 <p>We'll keep you updated on new episodes</p>
-                <button className="playlist-laanding">Create Playlist</button>
-            </div>
+                <button className="playlist-laanding" >Create Playlist</button>            
+                </div>
 
 
             </div>
