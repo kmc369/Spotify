@@ -6,10 +6,15 @@ import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import {DropzoneArea} from 'material-ui-dropzone';
 
+import { FileUpload } from 'primereact/fileupload';
+import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primeicons/primeicons.css';
+
 const CreatePlaylist = ()=>{
 const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
-
+const [image,setImage]=useState(null)
 const submitPlaylist = ()=>{
 
 
@@ -22,12 +27,33 @@ const submitPlaylist = ()=>{
             <h2 className="create-playlist-header">Create Playlist</h2>
             <div className="playlist-image-items">
 
-            <DropzoneArea
-               
-                acceptedFiles={['image/*']} // Specify accepted file types (images)
-                filesLimit={1} // Set the limit on the number of files
-              
-      />
+            <div className="image-create-container1">
+
+                        
+                    <label style={{width:"fit-content"}}  className='custom-file-input-label' htmlFor="file-input">
+                    {image ? (
+                      
+                     <img src={image} style={{width:"90px",height:"90px"}}  alt="Preview" className="preview-image" />
+                         ) : (
+                         <>
+                    <i className="fa-solid fa-camera" style={{ color: "#121416" }}></i> 
+                     <div>Add a photo</div> 
+                             </>
+                    )}
+                         </label>
+                    
+                    <input  
+                    onChange={(e)=>setImage(URL.createObjectURL(e.target.files[0]))}
+                    type="file" 
+                    id="file-input" 
+                    className="input-image1" 
+                    accept="image/*" />
+                    </div>
+                    {/* {(imageLoading)&& <p>Loading...</p>} */}
+                    
+                 
+                
+
           
             <div className="name-description">
             <TextField
