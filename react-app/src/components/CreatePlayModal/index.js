@@ -6,14 +6,45 @@ import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import {DropzoneArea} from 'material-ui-dropzone';
 
+import { FileUpload } from 'primereact/fileupload';
+import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primeicons/primeicons.css';
+
 const CreatePlaylist = ()=>{
 const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
+const [image,setImage]=useState(null)
+const [description, setDesc]=useState("")
 
-const submitPlaylist = ()=>{
+const submitPlaylist =async (e)=>{
+    e.preventDefault();
+
+    const playlist_form= new FormData();
+    if (image !== null) {
+        const mainFile = await fetch(image)
+            .then(response => response.blob())
+            .then(blob => new File([blob], 'main_image.jpg', { type: blob.type }));
+
+            playlist_form.append('image', mainFile);
+    }
+    playlist_form.append("name", name)
+    playlist_form.append("user_id", sessionUser.id)
+    playlist_form.append("description",description)
 
 
+
+    const res = await fetch('/api/playlist/new_playlist',{
+        method:"POST",
+        // headers: { 'Content-Type': 'application/json' },
+        body: playlist_form
+    })
+    const resData = await res.json();
+    console.log("res",resData)
+   
 }
+
+
 
     return (
         <>
@@ -22,12 +53,33 @@ const submitPlaylist = ()=>{
             <h2 className="create-playlist-header">Create Playlist</h2>
             <div className="playlist-image-items">
 
-            <DropzoneArea
-               
-                acceptedFiles={['image/*']} // Specify accepted file types (images)
-                filesLimit={1} // Set the limit on the number of files
-              
-      />
+            <div className="image-create-container1">
+
+                        
+                    <label style={{width:"fit-content"}}  className='custom-file-input-label' htmlFor="file-input">
+                    {image ? (
+                      
+                     <img src={image} style={{width:"90px",height:"90px"}}  alt="Preview" className="preview-image" />
+                         ) : (
+                         <>
+                    <i className="fa-solid fa-camera" style={{ color: "#121416" }}></i> 
+                     <div>Add a photo</div> 
+                             </>
+                    )}
+                         </label>
+                    
+                    <input  
+                    onChange={(e)=>setImage(URL.createObjectURL(e.target.files[0]))}
+                    type="file" 
+                    id="file-input" 
+                    className="input-image1" 
+                    accept="image/*" />
+                    </div>
+                    {/* {(imageLoading)&& <p>Loading...</p>} */}
+                    
+                 
+                
+
           
             <div className="name-description">
             <TextField
@@ -38,6 +90,9 @@ const submitPlaylist = ()=>{
                 variant="outlined"
             />
             < TextareaAutosize 
+            value = {description}
+            onChange={(e)=>setDesc(e.target.value)}
+
             />
 
         </div>
