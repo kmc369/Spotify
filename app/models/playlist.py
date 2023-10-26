@@ -28,10 +28,10 @@ class Playlist(db.Model):
      def to_dict(self):
         return {
             "id":self.id,
+            "image":self.image,
             "name":self.name,
             "user_id":self.user_id,
             "description":self.description,
-            "image":self.image,
             # "user":{
             #         "username": self.user.username,
             #         "email": self.user.email ,
