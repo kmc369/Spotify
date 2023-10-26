@@ -89,13 +89,13 @@ const PlaylistUserList = ()=>{
     
     
     
-                <div className="user-main-content-container">
+                <div className="user-main-content-container3">
                     <div className="user-landing-container">
-                            <div className="user-profile-icon">
+                            <div className="user-profile-icon3">
                                 <button className="premiumButton">Premium Options</button>
                                 <ProfileButton user={sessionUser} />
                             </div>
-                        <div className="user-landing-image">
+                        <div className="user-landing-image3">
                             <div className="user-landing-image-item">
                            
                                  
@@ -104,11 +104,11 @@ const PlaylistUserList = ()=>{
                                 
                             </div>
                             <div className="song-starred-info">
-                                <div className="song-word">Songs</div>
-                                <div ><h2 className="your-songs">{sessionUser.username}'s Songs</h2></div>
+                                <div className="song-word"><u>Songs</u></div>
+                                <div ><h2 className="your-songs">{playlist.name}</h2></div>
                                 <div className="user-info">
-                                    <div className="user-info-items">{sessionUser.email}  </div>
-                                    <div className="user-info-items"><span style={{marginRight:"5px"}}>•</span>{songs.length} songs</div>
+                                    <div className="user-info-items">{playlist.description}  </div>
+                                    <div className="user-info-items"><span style={{marginRight:"5px"}}></span>{songs.length} songs</div>
                                    
                                 </div>
     
