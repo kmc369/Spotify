@@ -18,8 +18,8 @@ class Playlist(db.Model):
      user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
     #relationships 
-     songs = db.relationship("Song", back_populates="playlist", cascade="all, delete-orphan")
-      # songs = db.relationship("Song", back_populates="playlist", cascade="all, delete")
+   #   songs = db.relationship("Song", back_populates="playlist", cascade="all, delete-orphan")
+     songs = db.relationship("Song", back_populates="playlist", cascade="all, delete")
 
 
      user  = db.relationship("User", back_populates="playlists")

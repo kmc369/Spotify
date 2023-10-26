@@ -43,6 +43,7 @@ class Song (db.Model):
             "artist_id":self.artist_id,
             "user_id":self.user_id,
             "album_id":self.album_id,
+            "playlist_id":self.playlist_id,
             "user":{
                "id": self.user.id,
                 "username": self.user.username,
@@ -56,6 +57,12 @@ class Song (db.Model):
             "albums":{
                 "name":self.albums.name if self.albums else None,
                 "image":self.albums.image
+            },
+            
+            "playlist":{
+                "name":self.playlist.name,
+                "image":self.playlist.image,
+                "description":self.playlist.description
             }
             
         }

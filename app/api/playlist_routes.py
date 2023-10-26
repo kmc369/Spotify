@@ -33,7 +33,7 @@ def create_playlist():
     return jsonify({"error": form.errors}), 400
 
 
-@playlist_bp.route("/<int:playlistId>", methods=["GET"])
+@playlist_bp.route("/songs/<int:playlistId>", methods=["GET"])
 def get_songs_on_playlist(playlistId):
     """get playlist of songs"""
     songs = Song.query.filter_by(playlist_id=playlistId)
@@ -43,5 +43,16 @@ def get_songs_on_playlist(playlistId):
     
     return [song.to_dict() for song in songs]
     
+    
+
+@playlist_bp.route("/<int:playlistId>", methods=["GET"])
+def get_playlist(playlistId):
+    """get playlist """
+    playlist = Playlist.query.get(playlistId)
+    if not playlist:
+        return jsonify({"message":"No playlist found"},400) 
+    
+    
+    return playlist.to_dict()
     
     

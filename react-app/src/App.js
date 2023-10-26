@@ -31,7 +31,7 @@ function App() {
             <UserProfile />
           </Route>
 
-        <Route exact path="/user_list/playlist/">
+        <Route exact path="/user_list/:playlistId/">
           <PlaylistUser />
         </Route>
 
