@@ -20,6 +20,7 @@ import CreatePlaylist from "../../components/CreatePlayModal";
             const albums = await fetch("/api/albums/")
             const albumjson = await albums.json()
             setAlbums(albumjson)
+         
         }
 
         fetchData()

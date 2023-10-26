@@ -60,9 +60,9 @@ class Song (db.Model):
             },
             
             "playlist":{
-                "name":self.playlist.name,
-                "image":self.playlist.image,
-                "description":self.playlist.description
+                "name":self.playlist.name if self.playlist else None,
+                "image":self.playlist.image if self.playlist else None,
+                "description":self.playlist.description if self.playlist else None,
             }
             
         }
