@@ -40,7 +40,7 @@ const submitPlaylist =async (e)=>{
         body: playlist_form
     })
     const resData = await res.json();
-    console.log("res",resData)
+    // console.log("res",resData)
    
 }
 
@@ -59,12 +59,13 @@ const submitPlaylist =async (e)=>{
                     <label style={{width:"fit-content"}}  className='custom-file-input-label' htmlFor="file-input">
                     {image ? (
                       
-                     <img src={image} style={{width:"90px",height:"90px"}}  alt="Preview" className="preview-image" />
+                     <img src={image} width="190px" height="139px;" alt="Preview" className="preview-image" />
                          ) : (
-                         <>
-                    <i className="fa-solid fa-camera" style={{ color: "#121416" }}></i> 
-                     <div>Add a photo</div> 
-                             </>
+
+                    <div className="image-add-container">
+                        <i className="fa-solid fa-camera" style={{ color: "white" , marginLeft:"8px"}}></i> 
+                        <div style={{fontSize:"30px"}} > Add photo</div> 
+                     </div>
                     )}
                          </label>
                     
@@ -88,10 +89,15 @@ const submitPlaylist =async (e)=>{
                 onChange={(e)=>setName(e.target.value)}
                 label="Playlist Name" 
                 variant="outlined"
+                InputLabelProps={{ style: { color: 'white' } }} 
+
             />
             < TextareaAutosize 
+            className="text-area"
             value = {description}
             onChange={(e)=>setDesc(e.target.value)}
+            placeholder="Description"
+        
 
             />
 
@@ -101,7 +107,16 @@ const submitPlaylist =async (e)=>{
 
         
         </div>
-            <Button className="playlist-button" variant="outlined" onClick={submitPlaylist}>Outlined</Button>
+        <div className="button-container-user">
+            <Button className="playlist-button" variant="outlined" onClick={submitPlaylist}>Submit</Button>
+        </div>
+ 
+ 
+         {/* <div className="bottom-p"><p className="paragraph-bottom">
+            By proceeding, you agree to give Spotify access to the image you choose to upload. 
+            Please make sure you have the right to upload the image.</p>
+        </div>   */}
+       
         </form>
         </>
     )

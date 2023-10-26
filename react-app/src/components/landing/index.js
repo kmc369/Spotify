@@ -26,10 +26,7 @@ import CreatePlaylist from "../../components/CreatePlayModal";
     },[setAlbums])
 
  
-    function submitPlaylist(){
-
-
-    }
+ 
 
     if(!albums.length){
         return null
