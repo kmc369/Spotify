@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Landing from "./components/landing";
 import UserProfile from './components/User';
 import AlbumDetail from "./components/AlbumDetails";
+import PlaylistUser from "./components/PlaylistUser"
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,6 +30,10 @@ function App() {
           <Route exact path="/user" >
             <UserProfile />
           </Route>
+
+        <Route exact path="/user_list/playlist/">
+          <PlaylistUser />
+        </Route>
 
 
           <Route exact path="/albumDetails/:album_id"> 
