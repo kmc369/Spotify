@@ -86,12 +86,14 @@ function UserProfile(){
                        
                     </div>
                     <div className="playlist-container">
-                        {console.log(userPlaylist)}
+                    <div className="playlist-header"><h3>{sessionUser.username}'s Playlist</h3> </div>
                         {userPlaylist.length>=1 && (!userPlaylist[0].message) ?(
                          
                         userPlaylist.map((element, index) => (
-                            <div key={index} className="playlist-items">
-                                <img height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} />
+                        
+                       
+                            <div key={index} className="playlist-items" onClick={()=>history.push(`/user_list/${element.songs[index].playlist_id}`)} >
+                                <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} />
                                     <div style={{ color: "white" }}>{element.name}</div>
                                     {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
@@ -101,9 +103,12 @@ function UserProfile(){
                                 )}
                         </div>
 
+                        
+
                    
 
             </div>
+            
 
 
 

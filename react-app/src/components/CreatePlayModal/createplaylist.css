@@ -8,47 +8,96 @@
     border:3px solid green;
     
     border-radius: 10px; */
-    width:90%;
+    width:400px;
+    height: 270px;
     margin: 0 auto;
+  
  
 }
 .name-description{
     display: flex;
     flex-direction: column;
+    gap:10px;
 }
 
 .form-playlist{
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     padding:10px;
+    background-color: rgba(27, 27, 27,0.95);
+
 }
 .playlist-image-items{
     display: flex;
     flex-direction: row;
+    gap:10px;
 }
 
 #modal-content{
-border:1px solid red;
+/* border:1px solid red; */
 width: fit-content;
 border-radius: 10px;
 
 
 } 
 
+
+
+.text-area{
+   height: 95px !important;
+   background-color: rgba(170, 170, 170, 0.3) !important;
+
+}
+
+
+.custom-file-input-label{
+    /* border:2px solid orange; */
+    width:99% !important;
+    height: 99% !important;
+ 
+
+}
+
+.image-add-container{
+    /* border:3px solid purple; */
+    height:130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    gap:10px
+}
+
 .create-playlist-header{
-    color:rgb(0, 0, 0);
+    color:white;
     text-align: center;
 }
 
 .fa-camera{
     font-size: 30px;
 } 
+/* .preview-image{
+    border:2px solid purple;
+    width:100px !important;
+    
+} */
 
 .image-create-container1{
-    border:3px solid green;
+    /* border:3px solid green; */
     width: fit-content;
     position:relative;
+    height: 150px;
     width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgb(29, 29, 29),  
+    -4px 4px 4px rgb(27, 27, 27),  
+    4px -4px 4px rgb(24, 24, 24),  
+    -4px -4px 4px rgb(8, 8, 8);
 }
 
 .input-image1 {
@@ -65,27 +114,57 @@ border-radius: 10px;
     left: 0;
     top: 0;
 
-    width: 100%;
-    height: 100%; 
+    /* width: 100%;
+    height: 100%;  */
     opacity: 0;
     cursor: pointer;
     position: absolute;
 }
+
+
 /* .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
-  
+
 
  
 } */
-
-/* .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    border:1px solid rgb(33, 197, 33) !important;
+.css-yjsfm1{
+ 
 }
 
-.playlist-text-input{
-    border:rgb(33, 197, 33) !important;
-} */
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    /* border:1px solid rgb(33, 197, 33) !important; */
+    height: 10px !important;
+    background-color: rgba(170, 170, 170, 0.3) !important;
 
-/* .playlist-button{
-   border:1px solid rgb(33, 197, 33)!important; 
-   color:rgb(33, 197, 33) !important;
-} */
+
+
+}
+
+.button-container-user{
+    text-align:right ;
+}
+
+.playlist-button{
+    width: 100px;
+}
+
+.bottom-p{
+   color:white;
+   border:2px solid green;
+}
+.bottom-p{
+    border:1px solid red;
+    width:50%;
+
+}
+
+.paragraph-bottom{
+    border:2px solid orange;
+  
+    /* margin: 0 auto;
+    font-size: 12px;
+    color:rgb(160, 159, 159); */
+
+   
+}
+
