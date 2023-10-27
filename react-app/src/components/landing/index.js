@@ -9,11 +9,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Tooltip } from './tooltip';
 import  CreatePlayModal from '../../components/CreatePlayModal'
 import CreatePlaylist from "../../components/CreatePlayModal";
+import TextField from '@mui/material/TextField';
+
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
+    const [search,setSearch] = useState("")
     useEffect(()=>{
 
        async  function fetchData (){
@@ -27,6 +30,9 @@ import CreatePlaylist from "../../components/CreatePlayModal";
     },[setAlbums])
 
  
+
+
+
  
 
     if(!albums.length){
@@ -55,7 +61,10 @@ import CreatePlaylist from "../../components/CreatePlayModal";
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
                 <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-                <div onClick={()=>history.push("/search")}><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
+                <div className="search-container-landing" onClick={()=>history.push(`/search/h${search}`)} ><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i>
+                    
+                
+                </div>
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }

@@ -8,6 +8,7 @@ album_bp = Blueprint('albums', __name__)
 
 @album_bp.route("/albums_type/<string:params>", methods=["GET"])
 def get_album_genre(params):
+    print("hello")
     albums = Album.query.filter(Album.type.ilike(params))
     if not albums:
         return jsonify({"message":"no albums found"}, 400) 

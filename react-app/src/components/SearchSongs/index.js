@@ -14,18 +14,24 @@ const SearchType = ()=>{
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
     const {type } = useParams()
+    const [search,setSearch] = useState("")
+
+
 
     useEffect(()=>{
 
         async  function fetchData (){
-             const albums = await fetch(`/api/albums/albums_type/${type}`)
-             const albumjson = await albums.json()
+            console.log("pop", search)
+             const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
+           
+             const albumjson = await Type_Albums.json()
+             console.log("albums", albums)
              setAlbums(albumjson)
           
          }
  
          fetchData()
-     },[setAlbums])
+     },[setAlbums,search])
   
 
     return(
@@ -79,6 +85,19 @@ const SearchType = ()=>{
 
        
             <div className="landing-album-center">
+                 <form className="submit-label-form">
+                 <div><i class="fa-solid fa-magnifying-glass magnigy" style={{color: "#fcfcfc"}}></i></div>
+                 <div className="label-container"><label className="label-search-container">
+               
+
+                    <input
+                    className="search-material-textfield"
+                    value={search} 
+                    onChange={(e)=>setSearch(e.target.value)}
+                
+                    />
+                </label></div>
+                </form> 
          
         <div className="landing-albums-container">
         
