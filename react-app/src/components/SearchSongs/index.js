@@ -1,37 +1,32 @@
 import React, { useEffect, useState } from "react";
-import './landing.css'
+import './search.css'
+import CreatePlaylist from "../CreatePlayModal";
 import SignupFormModal from "../SignupFormModal";
 import OpenModalButton from "../OpenModalButton";
 import { useModal } from '../../context/Modal';
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Tooltip } from './tooltip';
-import  CreatePlayModal from '../../components/CreatePlayModal'
-import CreatePlaylist from "../../components/CreatePlayModal";
- const Landing = ()=>{
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+
+const SearchType = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
+    const {type } = useParams()
+
     useEffect(()=>{
 
-       async  function fetchData (){
-            const albums = await fetch("/api/albums/")
-            const albumjson = await albums.json()
-            setAlbums(albumjson)
-         
-        }
-
-        fetchData()
-    },[setAlbums])
-
+        async  function fetchData (){
+             const albums = await fetch(`/api/albums/albums_type/${type}`)
+             const albumjson = await albums.json()
+             setAlbums(albumjson)
+          
+         }
  
- 
-
-    if(!albums.length){
-        return null
-    }
+         fetchData()
+     },[setAlbums])
+  
 
     return(
         <>
@@ -55,7 +50,7 @@ import CreatePlaylist from "../../components/CreatePlayModal";
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
                 <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-                <div onClick={()=>history.push("/search")}><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
+                <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }
@@ -104,5 +99,4 @@ import CreatePlaylist from "../../components/CreatePlayModal";
     )
 }
 
-
-export default Landing
+export default SearchType

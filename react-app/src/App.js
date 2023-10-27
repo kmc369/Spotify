@@ -8,7 +8,9 @@ import Navigation from "./components/Navigation";
 import Landing from "./components/landing";
 import UserProfile from './components/User';
 import AlbumDetail from "./components/AlbumDetails";
-import PlaylistUser from "./components/PlaylistUser"
+import PlaylistUser from "./components/PlaylistUser";
+import SearchSongs from "./components/SearchSongs";
+import SearchType from "./components/SearchSongs";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +37,10 @@ function App() {
           <PlaylistUser />
         </Route>
 
+       
+        <Route exact path="/search/:type">
+          <SearchType/>
+        </Route>
 
           <Route exact path="/albumDetails/:album_id"> 
             <AlbumDetail />
