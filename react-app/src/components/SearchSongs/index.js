@@ -1,42 +1,62 @@
 import React, { useEffect, useState } from "react";
-import './landing.css'
+import './search.css'
+import CreatePlaylist from "../CreatePlayModal";
 import SignupFormModal from "../SignupFormModal";
 import OpenModalButton from "../OpenModalButton";
 import { useModal } from '../../context/Modal';
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Tooltip } from './tooltip';
-import  CreatePlayModal from '../../components/CreatePlayModal'
-import CreatePlaylist from "../../components/CreatePlayModal";
-import TextField from '@mui/material/TextField';
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
- const Landing = ()=>{
+const SearchType = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
+    const {type } = useParams()
     const [search,setSearch] = useState("")
-    useEffect(()=>{
 
-       async  function fetchData (){
-            const albums = await fetch("/api/albums/")
-            const albumjson = await albums.json()
-            setAlbums(albumjson)
-         
+
+
+    // useEffect(()=>{
+
+    //     async  function fetchData (e){
+    //         // e.preventDefault()
+    //         console.log("search",search)
+    //          const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
+           
+    //          const albumjson = await Type_Albums.json()
+          
+    //          setAlbums(albumjson)
+          
+    //      }
+ 
+    //      fetchData()
+    //  },[setAlbums,search])
+
+    //  const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     fetchData(); // Call fetchData to update the results when the form is submitted.
+    // }
+
+    const fetchData = async () => {
+        try {
+            console.log("search", search);
+            const Type_Albums = await fetch(`/api/albums/albums_type/${search}`);
+            const albumjson = await Type_Albums.json();
+            setAlbums(albumjson);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
         }
+    }
 
-        fetchData()
-    },[setAlbums])
+    useEffect(() => {
+        fetchData(); // Initial fetch when the component mounts
+    }, [search]);
 
- 
-
-
-
- 
-
-    if(!albums.length){
-        return null
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchData(); // Call fetchData to update the results when the form is submitted.
     }
 
     return(
@@ -60,11 +80,8 @@ import TextField from '@mui/material/TextField';
      
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
-                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-                <div className="search-container-landing" onClick={()=>history.push(`/search`)} ><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i>
-                    
-                
-                </div>
+                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}  onClick={()=>history.push('/')}><span className="sidebar-words">Home</span></i></div>
+                {/* <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div> */}
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }
@@ -93,6 +110,19 @@ import TextField from '@mui/material/TextField';
 
        
             <div className="landing-album-center">
+                 <form className="submit-label-form" onSubmit={handleSubmit}>
+                 <div><i class="fa-solid fa-magnifying-glass magnigy" style={{color: "#fcfcfc"}}></i></div>
+                 <div className="label-container"><label className="label-search-container">
+               
+
+                    <input
+                    className="search-material-textfield"
+                    value={search} 
+                    onChange={(e)=>setSearch(e.target.value)}
+                
+                    />
+                </label></div>
+                </form> 
          
         <div className="landing-albums-container">
         
@@ -113,5 +143,4 @@ import TextField from '@mui/material/TextField';
     )
 }
 
-
-export default Landing
+export default SearchType
