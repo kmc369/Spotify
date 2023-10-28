@@ -61,7 +61,7 @@ import TextField from '@mui/material/TextField';
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
                 <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-                <div className="search-container-landing" onClick={()=>history.push(`/search/h${search}`)} ><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i>
+                <div className="search-container-landing" onClick={()=>history.push(`/search`)} ><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i>
                     
                 
                 </div>

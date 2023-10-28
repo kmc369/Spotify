@@ -38,7 +38,7 @@ function App() {
         </Route>
 
        
-        <Route exact path="/search/:type">
+        <Route exact path="/search">
           <SearchType/>
         </Route>
 

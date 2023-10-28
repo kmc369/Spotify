@@ -81,7 +81,7 @@ const SearchType = ()=>{
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
                 <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}  onClick={()=>history.push('/')}><span className="sidebar-words">Home</span></i></div>
-                <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
+                {/* <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div> */}
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }
