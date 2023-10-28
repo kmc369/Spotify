@@ -21,11 +21,11 @@ const SearchType = ()=>{
     useEffect(()=>{
 
         async  function fetchData (){
-            console.log("pop", search)
+            console.log("search",search)
              const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
            
              const albumjson = await Type_Albums.json()
-             console.log("albums", albums)
+          
              setAlbums(albumjson)
           
          }
@@ -55,7 +55,7 @@ const SearchType = ()=>{
      
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
-                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
+                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}  onClick={()=>history.push('/')}><span className="sidebar-words">Home</span></i></div>
                 <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div>
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>

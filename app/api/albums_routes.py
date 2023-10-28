@@ -5,13 +5,15 @@ from app.models import Album
 
 album_bp = Blueprint('albums', __name__)
 
+@album_bp.route("/albums_type/", methods=["GET"])
+def get_all_search():
+    All_albums = Album.query.all()
+    return [album.to_dict() for album in All_albums]
+    
 
 @album_bp.route("/albums_type/<string:params>", methods=["GET"])
 def get_album_genre(params):
-    print("hello")
-    albums = Album.query.filter(Album.type.ilike(params))
-    if not albums:
-        return jsonify({"message":"no albums found"}, 400) 
+    albums = Album.query.filter(Album.type.ilike(f"%{params}%")).all()
     return [album.to_dict() for album in albums]
 
 
