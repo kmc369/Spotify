@@ -18,21 +18,46 @@ const SearchType = ()=>{
 
 
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        async  function fetchData (){
-            console.log("search",search)
-             const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
+    //     async  function fetchData (e){
+    //         // e.preventDefault()
+    //         console.log("search",search)
+    //          const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
            
-             const albumjson = await Type_Albums.json()
+    //          const albumjson = await Type_Albums.json()
           
-             setAlbums(albumjson)
+    //          setAlbums(albumjson)
           
-         }
+    //      }
  
-         fetchData()
-     },[setAlbums,search])
-  
+    //      fetchData()
+    //  },[setAlbums,search])
+
+    //  const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     fetchData(); // Call fetchData to update the results when the form is submitted.
+    // }
+
+    const fetchData = async () => {
+        try {
+            console.log("search", search);
+            const Type_Albums = await fetch(`/api/albums/albums_type/${search}`);
+            const albumjson = await Type_Albums.json();
+            setAlbums(albumjson);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData(); // Initial fetch when the component mounts
+    }, [search]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchData(); // Call fetchData to update the results when the form is submitted.
+    }
 
     return(
         <>
@@ -85,7 +110,7 @@ const SearchType = ()=>{
 
        
             <div className="landing-album-center">
-                 <form className="submit-label-form">
+                 <form className="submit-label-form" onSubmit={handleSubmit}>
                  <div><i class="fa-solid fa-magnifying-glass magnigy" style={{color: "#fcfcfc"}}></i></div>
                  <div className="label-container"><label className="label-search-container">
                
