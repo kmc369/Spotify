@@ -330,4 +330,23 @@ cursor: pointer;
    /* df  */
 }
 
+.column4-container{
+    /* border:2px solid orange; */
+
+}
+.fa-plus{
+    display: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+
+  .time-item:hover .fa-plus {
+    display: inline;
+  }
+
+
+
+
+
 

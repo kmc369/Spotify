@@ -54,5 +54,22 @@ def get_playlist(playlistId):
     
     
     return playlist.to_dict()
+
+@playlist_bp.route("/add_song/<int:playlistId>/<int:songId>", methods=["POST"])
+def add_song_to_playlist(playlistId,songId):
+    """add song to playlist"""
+    print("IN PLAYLIST ")
+    songToAdd = Song.query.get(songId)
+    playlist = Playlist.query.get(playlistId)
+    # songs = Song.query.filter_by(playlist_id=playlistId)
+    
+    if songToAdd not in playlist.songs:
+        playlist.songs.append(songToAdd)
+        db.session.commit()
+        return [song.to_dict() for song in playlist.songs]
+
+    else:
+        return jsonify({'message': 'Song already in the playlist'})
+    
     
     

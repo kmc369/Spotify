@@ -10,6 +10,7 @@ import { Tooltip } from './tooltip';
 import  CreatePlayModal from '../../components/CreatePlayModal'
 import CreatePlaylist from "../../components/CreatePlayModal";
 import TextField from '@mui/material/TextField';
+import AudioPlayer from 'react-h5-audio-player';
 
  const Landing = ()=>{
     const [albums ,setAlbums] = useState([])
@@ -17,6 +18,8 @@ import TextField from '@mui/material/TextField';
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
     const [search,setSearch] = useState("")
+
+    
     useEffect(()=>{
 
        async  function fetchData (){
@@ -108,10 +111,19 @@ import TextField from '@mui/material/TextField';
 
         </div>
      </div>
+
+     
+     
      </div>
+
+     
      </>
+
+     
     )
 }
+
+
 
 
 export default Landing
