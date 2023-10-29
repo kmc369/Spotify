@@ -17,10 +17,10 @@ console.log("the playlist is edit", prop);
 
 
 
-const [name,setName] = useState("")
+const [name,setName] = useState(prop.name? prop.name : " ")
 const sessionUser = useSelector(state => state.session.user)
-const [image,setImage]=useState(null)
-const [description, setDesc]=useState("")
+const [image,setImage]=useState(prop.image? prop.image : null)
+const [description, setDesc]=useState(prop.description ? prop.description : " ")
 
 const submitPlaylist =async (e)=>{
     e.preventDefault();
