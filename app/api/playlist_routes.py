@@ -71,5 +71,17 @@ def add_song_to_playlist(playlistId,songId):
     else:
         return jsonify({'message': 'Song already in the playlist'})
     
+@playlist_bp.route("/delete_song/<int:playlistId>/<int:songId>", methods=["DELETE"])
+def delete_song_from_playlist (playlistId,songId):
+     songToDelete = Song.query.get(songId)
+     playlist = Playlist.query.get(playlistId)
+     
+     if songToDelete in playlist.songs:
+         playlist.songs.remove(songToDelete)
+         db.session.commit()
+         return [song.to_dict() for song in playlist.songs]
+     else:
+         return jsonify({'message': 'Song not in  playlist'})
+    
     
     
