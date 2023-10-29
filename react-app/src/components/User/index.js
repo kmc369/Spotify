@@ -56,9 +56,12 @@ function UserProfile({}){
     async function addToPlaylist(element){
         console.log(element ,"element IS")
         const song_to_add = element
-        const songId = element.id
-        console.log(songId)
-        const Playlist_songs = await fetch(`/api/playlist/add_song/1/${songId}`) 
+        const songId = Number(element.id)
+        const playlist_id = Number(1)
+        console.log(playlist_id,"PLAYLIST ID and SongId", songId )
+        const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
+            method:"POST",
+        })
         const playlist_songs_json = Playlist_songs.json()
 
     }
