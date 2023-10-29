@@ -11,7 +11,12 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primeicons/primeicons.css';
 
-const CreatePlaylist = ()=>{
+const CreatePlaylist = ({prop})=>{
+
+console.log("the playlist is edit", prop);
+
+
+
 const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
 const [image,setImage]=useState(null)

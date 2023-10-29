@@ -25,6 +25,8 @@ const PlaylistUserList = ()=>{
 
 
 
+
+
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/playlist/songs/${playlist_id}`)
@@ -32,9 +34,10 @@ const PlaylistUserList = ()=>{
             const res2 = await fetch(`/api/playlist/${playlist_id}`)
             const data2 = await res2.json()
 
+         
             setPlaylist(data2)
         
-           
+            console.log("the playlist here is", playlist, "sur")
            const arr = []
             if(data.length>=1){
                 setSongs(data)
@@ -46,7 +49,7 @@ const PlaylistUserList = ()=>{
 
         FetchData()
    
-    },[setSongs])
+    },[])
 
     
     function playSong(){
@@ -74,7 +77,7 @@ const PlaylistUserList = ()=>{
                         <div className="library-items-container">
                             <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                             <div className="library-button-container">
-                            <OpenModalButton className="song-button-user" modalComponent={<CreatePlaylist/>}  buttonText="Edit"/>
+                            <OpenModalButton className="song-button-user" modalComponent={<CreatePlaylist prop={playlist} />} buttonText="Edit"/>
                                 {/* <div><button className="song-button-user">Edit</button></div> */}
                                 <div><button className="song-button-user">Podcast</button></div>
                             </div>
