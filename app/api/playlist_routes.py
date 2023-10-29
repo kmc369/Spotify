@@ -32,6 +32,33 @@ def create_playlist():
         return jsonify(new_playlist.to_dict())
     return jsonify({"error": form.errors}), 400
 
+@playlist_bp.route("/edit_playlist/<int:playlistId>", methods=["PUT"])
+def edit_playlist(playlistId):
+    form = PlaylistForm()
+    playlist = Playlist.query.get(playlistId)
+    if playlist is None:
+        return jsonify({"error": "Playlist not found"}), 404
+    
+    form.csrf_token.data = request.cookies['csrf_token']
+    
+   
+    if request.method == "PUT":
+        if 'image' in form.data:
+            playlist.image = form.data['image']
+        if 'name' in form.data:
+            playlist.name = form.data['name']
+        if 'description' in form.data:
+            playlist.description = form.data['description']
+        if 'user_id' in form.data:
+            playlist.user_id = form.data['user_id']
+
+        db.session.commit()
+        return jsonify(playlist.to_dict())
+   
+    return jsonify({"error": "Invalid request method"}), 400
+
+  
+
 
 @playlist_bp.route("/songs/<int:playlistId>", methods=["GET"])
 def get_songs_on_playlist(playlistId):

@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ProfileButton from '../Navigation/ProfileButton';
 import AudioPlayer from 'react-h5-audio-player';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import  CreatePlayModal from '../../components/CreatePlayModal'
+import OpenModalButton from "../OpenModalButton";
+import CreatePlaylist from "../../components/CreatePlayModal";
 
 
 const PlaylistUserList = ()=>{
@@ -71,8 +74,9 @@ const PlaylistUserList = ()=>{
                         <div className="library-items-container">
                             <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                             <div className="library-button-container">
-                                <div><button className="song-button-user">Songs</button></div>
-                                <div><button className="song-button-user">Playlist</button></div>
+                            <OpenModalButton className="song-button-user" modalComponent={<CreatePlaylist/>}  buttonText="Edit"/>
+                                {/* <div><button className="song-button-user">Edit</button></div> */}
+                                <div><button className="song-button-user">Podcast</button></div>
                             </div>
                            
                         </div>
