@@ -5,6 +5,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ProfileButton from '../Navigation/ProfileButton';
 import AudioPlayer from 'react-h5-audio-player';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import  CreatePlayModal from '../../components/CreatePlayModal'
+import OpenModalButton from "../OpenModalButton";
+import CreatePlaylist from "../../components/CreatePlayModal";
+import EditPlaylist from "../EditPlaylistModal";
 
 
 const PlaylistUserList = ()=>{
@@ -20,6 +24,13 @@ const PlaylistUserList = ()=>{
     const {playlistId} = useParams()
     const playlist_id = Number(playlistId)
 
+    console.log("the playlist here is", playlist)
+
+
+    const handlePlaylistUpdate = (updatedPlaylist) => {
+       
+        setPlaylist(updatedPlaylist);
+      };
 
 
     useEffect(()=>{
@@ -29,9 +40,10 @@ const PlaylistUserList = ()=>{
             const res2 = await fetch(`/api/playlist/${playlist_id}`)
             const data2 = await res2.json()
 
+         
             setPlaylist(data2)
         
-           
+            console.log("the playlist here is", playlist, "sur")
            const arr = []
             if(data.length>=1){
                 setSongs(data)
@@ -43,7 +55,7 @@ const PlaylistUserList = ()=>{
 
         FetchData()
    
-    },[setSongs])
+    },[])
 
     
     function playSong(){
@@ -54,7 +66,7 @@ const PlaylistUserList = ()=>{
 
    
 
-    if(songs.length===0 || !sessionUser ){
+    if( !sessionUser ){
         
         return null
     }
@@ -71,8 +83,9 @@ const PlaylistUserList = ()=>{
                         <div className="library-items-container">
                             <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                             <div className="library-button-container">
-                                <div><button className="song-button-user">Songs</button></div>
-                                <div><button className="song-button-user">Playlist</button></div>
+                            <OpenModalButton className="song-button-user" modalComponent={<EditPlaylist playlist={playlist} onUpdate={handlePlaylistUpdate} />} buttonText="Edit"/>
+                                {/* <div><button className="song-button-user">Edit</button></div> */}
+                                <div><button className="song-button-user">Podcast</button></div>
                             </div>
                            
                         </div>
@@ -124,6 +137,7 @@ const PlaylistUserList = ()=>{
     
     
                     </div>
+                    {songs.length>=1? (
                     <table className="user-main-table" >
                         <thead >
                         <tr className="table-header-container">
@@ -135,6 +149,7 @@ const PlaylistUserList = ()=>{
                         </tr>
                         </thead>
                         <tbody>
+                           
                             {songs.map((element, index) => (
                        
                             <tr key={index}>
@@ -184,8 +199,13 @@ const PlaylistUserList = ()=>{
     
     
                     </table>
+                            ):(
+                                <div style={{color:"white"}}> 
+
+                                    Add some Songs to your playlist 
+                                </div>
+                            ) }
                   </div>
-                 
                
     
                 </div>

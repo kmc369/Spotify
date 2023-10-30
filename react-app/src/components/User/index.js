@@ -5,16 +5,22 @@ import ProfileButton from '../Navigation/ProfileButton';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import AudioComponent from "../AudioComponent"; 
 
-function UserProfile(){
+
+function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
+    
     const history = useHistory()
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
     const [selectSong, setSelectedSong] =useState(null)
     const [userPlaylist, setPlaylist]= useState([])
     const [randomImage, SetRandomImage]=useState(null)
+    const [currentSongIndex, setCurrentSongIndex] = useState(0);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+
   
     useEffect(()=>{
         async function FetchData(){
@@ -26,7 +32,7 @@ function UserProfile(){
            const arr = []
             if(data.length>=1 || playlist_data.length>=1){
                 setSongs(data)
-
+              
                 for(let i =0; i<data.length; i++){
                  
                     arr.push(data[i].albums.image)
@@ -39,27 +45,35 @@ function UserProfile(){
                 setPlaylist(playlist_data)
            
             }
-        
-         
-
-          
-        
-           
-                
-        }
-
-       
+           }
 
         FetchData()
    
     },[setSongs])
 
-    function playSong(){
-        setPlaying(true)
+
+
+    async function addToPlaylist(element){
+        console.log(element ,"element IS")
+        const song_to_add = element
+        const songId = Number(element.id)
+        const playlist_id = Number(1)
+        console.log(playlist_id,"PLAYLIST ID and SongId", songId )
+        const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
+            method:"POST",
+        })
+        const playlist_songs_json = Playlist_songs.json()
 
     }
 
-
+   
+    const playNextSong = () => {
+        if (currentSongIndex < songs.length - 1) {
+          setCurrentSongIndex(currentSongIndex + 1);
+          setPlaying(true); 
+        }
+      };
+    
 
    
 
@@ -67,6 +81,10 @@ function UserProfile(){
         
         return null
     }
+
+
+//  console.log("songs",songs)
+  
 
     return(<>
     <div className="entire-user-container">
@@ -142,11 +160,16 @@ function UserProfile(){
 
                     </div>
 
-                    <div className="seperator">
-                        <button className="play-button"><i class="fa-solid fa-play" onClick={playSong}></i></button>
+                    {/* <div className="seperator">
+                        <button className="play-button"><i class="fa-solid fa-play" onClick={()=>setPlaying(!playing)}></i></button>
                     
                         
-                    </div>
+                    </div> */}
+                       <div className="seperator">
+                            <button className="play-button" onClick={() => setPlaying(!playing)}>
+                            <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
+                            </button>
+                         </div>
 
 
                 </div>
@@ -158,6 +181,7 @@ function UserProfile(){
                         <th style={{ textAlign: 'left' }}>Album</th>
                         <th style={{ textAlign: 'left' }}>Genre</th>
                         <th style={{ textAlign: 'left' }}>Time</th>
+                      
                     </tr>
                     </thead>
                     <tbody>
@@ -174,8 +198,9 @@ function UserProfile(){
                                     {hoverIndex !==index? (
                                     <div>{index+1}</div>
                                     ):(
-                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index})} ></i> 
-                                    {console.log(selectSong,"SONG")}
+                                        // ()=>setSelectedSong({element,index})
+                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index, songs})}  ></i> 
+                                    {/* {console.log(selectSong,"SONG")} */}
                                     </div>
                                     )}
                                     </div>
@@ -202,8 +227,12 @@ function UserProfile(){
                             </td> 
 
                             <td className="column4-container">
-                            <div className="time-item">{element.time} </div>
+                            <div className="time-item">{element.time}  <span><i class="fa-solid fa-plus" onClick={()=>addToPlaylist(element)} ></i></span> 
+                             </div>
+                          
                             </td> 
+
+                           
                         </tr>
                         ))}
                     </tbody>
@@ -216,20 +245,50 @@ function UserProfile(){
 
             </div>
 
-       
-                        {selectSong &&
-                                    <div className="audio-container">
-                                        <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
-                                       <AudioPlayer 
 
-                                       id='audio-button '
-                                       src={songs[selectSong.index].audio_url}
-                                       autoPlay={true}
-                                       volume={0.3}
-                                       showSkipControls={false}
-                                       />
-                                       </div>
-                                    }
+
+                    <div>
+                        {console.log("SELECTED SONG", playing)}
+                        {songs.length > 0 && !selectSong &&(
+                            <div className="audio-container">
+                            <img src={songs[currentSongIndex].albums.image} height="70px" width="70px" />
+                            <AudioPlayer
+                                id='audio-button'
+                                src={songs[currentSongIndex].audio_url}
+                                autoPlay={playing}
+                                volume={0.3}
+                                showSkipControls={false}
+                                onEnded={playNextSong}
+                            />
+                            
+                            </div>
+                        )}
+                        </div>
+
+                    {selectSong && (
+                
+                            <div className="audio-container">
+                                <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
+                               <AudioPlayer 
+
+                               id='audio-button '
+                               src={songs[selectSong.index].audio_url}
+                               autoPlay={true}
+                               volume={0.3}
+                               showSkipControls={false}
+                               />
+                               </div>
+                      
+                    )}
+  
+
+
+        
+        {/* {selectSong && selectedSongEl !==null &&
+        <div className="audio-container">
+            <AudioComponent element={selectedSongEl } index={selectedSongIndex} songs={songs} ad={ad} />
+                </div>
+        } */}
 
     </div>
     </>

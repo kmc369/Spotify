@@ -11,7 +11,8 @@ import AlbumDetail from "./components/AlbumDetails";
 import PlaylistUser from "./components/PlaylistUser";
 import SearchSongs from "./components/SearchSongs";
 import SearchType from "./components/SearchSongs";
-
+import AudioComponent from "./components/AudioComponent";
+const ad = "https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Want+A+Break+From+The+ADs+-7OBacT66SCM-192k-1698588820.mp3"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       {/* <Navigation isLoaded={isLoaded} /> */}
+   
       {isLoaded && (
         <Switch>
           <Route exact path="/login" >
@@ -30,7 +32,7 @@ function App() {
 
 
           <Route exact path="/user" >
-            <UserProfile />
+            <UserProfile ad={ad} />
           </Route>
 
         <Route exact path="/user_list/:playlistId/">
@@ -56,7 +58,9 @@ function App() {
             <SignupFormPage />
           </Route>
         </Switch>
+        
       )}
+         {/* {<AudioComponent/>} */}
     </>
   );
 }
