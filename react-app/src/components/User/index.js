@@ -23,8 +23,9 @@ function UserProfile({}){
 
 
     const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
-
+    const [index,setIndex] = useState(0)
   const toggleDropdown = (index) => {
+    setIndex(index)
     const updatedDropdowns = [...openDropdowns];
     updatedDropdowns[index] = !updatedDropdowns[index];
     setOpenDropdowns(updatedDropdowns);
@@ -62,16 +63,19 @@ function UserProfile({}){
 
 
     async function addToPlaylist(element, playlist){
-        console.log(element ,"SONG IS")
-        console.log(playlist, "PLAYLIST IS")
+      
     
         const songId = Number(element.id)
         const playlist_id = Number(playlist.id)
-        console.log(playlist_id,"PLAYLIST ID  and SongId", songId )
+       
         const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
             method:"POST",
         })
+    
+        toggleDropdown(index);
+    
         const playlist_songs_json = Playlist_songs.json()
+
 
     }
 
@@ -80,6 +84,7 @@ function UserProfile({}){
         if (currentSongIndex < songs.length - 1) {
           setCurrentSongIndex(currentSongIndex + 1);
           setPlaying(true); 
+        
         }
       };
   
@@ -91,7 +96,7 @@ function UserProfile({}){
     }
 
 
-//  console.log("songs",songs)
+
   
 
     return(<>
@@ -102,6 +107,7 @@ function UserProfile({}){
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
+                       
 
                     </div>
                     <div className="library-items-container">
