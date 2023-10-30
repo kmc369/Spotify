@@ -139,13 +139,19 @@ function UserProfile({}){
                           
                             <div key={index} className="playlist-items"  >
                               
+                              <div className="image-andpop-name">
                                 <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} onClick={()=>history.push(`/user_list/${element.id}`)}/>
 
                                     <div style={{ color: "white" }}>{element.name}</div>
-                                    <div className="delete-div"><OpenModalButton style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={ <i className="fa-solid fa-trash"></i>} /></div>
+                            </div>
+
+                            <div className="delete-container">
+
+                                    <div ><OpenModalButton className="delete-div" style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={<i className="fa-solid fa-trash"></i>} /></div>
 
                                     {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
+                            </div>
                                 ))
                             ) : (
                             <div>Create Playlist</div>

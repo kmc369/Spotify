@@ -172,19 +172,7 @@ cursor: pointer;
     height: 100%; 
 }
 
-.playlist-items{
-    /* border:3px solid red; */
-    max-width: 99%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    padding-left: 1%; 
-    
-    margin: 5px; 
-    border-radius: 3px; 
-    transition: background-color 0.2s; 
-}
+
 
 
 .nav-items-container{
@@ -415,8 +403,42 @@ cursor: pointer;
     background-color: #555;
     color: white;
   } 
+
+  .playlist-items{
+    /* border:3px solid red; */
+    max-width: 99%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 10px; */
+    padding-left: 1%; 
+    
+    margin: 5px; 
+    border-radius: 3px; 
+    transition: background-color 0.2s; 
+}
   .delete-div{
-    border:2px solid green;
+    /* border:2px solid green; */
+    background-color: #808080;
+    border:none;
+    border-radius: 2px;
+
+  }
+  .fa-trash{
+
+  }
+
+  .image-andpop-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:5px;
+    
+  }
+
+  .delete-container{
+    display: flex;
   }
 
   
