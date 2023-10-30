@@ -8,6 +8,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import AudioComponent from "../AudioComponent"; 
 import OpenModalButton from "../OpenModalButton";
 import CreatePlaylist from "../../components/CreatePlayModal";
+import DeletePlaylistModal from "../DeletePlaylistModal";
 function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -61,6 +62,11 @@ function UserProfile({}){
     },[setSongs])
 
     const handlePlaylistUpdate = (updatedPlaylist) => {
+       
+        setPlaylist(updatedPlaylist);
+      };
+
+      const handleDeletePlaylist = (updatedPlaylist) => {
        
         setPlaylist(updatedPlaylist);
       };
@@ -120,6 +126,7 @@ function UserProfile({}){
                         <div className="library-button-container">
                             {/* <div><button className="song-button-user">Podcast</button></div> */}
                             <div style={{cursor:"pointer"}}><OpenModalButton modalComponent={<CreatePlaylist onUpdate={handlePlaylistUpdate}/>}  className="song-button-user" buttonText="Playlist"/></div>
+
                         </div>
                        
                     </div>
@@ -130,10 +137,13 @@ function UserProfile({}){
                         userPlaylist.map((element, index) => (
                         
                           
-                            <div key={index} className="playlist-items" onClick={()=>history.push(`/user_list/${element.id}`)} >
+                            <div key={index} className="playlist-items"  >
                               
-                                <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} />
+                                <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} onClick={()=>history.push(`/user_list/${element.id}`)}/>
+
                                     <div style={{ color: "white" }}>{element.name}</div>
+                                    <div className="delete-div"><OpenModalButton style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={ <i className="fa-solid fa-trash"></i>} /></div>
+
                                     {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
                                 ))
