@@ -62,12 +62,11 @@ function UserProfile({}){
 
 
     async function addToPlaylist(element, playlist){
-        console.log(element ,"SONG IS")
-        console.log(playlist, "PLAYLIST IS")
+      
     
         const songId = Number(element.id)
         const playlist_id = Number(playlist.id)
-        console.log(playlist_id,"PLAYLIST ID  and SongId", songId )
+       
         const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
             method:"POST",
         })
@@ -102,6 +101,7 @@ function UserProfile({}){
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
+                       
 
                     </div>
                     <div className="library-items-container">

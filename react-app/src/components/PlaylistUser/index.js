@@ -78,6 +78,9 @@ const PlaylistUserList = ()=>{
                         <div className="nav-items-container">
                             <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                             <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user">Search</span></div>
+                            {sessionUser &&
+                        <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc",cursor: "pointer"}}><span className="sidebar-words1" onClick={()=>history.push('/user') } >Profile</span></i></div>
+                        }
     
                         </div>
                         <div className="library-items-container">
