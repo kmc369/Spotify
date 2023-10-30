@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import  CreatePlayModal from '../../components/CreatePlayModal'
 import OpenModalButton from "../OpenModalButton";
 import CreatePlaylist from "../../components/CreatePlayModal";
+import EditPlaylist from "../EditPlaylistModal";
 
 
 const PlaylistUserList = ()=>{
@@ -23,8 +24,13 @@ const PlaylistUserList = ()=>{
     const {playlistId} = useParams()
     const playlist_id = Number(playlistId)
 
+    console.log("the playlist here is", playlist)
 
 
+    const handlePlaylistUpdate = (updatedPlaylist) => {
+       
+        setPlaylist(updatedPlaylist);
+      };
 
 
     useEffect(()=>{
@@ -77,7 +83,7 @@ const PlaylistUserList = ()=>{
                         <div className="library-items-container">
                             <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                             <div className="library-button-container">
-                            <OpenModalButton className="song-button-user" modalComponent={<CreatePlaylist prop={playlist} />} buttonText="Edit"/>
+                            <OpenModalButton className="song-button-user" modalComponent={<EditPlaylist playlist={playlist} onUpdate={handlePlaylistUpdate} />} buttonText="Edit"/>
                                 {/* <div><button className="song-button-user">Edit</button></div> */}
                                 <div><button className="song-button-user">Podcast</button></div>
                             </div>

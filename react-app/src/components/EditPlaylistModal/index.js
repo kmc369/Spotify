@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import './createplaylist.css'
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import { Button } from "@mui/material";
@@ -12,16 +11,17 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primeicons/primeicons.css';
 
-const CreatePlaylist = ()=>{
+
+const EditPlaylist = ({playlist, onUpdate})=>{
 const { closeModal } = useModal()
 
 
-
-
-const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
-const [image,setImage]=useState(null)
-const [description, setDesc]=useState("")
+const [name,setName] = useState(playlist.name)
+const [image,setImage]=useState(playlist.image)
+const [description, setDesc]=useState(playlist.description)
+
+
 
 const submitPlaylist =async (e)=>{
     e.preventDefault();
@@ -38,24 +38,30 @@ const submitPlaylist =async (e)=>{
     playlist_form.append("user_id", sessionUser.id)
     playlist_form.append("description",description)
 
+   
+   
 
-        const res = await fetch('/api/playlist/new_playlist',{
-            method:"POST",
-            // headers: { 'Content-Type': 'application/json' },
+
+         const res = await fetch(`/api/playlist/edit_playlist/${playlist.id}`,{
+            method:"PUT",
             body: playlist_form
         })
-   
- 
- 
-        const resData = await res.json();
+        const res1Data  = await res.json()
+        console.log("the data being returned is", res1Data)
+       
+        setName(res1Data.name)
+        setDesc(res1Data.description)
+        onUpdate(res1Data)
         
+      
+  
+      
+    
+ 
    
 
    closeModal()
 }
-
-
-
 
     return (
         <>
@@ -131,9 +137,9 @@ const submitPlaylist =async (e)=>{
         </form>
         </>
     )
+
+
 }
 
 
-export default CreatePlaylist
-
-
+export default EditPlaylist

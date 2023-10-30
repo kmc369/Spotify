@@ -35,6 +35,7 @@ def create_playlist():
 @playlist_bp.route("/edit_playlist/<int:playlistId>", methods=["PUT"])
 def edit_playlist(playlistId):
     form = PlaylistForm()
+    print("the form data is", form.data )
     playlist = Playlist.query.get(playlistId)
     if playlist is None:
         return jsonify({"error": "Playlist not found"}), 404
@@ -43,8 +44,8 @@ def edit_playlist(playlistId):
     
    
     if request.method == "PUT":
-        if 'image' in form.data:
-            playlist.image = form.data['image']
+        # if 'image' in form.data:
+        #     playlist.image = form.data['image']
         if 'name' in form.data:
             playlist.name = form.data['name']
         if 'description' in form.data:
