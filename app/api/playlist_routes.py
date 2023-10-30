@@ -89,7 +89,7 @@ def get_playlist(playlistId):
 @playlist_bp.route("/add_song/<int:playlistId>/<int:songId>", methods=["POST"])
 def add_song_to_playlist(playlistId,songId):
     """add song to playlist"""
-    print("IN PLAYLIST ")
+
     songToAdd = Song.query.get(songId)
     playlist = Playlist.query.get(playlistId)
     # songs = Song.query.filter_by(playlist_id=playlistId)
@@ -113,6 +113,19 @@ def delete_song_from_playlist (playlistId,songId):
          return [song.to_dict() for song in playlist.songs]
      else:
          return jsonify({'message': 'Song not in  playlist'})
+     
+@playlist_bp.route("/delete_playlist/<int:playlistId>/", methods=["DELETE"])
+def delete_playlist(playlistId):
+    playlist = Playlist.query.get(playlistId)
+    playlist_arr = Playlist.query.all()
+    
+    if playlist and playlist in playlist_arr:
+        playlist_arr.remove(playlist)
+        return jsonify([play.to_dict() for play in playlist_arr])
+    else:
+        return jsonify({"no playlist"})
+    
+    
     
     
     
