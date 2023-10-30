@@ -66,7 +66,7 @@ const PlaylistUserList = ()=>{
 
    
 
-    if(songs.length===0 || !sessionUser ){
+    if( !sessionUser ){
         
         return null
     }
@@ -137,6 +137,7 @@ const PlaylistUserList = ()=>{
     
     
                     </div>
+                    {songs.length>=1? (
                     <table className="user-main-table" >
                         <thead >
                         <tr className="table-header-container">
@@ -148,6 +149,7 @@ const PlaylistUserList = ()=>{
                         </tr>
                         </thead>
                         <tbody>
+                           
                             {songs.map((element, index) => (
                        
                             <tr key={index}>
@@ -197,8 +199,13 @@ const PlaylistUserList = ()=>{
     
     
                     </table>
+                            ):(
+                                <div style={{color:"white"}}> 
+
+                                    Add some Songs to your playlist 
+                                </div>
+                            ) }
                   </div>
-                 
                
     
                 </div>
