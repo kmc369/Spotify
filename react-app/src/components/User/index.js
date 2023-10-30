@@ -23,8 +23,9 @@ function UserProfile({}){
 
 
     const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
-
+    const [index,setIndex] = useState(0)
   const toggleDropdown = (index) => {
+    setIndex(index)
     const updatedDropdowns = [...openDropdowns];
     updatedDropdowns[index] = !updatedDropdowns[index];
     setOpenDropdowns(updatedDropdowns);
@@ -70,7 +71,11 @@ function UserProfile({}){
         const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
             method:"POST",
         })
+    
+        toggleDropdown(index);
+    
         const playlist_songs_json = Playlist_songs.json()
+
 
     }
 
@@ -79,6 +84,7 @@ function UserProfile({}){
         if (currentSongIndex < songs.length - 1) {
           setCurrentSongIndex(currentSongIndex + 1);
           setPlaying(true); 
+        
         }
       };
   
@@ -90,7 +96,7 @@ function UserProfile({}){
     }
 
 
-//  console.log("songs",songs)
+
   
 
     return(<>
