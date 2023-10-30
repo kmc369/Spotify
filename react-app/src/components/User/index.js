@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import AudioComponent from "../AudioComponent"; 
-
-
+import OpenModalButton from "../OpenModalButton";
+import CreatePlaylist from "../../components/CreatePlayModal";
 function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -20,10 +20,10 @@ function UserProfile({}){
     const [randomImage, SetRandomImage]=useState(null)
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [dropdownVisible, setDropdownVisible] = useState(false);
-
-
     const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
     const [index,setIndex] = useState(0)
+
+
   const toggleDropdown = (index) => {
     setIndex(index)
     const updatedDropdowns = [...openDropdowns];
@@ -59,6 +59,11 @@ function UserProfile({}){
         FetchData()
    
     },[setSongs])
+
+    const handlePlaylistUpdate = (updatedPlaylist) => {
+       
+        setPlaylist(updatedPlaylist);
+      };
 
 
 
@@ -111,10 +116,10 @@ function UserProfile({}){
 
                     </div>
                     <div className="library-items-container">
-                        <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
+                        <div className="library-item" style={{cursor:"pointer"}}><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
                         <div className="library-button-container">
-                            <div><button className="song-button-user">Songs</button></div>
-                            <div><button className="song-button-user">Playlist</button></div>
+                            {/* <div><button className="song-button-user">Podcast</button></div> */}
+                            <div style={{cursor:"pointer"}}><OpenModalButton modalComponent={<CreatePlaylist onUpdate={handlePlaylistUpdate}/>}  className="song-button-user" buttonText="Playlist"/></div>
                         </div>
                        
                     </div>
