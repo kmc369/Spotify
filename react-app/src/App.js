@@ -32,7 +32,7 @@ function App() {
 
 
           <Route exact path="/user" >
-            <UserProfile ad={ad} />
+            <UserProfile />
           </Route>
 
         <Route exact path="/user_list/:playlistId/">

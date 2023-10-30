@@ -29,7 +29,10 @@ def create_playlist():
         )
         db.session.add(new_playlist)
         db.session.commit()
-        return jsonify(new_playlist.to_dict())
+        
+        user_playlists = Playlist.query.filter_by(user_id=form.data["user_id"]).all()
+        return [playlist.to_dict() for playlist in user_playlists]
+      
     return jsonify({"error": form.errors}), 400
 
 @playlist_bp.route("/edit_playlist/<int:playlistId>", methods=["PUT"])

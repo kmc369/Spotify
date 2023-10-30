@@ -12,7 +12,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primeicons/primeicons.css';
 
-const CreatePlaylist = ()=>{
+const CreatePlaylist = ({onUpdate})=>{
 const { closeModal } = useModal()
 
 
@@ -48,7 +48,8 @@ const submitPlaylist =async (e)=>{
  
  
         const resData = await res.json();
-        
+        // console.log("the res Data",resData)
+        onUpdate(resData)
    
 
    closeModal()
