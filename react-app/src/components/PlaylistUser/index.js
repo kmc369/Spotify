@@ -200,7 +200,7 @@ const PlaylistUserList = ()=>{
     
                     </table>
                             ):(
-                                <div style={{color:"white"}}> 
+                                <div style={{color:"white"}} className="no-songs-playist"> 
 
                                     Add some Songs to your playlist 
                                 </div>

@@ -331,3 +331,11 @@ cursor: pointer;
 .hash-item:hover{
    /* df  */
 }
+
+.no-songs-playist{
+    /* border:3px solid red; */
+    padding:70px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: x-large;
+}
