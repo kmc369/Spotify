@@ -366,20 +366,27 @@ cursor: pointer;
     /* Your existing styles */
   }
   
-  /* .fa-plus {
+  .fa-plus {
     cursor: pointer;
     position: relative;
+    /* display: none; */
+    margin-left: 20px;
+  } 
+
+  /* .plus-option:hover{
+    display: inline;
+    margin-left: 20px;
   } */
+
+
   
-  .playlist-option-container {
-    position: relative;
-    display: inline-block;
-  }
+
   
+
   .playlist-dropdown-options {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -190px; 
+    right: -150px;
     background-color: #333;
     border: 1px solid #666;
     border-radius: 5px;
@@ -388,21 +395,26 @@ cursor: pointer;
     margin: 0;
     display: none;
   }
+  .playlist-option-container {
+    position: relative;
+    display: inline-block;
+  }
   
-  .playlist-option-container:hover .playlist-dropdown-options {
+   .playlist-option-container .playlist-dropdown-options {
     display: block;
   }
   
-  .playlist-dropdown-option {
+   .playlist-dropdown-option {
     padding: 8px;
     cursor: pointer;
   }
   
+
   .playlist-dropdown-option:hover {
     background-color: #555;
     color: white;
-  }
-  
+  } 
+
   
   
   

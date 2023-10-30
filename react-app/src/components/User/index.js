@@ -61,12 +61,13 @@ function UserProfile({}){
 
 
 
-    async function addToPlaylist(element){
-        console.log(element ,"element IS")
-        const song_to_add = element
+    async function addToPlaylist(element, playlist){
+        console.log(element ,"SONG IS")
+        console.log(playlist, "PLAYLIST IS")
+    
         const songId = Number(element.id)
-        const playlist_id = Number(1)
-        console.log(playlist_id,"PLAYLIST ID and SongId", songId )
+        const playlist_id = Number(playlist.id)
+        console.log(playlist_id,"PLAYLIST ID  and SongId", songId )
         const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
             method:"POST",
         })
@@ -246,8 +247,11 @@ function UserProfile({}){
                           <li
                             className="playlist-dropdown-option"
                             style={{ color: 'white' }}
-                            key={userIndex}>
+                            key={userIndex}
+                            onClick={()=>addToPlaylist(element, userPlaylistElement)}
+                            >
                             {userPlaylistElement.name}
+                            
                           </li>
                         ))}
                       </ul>
