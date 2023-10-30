@@ -11,7 +11,7 @@ import AudioComponent from "../AudioComponent";
 function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
-    
+    const [showDropdown, setShowDropdown] = useState(false);
     const history = useHistory()
     const [playing, setPlaying] = useState(false)
     const [hoverIndex, setHoverIndex] = useState(null)
@@ -21,6 +21,14 @@ function UserProfile({}){
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
+
+    const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
+
+  const toggleDropdown = (index) => {
+    const updatedDropdowns = [...openDropdowns];
+    updatedDropdowns[index] = !updatedDropdowns[index];
+    setOpenDropdowns(updatedDropdowns);
+  };
   
     useEffect(()=>{
         async function FetchData(){
@@ -53,12 +61,13 @@ function UserProfile({}){
 
 
 
-    async function addToPlaylist(element){
-        console.log(element ,"element IS")
-        const song_to_add = element
+    async function addToPlaylist(element, playlist){
+        console.log(element ,"SONG IS")
+        console.log(playlist, "PLAYLIST IS")
+    
         const songId = Number(element.id)
-        const playlist_id = Number(1)
-        console.log(playlist_id,"PLAYLIST ID and SongId", songId )
+        const playlist_id = Number(playlist.id)
+        console.log(playlist_id,"PLAYLIST ID  and SongId", songId )
         const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
             method:"POST",
         })
@@ -73,8 +82,7 @@ function UserProfile({}){
           setPlaying(true); 
         }
       };
-    
-
+  
    
 
     if(songs.length===0 || !sessionUser ){
@@ -227,7 +235,29 @@ function UserProfile({}){
                             </td> 
 
                             <td className="column4-container">
-                            <div className="time-item">{element.time}  <span><i class="fa-solid fa-plus" onClick={()=>addToPlaylist(element)} ></i></span> 
+                            <div className="time-item">
+                                
+                                {element.time} 
+                                {/* onClick={()=>addToPlaylist(element)} */}
+                 <span className="playlist-option-container">
+                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
+                    {openDropdowns[index] && (
+                      <ul className="playlist-dropdown-options">
+                        {userPlaylist.map((userPlaylistElement, userIndex) => (
+                          <li
+                            className="playlist-dropdown-option"
+                            style={{ color: 'white' }}
+                            key={userIndex}
+                            onClick={()=>addToPlaylist(element, userPlaylistElement)}
+                            >
+                            {userPlaylistElement.name}
+                            
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </span>
+                                
                              </div>
                           
                             </td> 
@@ -241,14 +271,14 @@ function UserProfile({}){
                 </table>
               </div>
              
-           
+       
 
             </div>
 
 
 
                     <div>
-                        {console.log("SELECTED SONG", playing)}
+                    
                         {songs.length > 0 && !selectSong &&(
                             <div className="audio-container">
                             <img src={songs[currentSongIndex].albums.image} height="70px" width="70px" />
