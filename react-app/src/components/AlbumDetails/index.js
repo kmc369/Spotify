@@ -83,7 +83,8 @@ function AlbumDetail(){
                         }
                      <div className="user-landing-image1">
                         <div className="user-landing-image-item">
-                            <div>< img src={songs[0].albums.image} className="image-user-photo" style={{borderRadius:"5px"}} /></div>
+                            {console.log(songs[0])}
+                            <div>< img src={songs[0]?.albums?.image} className="image-user-photo" style={{borderRadius:"5px"}} /></div>
                         </div>
                         <div className="song-starred-info">
                             <div className="song-word">Songs</div>

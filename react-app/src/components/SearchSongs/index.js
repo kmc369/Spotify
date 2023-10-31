@@ -100,7 +100,7 @@ const SearchType = ()=>{
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
                 <p>We'll keep you updated on new episodes</p>
-                <button className="playlist-laanding" >Create Playlist</button>            
+                <button className="playlist-laanding" >Browse Podcast</button>            
                 </div>
 
 
