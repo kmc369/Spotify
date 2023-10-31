@@ -9,6 +9,8 @@ import AudioComponent from "../AudioComponent";
 import OpenModalButton from "../OpenModalButton";
 import CreatePlaylist from "../../components/CreatePlayModal";
 import DeletePlaylistModal from "../DeletePlaylistModal";
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
 function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -23,6 +25,7 @@ function UserProfile({}){
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
     const [index,setIndex] = useState(0)
+    const dispatch = useDispatch();
 
 
   const toggleDropdown = (index) => {
@@ -98,6 +101,11 @@ function UserProfile({}){
         
         }
       };
+      const handleLogout = async (e) => {
+        e.preventDefault();
+        await dispatch(logout());
+        history.push('/')
+      };
   
    
 
@@ -118,7 +126,9 @@ function UserProfile({}){
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
-                       
+                        {sessionUser &&
+                        <div><i class="fa-solid fa-right-from-bracket"  onClick={handleLogout} style={{color: "#fcfcfc"}}></i><span className="nav-words-user" onClick={handleLogout} >Logout</span></div>
+                            }
 
                     </div>
                     <div className="library-items-container">
@@ -139,13 +149,19 @@ function UserProfile({}){
                           
                             <div key={index} className="playlist-items"  >
                               
+                              <div className="image-andpop-name">
                                 <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} onClick={()=>history.push(`/user_list/${element.id}`)}/>
 
                                     <div style={{ color: "white" }}>{element.name}</div>
-                                    <div className="delete-div"><OpenModalButton style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={ <i className="fa-solid fa-trash"></i>} /></div>
+                            </div>
+
+                            <div className="delete-container">
+
+                                    <div ><OpenModalButton className="delete-div" style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={<i className="fa-solid fa-trash"></i>} /></div>
 
                                     {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
+                            </div>
                                 ))
                             ) : (
                             <div>Create Playlist</div>
@@ -164,7 +180,7 @@ function UserProfile({}){
             <div className="user-main-content-container">
                 <div className="user-landing-container">
                         <div className="user-profile-icon">
-                            <button className="premiumButton">Premium Options</button>
+                            {/* <button className="premiumButton">Premium Options</button> */}
                             <ProfileButton user={sessionUser} />
                         </div>
                     <div className="user-landing-image">
@@ -177,7 +193,7 @@ function UserProfile({}){
                             )}
                         </div>
                         <div className="song-starred-info">
-                            <div className="song-word">Songs</div>
+                            <div className="song-word">Song List</div>
                             <div ><h2 className="your-songs">{sessionUser.username}'s Songs</h2></div>
                             <div className="user-info">
                                 <div className="user-info-items">{sessionUser.email}  </div>

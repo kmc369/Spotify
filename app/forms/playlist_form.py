@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 class PlaylistForm(FlaskForm):
-     image = FileField("Image file", validators=[FileRequired(),FileAllowed(list(ALLOWED_EXTENSIONS))])
+     image = FileField("image", validators=[FileRequired(),FileAllowed(list(ALLOWED_EXTENSIONS))])
      name  = StringField("name",validators=[DataRequired()])
      description = StringField("description",validators=[DataRequired()])
      user_id = IntegerField('User ID', validators=[DataRequired()])

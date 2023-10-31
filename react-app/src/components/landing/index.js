@@ -11,8 +11,10 @@ import  CreatePlayModal from '../../components/CreatePlayModal'
 import CreatePlaylist from "../../components/CreatePlayModal";
 import TextField from '@mui/material/TextField';
 import AudioPlayer from 'react-h5-audio-player';
-
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
  const Landing = ()=>{
+    const dispatch = useDispatch();
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
@@ -34,6 +36,11 @@ import AudioPlayer from 'react-h5-audio-player';
 
  
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await dispatch(logout());
+    history.push('/')
+  };
 
 
  
@@ -71,8 +78,11 @@ import AudioPlayer from 'react-h5-audio-player';
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }
+                {sessionUser &&
+                <div><i class="fa-solid fa-right-from-bracket"  onClick={handleLogout} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={handleLogout} >Logout</span></i></div>
+                }
              
-               
+          
             </div>
       
          <div className="library-container">
@@ -86,7 +96,7 @@ import AudioPlayer from 'react-h5-audio-player';
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
                 <p>We'll keep you updated on new episodes</p>
-                <button className="playlist-laanding" >Create Playlist</button>            
+                <button className="playlist-laanding" onClick={()=>history.push('/podcast')} >Browse Podcast</button>            
                 </div>
 
 

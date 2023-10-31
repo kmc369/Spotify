@@ -34,30 +34,37 @@ def create_playlist():
         return [playlist.to_dict() for playlist in user_playlists]
       
     return jsonify({"error": form.errors}), 400
-
 @playlist_bp.route("/edit_playlist/<int:playlistId>", methods=["PUT"])
 def edit_playlist(playlistId):
     form = PlaylistForm()
-    print("the form data is", form.data )
+ 
     playlist = Playlist.query.get(playlistId)
     if playlist is None:
         return jsonify({"error": "Playlist not found"}), 404
     
-    form.csrf_token.data = request.cookies['csrf_token']
-    
-   
-    if request.method == "PUT":
-        # if 'image' in form.data:
-        #     playlist.image = form.data['image']
-        if 'name' in form.data:
-            playlist.name = form.data['name']
-        if 'description' in form.data:
-            playlist.description = form.data['description']
-        if 'user_id' in form.data:
-            playlist.user_id = form.data['user_id']
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        image = form.data.get("image")
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                return jsonify({"error": "Failed to upload image to S3 1 "}), 400
 
-        db.session.commit()
-        return jsonify(playlist.to_dict())
+        if request.method == "PUT":
+            if 'name' in form.data:
+                playlist.name = form.data['name']
+            if 'description' in form.data:
+                playlist.description = form.data['description']
+            if 'user_id' in form.data:
+                playlist.user_id = form.data['user_id']
+
+            # Assign the uploaded image URL to the playlist's image attribute
+            if "url" in upload:
+                playlist.image = upload['url']
+
+            db.session.commit()
+            return jsonify(playlist.to_dict())
    
     return jsonify({"error": "Invalid request method"}), 400
 

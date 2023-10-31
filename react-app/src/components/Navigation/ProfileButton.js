@@ -41,16 +41,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} style={{backgroundColor:"rgb(14,14,14,0.6,)", padding:"8px", border:"none",borderRadius:"50%"}}>
+      <button className="Profile-button-icon" onClick={openMenu} style={{backgroundColor:"rgb(14,14,14,0.6,)", padding:"8px", border:"none",borderRadius:"50%"}}>
       <i class="fa-solid fa-user" style={{color:"white"}}></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div>{user.username}</div>
-            <div>{user.email}</div>
+            <div className="drop-down-item0"><img src={user.image} height="30px" width="30px"/>{user.username}</div>
+            <div className="drop-down-item">{user.email}</div>
             
-             <div> <button onClick={handleLogout}>Log Out</button></div>
+             <div className="drop-down-item1" onClick={handleLogout}>Log Out</div>
           </>
         ) : (
           <>

@@ -340,5 +340,34 @@ cursor: pointer;
     font-size: x-large;
 }
 
+.popcastwords1{
+    color:white;
+    /* border:1px solid red; */
+    padding: 5px;
+    margin: 0px;
+
+}
+
+.library-items-container1{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px;
+}
+
+.playlist-laanding12{
+    margin-top: 10px;
+    background-color: white;
+    color:black;
+    border-radius: 25px; 
+    border:none;
+    padding: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 
 

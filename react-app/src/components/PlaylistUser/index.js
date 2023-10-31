@@ -10,8 +10,10 @@ import OpenModalButton from "../OpenModalButton";
 import CreatePlaylist from "../../components/CreatePlayModal";
 import EditPlaylist from "../EditPlaylistModal";
 import DeletePlaylistModal from "../DeletePlaylistModal";
-
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
 const PlaylistUserList = ()=>{
+    const dispatch = useDispatch();
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
     const history = useHistory()
@@ -24,6 +26,12 @@ const PlaylistUserList = ()=>{
     const {playlistId} = useParams()
     const playlist_id = Number(playlistId)
 
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await dispatch(logout());
+        history.push('/')
+      };
+    
 
 
 
@@ -82,10 +90,17 @@ const PlaylistUserList = ()=>{
                 <div className="user-sidebar-container">
                         <div className="nav-items-container">
                             <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
-                            <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user">Search</span></div>
+                            <div><i class="fa-solid fa-magnifying-glass" onClick={()=>history.push('/search')} style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user" onClick={()=>history.push('/search')}>Search</span></div>
                             {sessionUser &&
                         <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} s style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}}></i><span className="nav-words-user" onClick={()=>history.push('/user')} >Profile</span></div>
+                        
                         }
+                    {sessionUser &&
+                    <div><i class="fa-solid fa-right-from-bracket"  onClick={handleLogout} style={{color: "#fcfcfc"}}></i><span className="nav-words-user" onClick={handleLogout} >Logout</span></div>
+                    }
+
+                        
+
     
                         </div>
                         <div className="library-items-container">
@@ -96,9 +111,12 @@ const PlaylistUserList = ()=>{
                             </div>
                            
                         </div>
-                        <div className="playlist-container">
-                                    if you want to add something later
-                            </div>
+                        <div className="library-items-container1">
+                            <p className="popcastwords1">Let find some podcast to add</p>
+                            <p className="popcastwords1">We'll keep you updated on new episodes</p>
+                            <button className="playlist-laanding12" onClick={()=>history.push('/podcast')} >Browse Podcast</button>            
+                         </div>
+
     
                             
     
@@ -112,7 +130,7 @@ const PlaylistUserList = ()=>{
                 <div className="user-main-content-container3">
                     <div className="user-landing-container">
                             <div className="user-profile-icon3">
-                                <button className="premiumButton">Premium Options</button>
+                                {/* <button className="premiumButton">Premium Options</button> */}
                                 <ProfileButton user={sessionUser} />
                             </div>
                         <div className="user-landing-image3">
@@ -127,7 +145,7 @@ const PlaylistUserList = ()=>{
                                 <div className="song-word"><u>Songs</u></div>
                                 <div ><h2 className="your-songs">{playlist.name}</h2></div>
                                 <div className="user-info">
-                                    <div className="user-info-items">{playlist.description}  </div>
+                                    {/* <div className="user-info-items">{playlist.description}  </div> */}
                                     <div className="user-info-items"><span style={{marginRight:"5px"}}></span>{songs.length} songs</div>
                                    
                                 </div>

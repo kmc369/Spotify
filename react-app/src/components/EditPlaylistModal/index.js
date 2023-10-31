@@ -26,17 +26,17 @@ const [description, setDesc]=useState(playlist.description)
 const submitPlaylist =async (e)=>{
     e.preventDefault();
 
-    const playlist_form= new FormData();
-    if (image !== null) {
-        const mainFile = await fetch(image)
-            .then(response => response.blob())
-            .then(blob => new File([blob], 'main_image.jpg', { type: blob.type }));
+    const playlist_form = new FormData();
 
-            playlist_form.append('image', mainFile);
+    const fileInput = document.getElementById('file-input');
+
+    if (fileInput && fileInput.files[0]) {
+        playlist_form.append('image', fileInput.files[0]);
     }
-    playlist_form.append("name", name)
-    playlist_form.append("user_id", sessionUser.id)
-    playlist_form.append("description",description)
+
+    playlist_form.append('name', name);
+    playlist_form.append('user_id', sessionUser.id);
+    playlist_form.append('description', description);
 
    
    
@@ -49,6 +49,7 @@ const submitPlaylist =async (e)=>{
         const res1Data  = await res.json()
         console.log("the data being returned is", res1Data)
        
+        setImage(res1Data.image)
         setName(res1Data.name)
         setDesc(res1Data.description)
         onUpdate(res1Data)
