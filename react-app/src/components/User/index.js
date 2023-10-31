@@ -180,7 +180,7 @@ function UserProfile({}){
             <div className="user-main-content-container">
                 <div className="user-landing-container">
                         <div className="user-profile-icon">
-                            <button className="premiumButton">Premium Options</button>
+                            {/* <button className="premiumButton">Premium Options</button> */}
                             <ProfileButton user={sessionUser} />
                         </div>
                     <div className="user-landing-image">
@@ -193,7 +193,7 @@ function UserProfile({}){
                             )}
                         </div>
                         <div className="song-starred-info">
-                            <div className="song-word">Songs</div>
+                            <div className="song-word">Song List</div>
                             <div ><h2 className="your-songs">{sessionUser.username}'s Songs</h2></div>
                             <div className="user-info">
                                 <div className="user-info-items">{sessionUser.email}  </div>
