@@ -22,9 +22,34 @@ const [name,setName] = useState("")
 const sessionUser = useSelector(state => state.session.user)
 const [image,setImage]=useState(null)
 const [description, setDesc]=useState("")
+const [error,setError] = useState({})
 
 const submitPlaylist =async (e)=>{
     e.preventDefault();
+
+    const err = {}
+
+    if(name.length>=15){
+        err.name = "Name must be less than 16 character"
+    }
+    if(name.length===0){
+        err.name="Name cant be empty"
+    }
+
+    
+
+    if(description.length>=30){
+        err.description = "Description must be less than 31 character"
+    }
+    if(description.length===0){
+        err.description="cant be empty"
+    }
+
+    if(!image){
+        err.image = "Must have an image"
+    }
+
+    setError(err)
 
     const playlist_form= new FormData();
     if (image !== null) {
@@ -50,10 +75,15 @@ const submitPlaylist =async (e)=>{
         const resData = await res.json();
         // console.log("the res is" ,resData)
         onUpdate(resData)
-   
+        
+    if(Object.values(err).length===0){
+        console.log("we in this thing")
+        closeModal()
+    }
 
-   closeModal()
 }
+
+
 
 
 
@@ -84,10 +114,14 @@ const submitPlaylist =async (e)=>{
                     <input  
                     onChange={(e)=>setImage(URL.createObjectURL(e.target.files[0]))}
                     type="file" 
+                    required
                     id="file-input" 
                     className="input-image1" 
                     accept="image/*" />
+
                     </div>
+
+                    
                     {/* {(imageLoading)&& <p>Loading...</p>} */}
                     
                  
@@ -101,24 +135,30 @@ const submitPlaylist =async (e)=>{
                 onChange={(e)=>setName(e.target.value)}
                 label="Playlist Name" 
                 variant="outlined"
+                required
                 InputLabelplaylists={{ style: { color: 'white' } }} 
 
             />
+             <p className="error">{error.name}</p>
             < TextareaAutosize 
             className="text-area"
+            required
             value = {description}
             onChange={(e)=>setDesc(e.target.value)}
             placeholder="Description"
         
 
             />
+             <p className="error">{error.description}</p>
 
         </div>
+       
             </div>
 
 
         
         </div>
+        <p className="error">{error.image}</p>
         <div className="button-container-user">
             <Button className="playlist-button" variant="outlined" onClick={submitPlaylist}>Submit</Button>
         </div>
