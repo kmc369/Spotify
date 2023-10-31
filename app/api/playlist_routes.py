@@ -117,7 +117,7 @@ def delete_song_from_playlist(playlistId, songId):
 
     if songToDelete in playlist.songs:
         playlist.songs.remove(songToDelete)
-        db.session.commit()  # Commit the changes to the database
+        db.session.commit()  
         return [song.to_dict() for song in playlist.songs]
     else:
         return jsonify({'message': 'Song not in playlist'})
