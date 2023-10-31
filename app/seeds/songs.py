@@ -66,6 +66,9 @@ def seed_songs():
     song46 = Song(name="Im Like a Lawyer", time="3:32", type="Alternative", artist_id=6, album_id=14, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Fall+Out+Boy+-+I'm+Like+A+Lawyer+With+The+Way+I'm+Always+Trying+To+Get+You+Off+(Me+%26+You).mp3")
     song47 = Song(name="Thnks fr th Mmrs", time="3:23", type="Alternative", artist_id=6, album_id=14, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Fall+Out+Boy+-+Thnks+Fr+Th+Mmrs+(Audio)+(HD).mp3")
     
+    song48 = Song(name="By your side", time="3:50", type="Pop", artist_id=9, album_id=15, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Rod+Wave+-+By+Your+Side+(Official+Video).mp3")
+    song49 = Song(name="Hey there Delilah", time="3:40", type="Pop", artist_id=9, album_id=15, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Plain+White+T's+-+Hey+There+Delilah.mp3")
+    
     podcast1 = Song(name="climate crisis", time="11:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+John+Doerr+and+Ryan+Panchadsaram+An+action+plan+for+solving+the+climate+crisis+TED+Countdown-ZrdgSp-OVpM-192k-1698777774.mp3")
     podcast2 = Song(name="Wind Energy Could Power Earth", time="10:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+How+Wind+Energy+Could+Power+Earth+...+18+Times+Over+Dan+J%C3%B8rgensen+TED+Countdown-adJnm7Yopdo-192k-1698778388.mp3")
     podcast3 = Song(name="Billion-Dollar Pollution Solution Humanity", time="13:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+The+Billion+Dollar+Pollution+Solution+Humanity+Needs+Right+Now+Stacy+Kauk+TED-IGIT-vENgaQ-192k-1698778602.mp3")
@@ -136,6 +139,9 @@ def seed_songs():
     
     db.session.add(song46)
     db.session.add(song47)
+    
+    db.session.add(song48)
+    db.session.add(song49)
     
     db.session.add(podcast1)
     db.session.add(podcast2)
