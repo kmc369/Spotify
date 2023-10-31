@@ -38,7 +38,7 @@ function UserProfile({}){
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
-            const res_playlist = await fetch(`/api/songs/playlist/${sessionUser.id}`)
+            const res_playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
             const data = await res.json()
             const playlist_data= await res_playlist.json()
          
@@ -54,7 +54,7 @@ function UserProfile({}){
                 SetRandomImage(data[randomIndex])
 
               
-               
+               console.log("the songs one", playlist_data)
                 setPlaylist(playlist_data)
            
             }

@@ -10,11 +10,11 @@ function DeletePlaylistModal ({playlist,onUpdate}){
     const { closeModal } = useModal();
 
     const handleDelete = async () => {
-     const res= await fetch(`/api/playlist/delete_playlist/${playlist.id}/`,{
+     const res= await fetch(`/api/playlist/delete_playlist/${playlist.id}/${sessionUser.id}`,{
       method:"DELETE"
      })
       const resData = await res.json()
-      // console.log(resData)
+      console.log("the deleted items",resData)
     
       onUpdate(resData)
       closeModal()

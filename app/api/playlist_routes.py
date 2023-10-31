@@ -111,32 +111,35 @@ def add_song_to_playlist(playlistId,songId):
         return jsonify({'message': 'Song already in the playlist'})
     
 @playlist_bp.route("/delete_song/<int:playlistId>/<int:songId>", methods=["DELETE"])
-def delete_song_from_playlist (playlistId,songId):
-     songToDelete = Song.query.get(songId)
-     playlist = Playlist.query.get(playlistId)
-     
-     if songToDelete in playlist.songs:
-         playlist.songs.remove(songToDelete)
-         db.session.commit()
-         return [song.to_dict() for song in playlist.songs]
-     else:
-         return jsonify({'message': 'Song not in  playlist'})
-     
-@playlist_bp.route("/delete_playlist/<int:playlistId>/", methods=["DELETE"])
-def delete_playlist(playlistId):
+def delete_song_from_playlist(playlistId, songId):
+    songToDelete = Song.query.get(songId)
     playlist = Playlist.query.get(playlistId)
-    playlist_arr = Playlist.query.all()
-    
+
+    if songToDelete in playlist.songs:
+        playlist.songs.remove(songToDelete)
+        db.session.commit()  # Commit the changes to the database
+        return [song.to_dict() for song in playlist.songs]
+    else:
+        return jsonify({'message': 'Song not in playlist'})
+     
+@playlist_bp.route("/delete_playlist/<int:playlistId>/<int:userId>", methods=["DELETE"])
+def delete_playlist(playlistId, userId):
+    playlist = Playlist.query.get(playlistId)
+    playlist_arr = Playlist.query.filter_by(user_id=userId).all()
+
     if playlist and playlist in playlist_arr:
         playlist_arr.remove(playlist)
+        db.session.delete(playlist)  
+        db.session.commit() 
         return jsonify([play.to_dict() for play in playlist_arr])
     else:
-        return jsonify({"no playlist"})
+        return jsonify({"error": "No playlist with the given playlistId or it doesn't belong to the specified user."})
     
 
 @playlist_bp.route("/get_playlist/<int:userId>/", methods=["GET"])
 def get_usrer_playlist(userId):
-    play_arr = Playlist.query.filter_by(user_id=userId)
+    """get playlist of current user"""
+    play_arr = Playlist.query.filter_by(user_id=userId).all()
     return [play.to_dict() for play in play_arr]
 
     
