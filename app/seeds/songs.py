@@ -48,6 +48,18 @@ def seed_songs():
     song34 = Song(name="Positions", time="2:52", type="Pop", artist_id=16, album_id=5, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+positions-xuOOAQoDKN0-192k-1697903238.mp3")
     song35 =Song(name="Ad", time="1:52", type="AD", artist_id=16, album_id=5, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Want+A+Break+From+The+ADs+-7OBacT66SCM-192k-1698588820.mp3")
     
+    song36 = Song(name= "Stairway to Heaven",time= "8:02",type= "Rock",artist_id=4,album_id=9,user_id= 1,audio_url= "https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Stairway+to+Heaven+Led+Zeppelin+Lyrics-qHFxncb1gRY-192k-1698788056.mp3")
+    song37 = Song(name="Black Dog", time="4:55", type="Rock", artist_id=4, album_id=9, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Led+Zeppelin+Black+Dog+lyrics+-NwBtLnq0_Ic-192k-1698788683.mp3")
+    
+    song38 = Song(name="The Great Escape", time="3:12", type="Pop", artist_id=9, album_id=10, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Boys+Like+Girls+The+Great+Escape-JGPgxoIPY6Q-192k-1698789194.mp3")
+    song39 = Song(name="Hero/Heroine", time="3:51", type="Pop", artist_id=9, album_id=10, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Hero+Heroine+Boys+Like+Girls+LYRICS-15ukJxqPvuE-192k-1698789059.mp3")
+    
+    song40 = Song(name="I Write Sins Not Tragedies", time="3:06", type="Alternative", artist_id=10, album_id=11, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Panic+At+The+Disco+I+Write+Sins+Not+Tragedies+OFFICIAL+VIDEO+-vc6vs-l5dkc-192k-1698789489.mp3")
+    song41 = Song(name="Time to Dance", time="3:22", type="Alternative", artist_id=10, album_id=11, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+panic__at_the_disco___time_to_dance__official_audio_-JfUug-R7M5g-192k-1698789427.mp3")
+    
+    song42 = Song(name="Hotel California", time="6:30", type="Rock", artist_id=11, album_id=12, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Hotel+California+Lyrics+The+Eagles-ESj7dNMptXs-192k-1698789778.mp3")
+    song43 = Song(name="New Kid in Town", time="5:04", type="Rock", artist_id=11, album_id=12, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+New+Kid+in+Town+2013+Remaster+-L4LxavmC4_4-192k-1698789729.mp3")
+    
     podcast1 = Song(name="climate crisis", time="11:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+John+Doerr+and+Ryan+Panchadsaram+An+action+plan+for+solving+the+climate+crisis+TED+Countdown-ZrdgSp-OVpM-192k-1698777774.mp3")
     podcast2 = Song(name="Wind Energy Could Power Earth", time="10:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+How+Wind+Energy+Could+Power+Earth+...+18+Times+Over+Dan+J%C3%B8rgensen+TED+Countdown-adJnm7Yopdo-192k-1698778388.mp3")
     podcast3 = Song(name="Billion-Dollar Pollution Solution Humanity", time="13:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+The+Billion+Dollar+Pollution+Solution+Humanity+Needs+Right+Now+Stacy+Kauk+TED-IGIT-vENgaQ-192k-1698778602.mp3")
@@ -102,6 +114,16 @@ def seed_songs():
     db.session.add(song33)
     db.session.add(song34)
     db.session.add(song35)
+    db.session.add(song36)
+    db.session.add(song37)
+    db.session.add(song38)
+    db.session.add(song39)
+    
+    db.session.add(song40)
+    db.session.add(song41)
+    
+    db.session.add(song42)
+    db.session.add(song43)
     
     db.session.add(podcast1)
     db.session.add(podcast2)
