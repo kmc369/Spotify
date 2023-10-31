@@ -114,7 +114,7 @@ const PlaylistUserList = ()=>{
     
                         </div>
                         <div className="library-items-container">
-                            <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
+                            <div className="library-item"><i className="fa-regular fa-bookmark" onClick={()=>history.push('/user')} style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span onClick={()=>history.push('/user')}  className="nav-words-user">Library</span></div>
                             <div className="library-button-container">
                            <div><OpenModalButton className="song-button-user" modalComponent={<EditPlaylist playlist={playlist} onUpdate={handlePlaylistUpdate} />} buttonText="Edit Playlist"/></div> 
                                 {/* <div><button className="song-button-user">Edit</button></div> */}
@@ -226,13 +226,13 @@ const PlaylistUserList = ()=>{
                                 </td> 
     
                                 <td className="column4-container">
-                                <div className="time-item">{element.time} </div>
-                                <div className="delete-container">
-                                            {console.log("the element",element)}
+                                <div className="time-item">{element.time} 
+                                              
+                            <span  style={{marginLeft:"20px"}}>
                             <button> <i className="fa-solid fa-trash" onClick={()=>DeleteSong(element)}></i> </button>
-
-
-                                </div>
+                            </span>
+                            </div>
+                              
                                 </td> 
                             </tr>
                             ))}

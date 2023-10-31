@@ -19,6 +19,12 @@ def seed_artist():
     artist14 = Artist(name="Taylor Swift")
     artist15 = Artist(name="Michael Jackson")
     artist16 = Artist(name="Ariana Grande")
+    artist17 = Artist(name="TED")
+    artist18 = Artist(name="Joe Rogan")
+    artist19 = Artist(name="Neil Tyson")
+    artist20 = Artist(name="Investing Team")
+    artist21 = Artist(name="Space and Time")
+    artist22 = Artist(name="David Goggins")
     
 
     db.session.add(artist1)
@@ -37,6 +43,12 @@ def seed_artist():
     db.session.add(artist14)
     db.session.add(artist15)
     db.session.add(artist16)
+    db.session.add(artist17)
+    db.session.add(artist18)
+    db.session.add(artist19)
+    db.session.add(artist20)
+    db.session.add(artist21)
+    db.session.add(artist22)
 
     db.session.commit()
 
