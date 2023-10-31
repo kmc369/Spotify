@@ -19,14 +19,19 @@ import { useDispatch } from "react-redux";
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
+    const [playlist,setPlaylist]= useState({})
     const [search,setSearch] = useState("")
 
     
     useEffect(()=>{
 
        async  function fetchData (){
+
             const albums = await fetch("/api/albums/")
             const albumjson = await albums.json()
+            const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+            const playlistjson = await playlist.json()
+            console.log("the playlist is", playlistjson)
             setAlbums(albumjson)
          
         }
@@ -34,7 +39,7 @@ import { useDispatch } from "react-redux";
         fetchData()
     },[setAlbums])
 
- 
+
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -42,6 +47,10 @@ import { useDispatch } from "react-redux";
     history.push('/')
   };
 
+  const handlePlaylistUpdate = (updatedPlaylist) => {
+       
+    setPlaylist(updatedPlaylist);
+  };
 
  
 
@@ -89,7 +98,7 @@ import { useDispatch } from "react-redux";
             <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
-                <OpenModalButton modalComponent={<CreatePlaylist/>} className="playlist-laanding" buttonText="Create Playlist"/>
+                <OpenModalButton modalComponent={<CreatePlaylist onUpdate={handlePlaylistUpdate} />} className="playlist-laanding" buttonText="Create Playlist"/>
                 
             </div>
 

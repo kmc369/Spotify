@@ -41,14 +41,14 @@ const submitPlaylist =async (e)=>{
 
         const res = await fetch('/api/playlist/new_playlist',{
             method:"POST",
-            // headers: { 'Content-Type': 'application/json' },
+          
             body: playlist_form
         })
    
  
  
         const resData = await res.json();
-        // console.log("the res Data",resData)
+        // console.log("the res is" ,resData)
         onUpdate(resData)
    
 

@@ -34,6 +34,7 @@ def create_playlist():
         return [playlist.to_dict() for playlist in user_playlists]
       
     return jsonify({"error": form.errors}), 400
+
 @playlist_bp.route("/edit_playlist/<int:playlistId>", methods=["PUT"])
 def edit_playlist(playlistId):
     form = PlaylistForm()
@@ -131,6 +132,13 @@ def delete_playlist(playlistId):
         return jsonify([play.to_dict() for play in playlist_arr])
     else:
         return jsonify({"no playlist"})
+    
+
+@playlist_bp.route("/get_playlist/<int:userId>/", methods=["GET"])
+def get_usrer_playlist(userId):
+    play_arr = Playlist.query.filter_by(user_id=userId)
+    return [play.to_dict() for play in play_arr]
+
     
     
     
