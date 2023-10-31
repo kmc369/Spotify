@@ -60,6 +60,12 @@ def seed_songs():
     song42 = Song(name="Hotel California", time="6:30", type="Rock", artist_id=11, album_id=12, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Hotel+California+Lyrics+The+Eagles-ESj7dNMptXs-192k-1698789778.mp3")
     song43 = Song(name="New Kid in Town", time="5:04", type="Rock", artist_id=11, album_id=12, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+New+Kid+in+Town+2013+Remaster+-L4LxavmC4_4-192k-1698789729.mp3")
     
+    song44 = Song(name="What's Love Got to Do with It", time="3:49", type="Rock", artist_id=5, album_id=13, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+What+s+Love+Got+to+Do+with+It+2015+Remaster+-1avX1lX7gSs-192k-1698790111.mp3")
+    song45 = Song(name="We Don't Need Another Hero (Thunderdome)", time="4:15", type="Rock", artist_id=5, album_id=13, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+We+Don+t+Need+Another+Hero+Thunderdome+-kDERlmd2NS4-192k-1698790100.mp3")
+
+    song46 = Song(name="Im Like a Lawyer", time="3:32", type="Alternative", artist_id=6, album_id=14, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Fall+Out+Boy+-+I'm+Like+A+Lawyer+With+The+Way+I'm+Always+Trying+To+Get+You+Off+(Me+%26+You).mp3")
+    song47 = Song(name="Thnks fr th Mmrs", time="3:23", type="Alternative", artist_id=6, album_id=14, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Fall+Out+Boy+-+Thnks+Fr+Th+Mmrs+(Audio)+(HD).mp3")
+    
     podcast1 = Song(name="climate crisis", time="11:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+John+Doerr+and+Ryan+Panchadsaram+An+action+plan+for+solving+the+climate+crisis+TED+Countdown-ZrdgSp-OVpM-192k-1698777774.mp3")
     podcast2 = Song(name="Wind Energy Could Power Earth", time="10:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+How+Wind+Energy+Could+Power+Earth+...+18+Times+Over+Dan+J%C3%B8rgensen+TED+Countdown-adJnm7Yopdo-192k-1698778388.mp3")
     podcast3 = Song(name="Billion-Dollar Pollution Solution Humanity", time="13:36", type="Sciene", artist_id=17, album_id=16, user_id=1, audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+The+Billion+Dollar+Pollution+Solution+Humanity+Needs+Right+Now+Stacy+Kauk+TED-IGIT-vENgaQ-192k-1698778602.mp3")
@@ -124,6 +130,12 @@ def seed_songs():
     
     db.session.add(song42)
     db.session.add(song43)
+    
+    db.session.add(song44)
+    db.session.add(song45)
+    
+    db.session.add(song46)
+    db.session.add(song47)
     
     db.session.add(podcast1)
     db.session.add(podcast2)
