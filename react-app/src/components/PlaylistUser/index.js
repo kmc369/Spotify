@@ -70,6 +70,16 @@ const PlaylistUserList = ()=>{
    
     },[])
 
+    const DeleteSong = async (element) => {
+        console.log("the playlist id is",element.playlist_id        )
+       const res = await fetch(`/api/playlist/delete_song/${element.playlist_id}/${element.id}`,{
+        method:"DELETE"
+       })
+       const songs = await res.json()
+       console.log("the song is", songs)
+       setSongs(songs)
+      };
+
     
     function playSong(){
         setPlaying(true)
@@ -217,6 +227,12 @@ const PlaylistUserList = ()=>{
     
                                 <td className="column4-container">
                                 <div className="time-item">{element.time} </div>
+                                <div className="delete-container">
+                                            {console.log("the element",element)}
+                            <button> <i className="fa-solid fa-trash" onClick={()=>DeleteSong(element)}></i> </button>
+
+
+                                </div>
                                 </td> 
                             </tr>
                             ))}

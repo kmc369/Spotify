@@ -54,7 +54,7 @@ function UserProfile({}){
                 SetRandomImage(data[randomIndex])
 
               
-               console.log("the songs one", playlist_data)
+               
                 setPlaylist(playlist_data)
            
             }
