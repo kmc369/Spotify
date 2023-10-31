@@ -58,16 +58,16 @@ function AlbumDetail(){
             <div className="user-sidebar-container">
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
-                        <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}}></i><span className="nav-words-user">Search</span></div>
+                        <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
 
                     </div>
                     <div className="library-items-container">
-                        <div className="library-item"><i className="fa-regular fa-bookmark" style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span  className="nav-words-user">Library</span></div>
-                        <div className="library-button-container">
-                            <div><button className="song-button-user">Songs</button></div>
-                            <div><button className="song-button-user">Albums</button></div>
-                        </div>
-                        <div>Search</div>
+                        <div className="library-item"><i className="fa-regular fa-bookmark"  onClick={()=>history.push('/user')} style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span onClick={()=>history.push('/user')}  className="nav-words-user">Library</span></div>
+                        <div className="library-items-container1">
+                            <p className="popcastwords1">Let find some podcast to add</p>
+                            <p className="popcastwords1">We'll keep you updated on new episodes</p>
+                            <button className="playlist-laanding12" onClick={()=>history.push('/podcast')} >Browse Podcast</button>            
+                         </div>
                     </div>
             </div>
 
@@ -77,7 +77,7 @@ function AlbumDetail(){
                 <div className="user-landing-container">
                     {sessionUser &&
                         <div className="user-profile-icon1">
-                            <button className="premiumButton">Premium Options</button>
+                            {/* <button className="premiumButton">Premium Options</button> */}
                             <ProfileButton user={sessionUser} />
                         </div> 
                         }
