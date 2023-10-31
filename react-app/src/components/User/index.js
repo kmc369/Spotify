@@ -9,6 +9,8 @@ import AudioComponent from "../AudioComponent";
 import OpenModalButton from "../OpenModalButton";
 import CreatePlaylist from "../../components/CreatePlayModal";
 import DeletePlaylistModal from "../DeletePlaylistModal";
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
 function UserProfile({}){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -23,6 +25,7 @@ function UserProfile({}){
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
     const [index,setIndex] = useState(0)
+    const dispatch = useDispatch();
 
 
   const toggleDropdown = (index) => {
@@ -98,6 +101,11 @@ function UserProfile({}){
         
         }
       };
+      const handleLogout = async (e) => {
+        e.preventDefault();
+        await dispatch(logout());
+        history.push('/')
+      };
   
    
 
@@ -118,7 +126,9 @@ function UserProfile({}){
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
-                       
+                        {sessionUser &&
+                        <div><i class="fa-solid fa-right-from-bracket"  onClick={handleLogout} style={{color: "#fcfcfc"}}></i><span className="nav-words-user" onClick={handleLogout} >Logout</span></div>
+                            }
 
                     </div>
                     <div className="library-items-container">
