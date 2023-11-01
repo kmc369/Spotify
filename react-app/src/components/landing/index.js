@@ -13,9 +13,11 @@ import TextField from '@mui/material/TextField';
 import AudioPlayer from 'react-h5-audio-player';
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
+import * as sessionActions from '../../store/session'
+
  const Landing = ({prop})=>{
 
-    console.log("console.log my pr",prop)
+ 
     const dispatch = useDispatch();
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
@@ -58,7 +60,16 @@ import { useDispatch } from "react-redux";
     setPlaylist(updatedPlaylist);
   };
 
+  const handleClick = () => {
+    
+    const email = "demo@aa.io"
+    const password = "password"
+
  
+  // closeModal()
+  return dispatch(sessionActions.login(email,password))
+}
+
 
     if(!albums.length){
         return null
@@ -71,7 +82,9 @@ import { useDispatch } from "react-redux";
                     <div className="landing-login-sign-buttons">
                     <OpenModalButton className="landing-sign-up"   onItemClick={closeModal}  modalComponent={<SignupFormModal />}  buttonText="Sign Up" />
                     <OpenModalButton className="landing-login"   onItemClick={closeModal}  modalComponent={<LoginFormModal />}   buttonText="Login" />
-                
+                    <button className="landing-login"  onClick={handleClick}>
+                       Demo
+          </button>
                 </div>
                 }
         </div>

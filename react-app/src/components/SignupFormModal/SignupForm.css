@@ -1,0 +1,32 @@
+.login-container-modal{
+    display: flex;
+    flex-direction: column;
+    padding:40px;
+    background-color: rgb(57, 57, 57);
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-labels{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.button-login{
+    border:none;
+    background-color: rgb(90, 239, 90);
+    color:black;
+    padding:10px;
+    border-radius: 10px;
+    width:100px;
+}
+
+.errors{
+    color:red;
+}

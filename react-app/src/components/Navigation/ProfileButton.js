@@ -16,6 +16,8 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
+
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -59,6 +61,8 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
+
+         
 
             <OpenModalButton
               buttonText="Sign Up"
