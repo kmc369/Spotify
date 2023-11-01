@@ -101,13 +101,13 @@ function UserProfile({ onSelectedSongChange }){
     }
 
    
-    const playNextSong = () => {
-        if (currentSongIndex < songs.length - 1) {
-          setCurrentSongIndex(currentSongIndex + 1);
-          setPlaying(true); 
+    // const playNextSong = () => {
+    //     if (currentSongIndex < songs.length - 1) {
+    //       setCurrentSongIndex(currentSongIndex + 1);
+    //       setPlaying(!playing); 
         
-        }
-      };
+    //     }
+    //   };
       const handleLogout = async (e) => {
         e.preventDefault();
         await dispatch(logout());
@@ -166,7 +166,6 @@ function UserProfile({ onSelectedSongChange }){
 
                                     <div ><OpenModalButton className="delete-div" style={{marginLeft:"10px"}} modalComponent={<DeletePlaylistModal playlist={element} onUpdate={handleDeletePlaylist}  />} buttonText={<i className="fa-solid fa-trash"></i>} /></div>
 
-                                    {/* <div><button>Create Another Playlist</button> </div> */}
                                     </div>
                             </div>
                                 ))
@@ -212,16 +211,12 @@ function UserProfile({ onSelectedSongChange }){
 
                     </div>
 
-                    {/* <div className="seperator">
-                        <button className="play-button"><i class="fa-solid fa-play" onClick={()=>setPlaying(!playing)}></i></button>
-                    
-                        
-                    </div> */}
+{/* 
                        <div className="seperator">
-                            <button className="play-button" onClick={() => setPlaying(!playing)}>
+                            <button className="play-button" onClick={playNextSong}>
                             <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
                             </button>
-                         </div>
+                         </div> */}
 
 
                 </div>
@@ -250,10 +245,9 @@ function UserProfile({ onSelectedSongChange }){
                                     {hoverIndex !==index? (
                                     <div>{index+1}</div>
                                     ):(
-                                        // ()=>setSelectedSong({element,index})
-                                        // ()=>setSelectedSong({element,index, songs}
+                                       
                                     <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index,songs)}  ></i> 
-                                    {/* {console.log(selectSong,"SONG")} */}
+                            
                                     </div>
                                     )}
                                     </div>
@@ -282,9 +276,8 @@ function UserProfile({ onSelectedSongChange }){
                             <td className="column4-container">
                             <div className="time-item">
                                 
-                                {element.time} 
-                                {/* onClick={()=>addToPlaylist(element)} */}
-                 <span className="playlist-option-container">
+                                {element.time}
+                               <span className="playlist-option-container">
                     <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
                     {openDropdowns[index] && (
                       <ul className="playlist-dropdown-options">
@@ -303,6 +296,8 @@ function UserProfile({ onSelectedSongChange }){
                     )}
                   </span>
                                 
+                               
+               
                              </div>
                           
                             </td> 
