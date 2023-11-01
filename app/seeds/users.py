@@ -1,6 +1,6 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, User, environment, SCHEMA, Song
 from sqlalchemy.sql import text
-
+from .songs import seed_songs
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -29,6 +29,19 @@ def seed_users():
         image="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u1.jpg",
         email='jake@aa.io',
         password='password')
+    song5 = Song(name="Take Care", time="4:37",type="R&B" , artist_id=1,album_id=2,audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Take+Care.mp3")
+    song10 = Song(name="The Weekend", time="4:32", type="R&B", artist_id=8, album_id=6,  audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+SZA+The+Weekend+Official+Audio+-PALMMqZLAQk-192k-1697897048.mp3",playlist_id=1)
+    song34 = Song(name="Positions", time="2:52", type="Pop", artist_id=16, album_id=5,  audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+positions-xuOOAQoDKN0-192k-1697903238.mp3")
+    podcast11 = Song(name="Black Hole Sounds", time="0:36", type="science", artist_id=21, album_id=20,  audio_url="https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+What+do+black+holes+sound+like+NASA+releases+recording+of+black+hole+in+distant+galaxy-NWBkZ3bMSV0-192k-1698781941.mp3")
+    song48 = Song(name="By your side", time="3:50", type="Pop", artist_id=9, album_id=15,  audio_url="https://spotify-audio-bucket.s3.amazonaws.com/Rod+Wave+-+By+Your+Side+(Official+Video).mp3")
+
+    demo.songs.append(song5)
+    demo.songs.append(song10)
+    demo.songs.append(song48)
+    demo.songs.append(song34)
+    demo.songs.append(podcast11)
+    
+    
 
 
     db.session.add(demo)
@@ -39,16 +52,13 @@ def seed_users():
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
-# have a built in function to do this. With postgres in production TRUNCATE
-# removes all the data from the table, and RESET IDENTITY resets the auto
-# incrementing primary key, CASCADE deletes any dependent entities.  With
-# sqlite3 in development you need to instead use DELETE to remove all data and
-# it will reset the primary keys for you as well.
+
 def undo_users():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.user_songs RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM user_songs"))
         
     db.session.commit()

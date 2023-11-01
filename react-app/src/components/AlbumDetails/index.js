@@ -27,6 +27,19 @@ function AlbumDetail({ onSelectedSongChange }){
     updatedDropdowns[index] = !updatedDropdowns[index];
     setOpenDropdowns(updatedDropdowns);
   };
+
+  const toggleDropdownLibrary = (index) => {
+    // setIndex(index)
+    // const updatedDropdowns = [...openDropdowns];
+    // updatedDropdowns[index] = !updatedDropdowns[index];
+    // console.log("Library")
+    // setOpenDropdowns(updatedDropdowns);
+    console.log("index",index)
+  };
+
+
+
+
     const handleSelectedSongChange = async (element,index,songs) => {
         
         await setSelectedSong({element,index,songs})
@@ -133,7 +146,7 @@ function AlbumDetail({ onSelectedSongChange }){
                         }
                      <div className="user-landing-image1">
                         <div className="user-landing-image-item">
-                            {console.log(songs[0])}
+                           
                             <div>< img src={songs[0]?.albums?.image} className="image-user-photo" style={{borderRadius:"5px"}} /></div>
                         </div>
                         <div className="song-starred-info">
@@ -212,7 +225,9 @@ function AlbumDetail({ onSelectedSongChange }){
                             <div className="time-item">{element.time} 
                             <span className="playlist-option-container">
                     <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
-                    {openDropdowns[index] && (
+                 
+                    {userPlaylist.length >=1?(
+                        openDropdowns[index] && (
                       <ul className="playlist-dropdown-options">
                         {userPlaylist.map((userPlaylistElement, userIndex) => (
                           <li
@@ -226,6 +241,9 @@ function AlbumDetail({ onSelectedSongChange }){
                           </li>
                         ))}
                       </ul>
+                    )):(
+                    <i className="fa-regular fa-bookmark" onClick={() => toggleDropdownLibrary(element,index)}></i>   
+                    
                     )}
                   </span>
                             </div>
