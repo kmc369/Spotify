@@ -29,11 +29,7 @@ function AlbumDetail({ onSelectedSongChange }){
   };
 
   const toggleDropdownLibrary = async(element ,index) => {
-    // setIndex(index)
-    // const updatedDropdowns = [...openDropdowns];
-    // updatedDropdowns[index] = !updatedDropdowns[index];
-    // console.log("Library")
-    // setOpenDropdowns(updatedDropdowns);
+ 
     const song_id = element.id
     const user_id = sessionUser.id
 
@@ -41,7 +37,8 @@ function AlbumDetail({ onSelectedSongChange }){
         method:"POST"
     })
     const added_to_library = await res.json()
-    console.log(added_to_library, "song")
+    history.push(`/user`)
+   
    
   };
 
@@ -247,7 +244,7 @@ function AlbumDetail({ onSelectedSongChange }){
                                         ))}
                                         </ul>
                                     )}
-                                    <i className="fa-regular fa-bookmark" onClick={() => toggleDropdownLibrary(element, index)}></i>
+                                    <i className="fa-regular fa-bookmark" style={{marginLeft:"25px"}} onClick={() => toggleDropdownLibrary(element, index)}></i>
                                     </span>
                                 </div>
                         </td>
