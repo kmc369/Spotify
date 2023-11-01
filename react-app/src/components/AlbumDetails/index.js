@@ -54,11 +54,15 @@ function AlbumDetail({ onSelectedSongChange }){
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/${album_num}`)
-            const res_playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+
+            if(sessionUser){
+                const res_playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+                const playlist_data= await res_playlist.json()
+                setPlaylist(playlist_data)
+
+            }
            
-            const playlist_data= await res_playlist.json()
             const data = await res.json()
-            setPlaylist(playlist_data)
             // console.log(data)
             
            

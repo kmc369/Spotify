@@ -21,8 +21,13 @@
 <li>Update a Playlist: Users can update the name and description of their existing playlists.</lo>
 <li>Get a Playlist: Users can view the details of their playlists, including the songs added.</li>
 
-![Local Image](playlist_image.png)
+<li>Get a Playlist: Users can add songs to a playlist </li>
 
+
+<img src="playlist.png" width="350" height="350">
+
+
+<img src="playlist_image.png" width="350" height="300">
 
 </ul>
 
@@ -36,10 +41,17 @@
 
 ## Installation and Usage
 <ul>Prerequisites: 
-   <li>This app is hosted on a web service therefore all you need to do is click the link below to view the app
 
-   </li>
-   <li><a href="https://slotify-web-server.onrender.com">Link to Slotify</a></li>
+  Follow these steps to build and run the Spotify application using Docker:
+
+1. **Prerequisites:**
+   - git clone https://github.com/kmc369/Spotify.git
+   cd Spotify
+
+2. **Run:**
+   - pipenv run flask run 
+   cd Spotify cd react npm start
+
 </ul>
 
 
@@ -48,15 +60,21 @@
 <ul>If you're a new user:
 <li> click on the "Sign Up" option to create a new account. Otherwise, log in with your existing credentials,
  or if you are visiting the site login as a Demo User</li>
-
+<img src="login_signup.png" width="350" height="300">
 </ul>
 
-![Local Image](login_signup.png)
 
 
 
 ### Use the search feature to discover songs by genre. Enter a genre keyword, and the application will provide a list of matching songs.
 
-![Local Image](search.png)
+<ul>
+<img src="search.png" width="350" height="300">
+</ul>
+
+## Database Schema
+## Tables
+
+![Local Image](schema.png)
 
 ## Enjoy using the Slotify Mock App, and happy music exploration!
