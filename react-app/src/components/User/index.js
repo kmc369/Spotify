@@ -45,23 +45,15 @@ function UserProfile({ onSelectedSongChange }){
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
+            
             const res_playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
             const data = await res.json()
+          
             const playlist_data= await res_playlist.json()
-         
+            console.log("the songs", data)
            const arr = []
-            if(data.length>=1 || playlist_data.length>=1){
+            if(data.length>=1 || playlist_data.length>=1 || songs.length>=1){
                 setSongs(data)
-              
-                for(let i =0; i<data.length; i++){
-                 
-                    arr.push(data[i].albums.image)
-                }
-                const randomIndex = Math.floor(Math.random() * data.length);
-                SetRandomImage(data[randomIndex])
-
-              
-               
                 setPlaylist(playlist_data)
            
             }
@@ -116,7 +108,7 @@ function UserProfile({ onSelectedSongChange }){
   
    
 
-    if(songs.length===0 || !sessionUser ){
+    if(!sessionUser ){
         
         return null
     }
@@ -191,11 +183,13 @@ function UserProfile({ onSelectedSongChange }){
                         </div>
                     <div className="user-landing-image">
                         <div className="user-landing-image-item">
-                            {randomImage? (
+                            {songs.length>=1 ? (
                               
-                                <div><img src={randomImage.albums.image} style={{borderRadius:"5px"}} height="400px" width="400px"/></div>
+                                // <div><img src={randomImage.albums.image} style={{borderRadius:"5px"}} height="400px" width="400px"/></div>
+                                <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
                             ):(
-                            <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
+                            <div><img src="https://wallpapers.com/images/hd/neon-green-music-notes-eloz08thhwuc7opf.jpg" style={{borderRadius:"5px"} }  height="400px" width="400px" /></div>
+                           
                             )}
                         </div>
                         <div className="song-starred-info">
@@ -211,12 +205,8 @@ function UserProfile({ onSelectedSongChange }){
 
                     </div>
 
-{/* 
-                       <div className="seperator">
-                            <button className="play-button" onClick={playNextSong}>
-                            <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
-                            </button>
-                         </div> */}
+
+                  
 
 
                 </div>
@@ -232,80 +222,72 @@ function UserProfile({ onSelectedSongChange }){
                     </tr>
                     </thead>
                     <tbody>
-                        {songs.map((element, index) => (
-                   
-                        <tr key={index}>
-                            <td>
-
-
-                                <div className="hash-item" 
-                                    onMouseEnter={()=>setHoverIndex(index)}
-                                    onMouseLeave={()=>setHoverIndex(null)}
-                                    >
-                                    {hoverIndex !==index? (
-                                    <div>{index+1}</div>
-                                    ):(
-                                       
-                                    <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index,songs)}  ></i> 
-                            
+                      
+                        {songs.length>=1 ? (
+                            songs.map((element, index) => (
+                            <tr key={index}>
+                                <td>
+                                <div
+                                    className="hash-item"
+                                    onMouseEnter={() => setHoverIndex(index)}
+                                    onMouseLeave={() => setHoverIndex(null)}
+                                >
+                                    {hoverIndex !== index ? (
+                                    <div>{index + 1}</div>
+                                    ) : (
+                                    <div>
+                                        <i
+                                        className="fa-solid fa-play"
+                                        onClick={() => handleSelectedSongChange(element, index, songs)}
+                                        ></i>
                                     </div>
                                     )}
-                                    </div>
-                            
-                            </td>
-                            <td className="column1-container">
-                                        <img src={element.albums.image} height="50px" width="50px" style={{marginRight:"10px"}}/>
-                                        <div className="title-artist-name-container">
-                                            <div>{element.name} </div>
-                                            <div>{element.artist.name} </div>
-                                        </div>
-                            </td>
-
-                             <td className="column2-container">
-                           
+                                </div>
+                                </td>
+                                <td className="column1-container">
+                                <img src={element.albums.image} height="50px" width="50px" style={{ marginRight: "10px" }} />
+                                <div className="title-artist-name-container">
+                                    <div>{element.name}</div>
+                                    <div>{element.artist.name}</div>
+                                </div>
+                                </td>
+                                <td className="column2-container">
                                 <div className="album-name-item">{element.albums.name}</div>
+                                </td>
+                                <td className="column3-container">
+                                <div className="genre-type-item">{element.type}</div>
+                                </td>
+                                <td className="column4-container">
+                                <div className="time-item">
+                                    {element.time}
+                                    <span className="playlist-option-container">
+                                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
+                                    {openDropdowns[index] && (
+                                        <ul className="playlist-dropdown-options">
+                                        {userPlaylist.map((userPlaylistElement, userIndex) => (
+                                            <li
+                                            className="playlist-dropdown-option"
+                                            style={{ color: 'white' }}
+                                            key={userIndex}
+                                            onClick={() => addToPlaylist(element, userPlaylistElement)}
+                                            >
+                                            {userPlaylistElement.name}
+                                            </li>
+                                        ))}
+                                        </ul>
+                                    )}
+                                    </span>
+                                </div>
+                                </td>
+                            </tr>
+                            ))
+                        ) : (
+                            <tr>
+                            <td colSpan="5" style={{color:"white", textAlign:"center", fontSize:"30px"}}>Add Songs To your Library</td>
+                            </tr>
+                        )}
+                        </tbody>
 
-                               
-                             </td>
-
-
-                             <td className="column3-container">
-                                <div className="genre-type-item">{element.type} </div>
-                            </td> 
-
-                            <td className="column4-container">
-                            <div className="time-item">
-                                
-                                {element.time}
-                               <span className="playlist-option-container">
-                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
-                    {openDropdowns[index] && (
-                      <ul className="playlist-dropdown-options">
-                        {userPlaylist.map((userPlaylistElement, userIndex) => (
-                          <li
-                            className="playlist-dropdown-option"
-                            style={{ color: 'white' }}
-                            key={userIndex}
-                            onClick={()=>addToPlaylist(element, userPlaylistElement)}
-                            >
-                            {userPlaylistElement.name}
-                            
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </span>
-                                
-                               
-               
-                             </div>
-                          
-                            </td> 
-
-                           
-                        </tr>
-                        ))}
-                    </tbody>
 
 
                 </table>
