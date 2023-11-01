@@ -25,7 +25,7 @@ def get_user_songs(userid):
     songs = Song.query.filter_by(user_id=userid).all()
 
     if not songs:
-        return jsonify({"message":"No song found"},400)
+        return jsonify({"message":"No song found"})
     return [song.to_dict() for song in songs]
 
 
