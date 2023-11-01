@@ -13,7 +13,7 @@ import DeletePlaylistModal from "../DeletePlaylistModal";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
 import AudioComponent from "../AudioComponent";
-const PlaylistUserList = ()=>{
+const PlaylistUserList = ({ onSelectedSongChange })=>{
     const dispatch = useDispatch();
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -34,6 +34,11 @@ const PlaylistUserList = ()=>{
       };
     
 
+    const handleSelectedSongChange = async (element,index,songs) => {
+        
+        await setSelectedSong({element,index,songs})
+        onSelectedSongChange({element,index,songs});
+      };
 
 
     const handlePlaylistUpdate = (updatedPlaylist) => {
@@ -199,7 +204,7 @@ const PlaylistUserList = ()=>{
                                         {hoverIndex !==index? (
                                         <div>{index+1}</div>
                                         ):(
-                                        <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index})} ></i> 
+                                        <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index)} ></i> 
                                      
                                         </div>
                                         )}
@@ -252,20 +257,8 @@ const PlaylistUserList = ()=>{
     
                 </div>
                                 
-{/*            
-                            {selectSong &&
-                                        <div className="audio-container">
-                                            <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
-                                           <AudioPlayer 
-    
-                                           id='audio-button '
-                                           src={songs[selectSong.index].audio_url}
-                                           autoPlay={true}
-                                           volume={0.3}
-                                           showSkipControls={false}
-                                           />
-                                           </div>
-                                        } */}
+           
+                         
     
         </div>
         </>

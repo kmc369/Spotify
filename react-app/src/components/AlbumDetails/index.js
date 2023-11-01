@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min
 import ProfileButton from '../Navigation/ProfileButton';
 
 
-function AlbumDetail(){
+function AlbumDetail({ onSelectedSongChange }){
 
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session?.user)
@@ -17,6 +17,13 @@ function AlbumDetail(){
     const [selectSong, setSelectedSong] =useState(null)
     const {album_id} = useParams()
     const album_num = Number(album_id)
+
+
+    const handleSelectedSongChange = async (element,index,songs) => {
+        
+        await setSelectedSong({element,index,songs})
+        onSelectedSongChange({element,index,songs});
+      };
     
     useEffect(()=>{
         async function FetchData(){
@@ -131,7 +138,7 @@ function AlbumDetail(){
                                     {hoverIndex !==index? (
                                     <div>{index+1}</div>
                                     ):(
-                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index})} ></i> 
+                                    <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index,songs)} ></i> 
                                   
                                     </div>
                                     )}
@@ -174,19 +181,7 @@ function AlbumDetail(){
             </div>
 
        
-                        {selectSong &&
-                                    <div className="audio-container">
-                                        <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
-                                       <AudioPlayer 
-
-                                       id='audio-button '
-                                       src={songs[selectSong.index].audio_url}
-                                       autoPlay={true}
-                                       volume={0.3}
-                                       showSkipControls={false}
-                                       />
-                                       </div>
-                                    }
+                
 
     </div>
     )

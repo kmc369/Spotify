@@ -45,16 +45,16 @@ function App() {
           </Route>
 
         <Route exact path="/user_list/:playlistId/">
-          <PlaylistUser />
+          <PlaylistUser  onSelectedSongChange={handleSelectedSongChange}/>
         </Route>
 
        
         <Route exact path="/search">
-          <SearchType/>
+          <SearchType />
         </Route>
 
           <Route exact path="/albumDetails/:album_id"> 
-            <AlbumDetail />
+            <AlbumDetail onSelectedSongChange={handleSelectedSongChange} />
            </Route>
 
 
