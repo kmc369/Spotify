@@ -45,15 +45,13 @@
   Follow these steps to build and run the Spotify application using Docker:
 
 1. **Prerequisites:**
-   - Ensure you have Docker installed on your system. If you haven't installed Docker, you can download it [here](https://docs.docker.com/get-docker/).
-
-2. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/kmc369/Spotify.git
+   - git clone https://github.com/kmc369/Spotify.git
    cd Spotify
-3. **Build:**
-   docker build -t spotify-app .
-   <li><a href="https://slotify-web-server.onrender.com">Link to Slotify</a></li>
+
+2. **Run:**
+   - pipenv run flask run 
+   cd Spotify cd react npm start
+
 </ul>
 
 
