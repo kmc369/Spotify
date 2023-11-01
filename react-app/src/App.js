@@ -12,7 +12,9 @@ import PlaylistUser from "./components/PlaylistUser";
 import SearchSongs from "./components/SearchSongs";
 import SearchType from "./components/SearchSongs";
 import AudioComponent from "./components/AudioComponent";
-const ad = "https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Want+A+Break+From+The+ADs+-7OBacT66SCM-192k-1698588820.mp3"
+import Podcast from "./components/Podcast";
+
+// const ad = "https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Want+A+Break+From+The+ADs+-7OBacT66SCM-192k-1698588820.mp3"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,6 +53,10 @@ function App() {
 
           <Route exact path="/" >
             <Landing />
+          </Route>
+
+          <Route path="/podcast">
+            <Podcast />
           </Route>
 
           

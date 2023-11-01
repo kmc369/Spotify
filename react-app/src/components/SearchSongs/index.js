@@ -41,12 +41,12 @@ const SearchType = ()=>{
 
     const fetchData = async () => {
         try {
-            console.log("search", search);
+     
             const Type_Albums = await fetch(`/api/albums/albums_type/${search}`);
             const albumjson = await Type_Albums.json();
             setAlbums(albumjson);
         } catch (error) {
-            console.error("Error fetching data: ", error);
+         
         }
     }
 

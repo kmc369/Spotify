@@ -13,7 +13,7 @@ def seed_albums():
 
         album7= Album(name="Master of Puppets", time="54:47", type="Heavy Metal",image="https://www.jamminrecordings.com/cdn/shop/products/Metallica_-_Master_Of_Puppets_-_CD_large.jpg?v=1656291879",releasedate="1986-03-03", artist_id=3,user_id=1)
 
-        album8 = Album(name="Motivation Madness", time="34:31", type="podcast", image="https://ih1.redbubble.net/image.1572552637.7464/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg", releasedate="2019-07-21", artist_id=22, user_id=1)
+        album8 = Album(name="Motivation Madness", time="34:31", type="Podcast", image="https://ih1.redbubble.net/image.1572552637.7464/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg", releasedate="2019-07-21", artist_id=22, user_id=1)
 
 
         album9 = Album(name="Led Zeppelin IV", time="42:38", type="Rock", image="https://www.cheatsheet.com/wp-content/uploads/2019/12/led-zeppelin-iv.jpg", releasedate="1971-11-08", artist_id=3, user_id=1)

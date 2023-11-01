@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Album
+from flask import Blueprint, jsonify, request 
 
 
 album_bp = Blueprint('albums', __name__)
@@ -32,3 +33,30 @@ def get_all_albums():
     if not albums:
         return jsonify({"message": "No albumbs found"}, 404)
     return [album.to_dict() for album in albums]
+
+
+
+@album_bp.route("/podcast/<string:params>", methods=["GET"])
+def get_all_Podcast(params):
+    """Get all podcast albums"""
+
+
+    albums = Album.query.filter_by(type="Podcast").all()
+
+    if params:
+        albums = [album for album in albums if any(params.lower() in song.type.lower() for song in album.songs)]
+
+    if not albums:
+        return jsonify({"message": "No albums found"}, 404)
+
+    return [album.to_dict() for album in albums]
+
+   
+
+
+@album_bp.route("/podcast/", methods=["GET"])
+def get_spefic_podcast():
+    albums = Album.query.filter_by(type="Podcast").all()
+    
+    return [album.to_dict() for album in albums]
+    
