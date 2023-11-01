@@ -20,12 +20,12 @@ import * as sessionActions from '../../store/session'
  
     const dispatch = useDispatch();
     const [albums ,setAlbums] = useState([])
-    const { closeModal } = useModal();
+    
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
     const [playlist,setPlaylist]= useState({})
     const [search,setSearch] = useState("")
-
+    const { closeModal } = useModal()
     
     useEffect(()=>{
 
@@ -117,8 +117,17 @@ import * as sessionActions from '../../store/session'
             <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
+                {sessionUser?(
                 <OpenModalButton modalComponent={<CreatePlaylist onUpdate={handlePlaylistUpdate} />} className="playlist-laanding" buttonText="Create Playlist"/>
-                
+                ):(
+                    // <button className="playlist-laanding" onClick={} style={{color:"black", textAlign:"center"}}>create Playlist</button>
+                    <OpenModalButton
+                    className="playlist-laanding"
+                    buttonText="Sign Up"
+                    onItemClick={closeModal}
+                    modalComponent={<SignupFormModal />}
+                  />
+                )}              
             </div>
 
             <div className="create-first-paylist1">
@@ -152,9 +161,7 @@ import * as sessionActions from '../../store/session'
 
      </div>
 
-     {/* <div className="entire-audio-container">
-     <AudioPlayer prop={prop}/>
-     </div> */}
+     
 
      
      </>

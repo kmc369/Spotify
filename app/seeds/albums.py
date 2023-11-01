@@ -20,7 +20,7 @@ def seed_albums():
 
         
         album10 = Album(name="Boys Like Girls", time="42:55", type="Pop Rock", image="https://ih1.redbubble.net/image.688483267.8017/flat,750x,075,f-pad,750x1000,f8f8f8.u2.jpg", releasedate="2006-08-22", artist_id=9, user_id=1)
-        album11 = Album(name="A Fever You Can't Sweat Out", time="39:44", type="Pop Rock", image="https://media.pitchfork.com/photos/5929a1a69d034d5c69bf29e7/16:9/w_1280,c_limit/3be34bad.jpg", releasedate="2005-09-27", artist_id=10, user_id=1)
+        # album11 = Album(name="A Fever You Can't Sweat Out", time="39:44", type="Pop Rock", image="https://media.pitchfork.com/photos/5929a1a69d034d5c69bf29e7/16:9/w_1280,c_limit/3be34bad.jpg", releasedate="2005-09-27", artist_id=10, user_id=1)
         
         album12 = Album(name="Hotel California", time="43:30", type="Rock", image="https://pure-music.co.uk/wp-content/uploads/2019/04/Hotel-California-Album-Cover.png", releasedate="1976-12-08", artist_id=11, user_id=1)
         
@@ -53,7 +53,7 @@ def seed_albums():
       
         db.session.add(album10)
     
-        db.session.add(album11)
+        # db.session.add(album11)
         db.session.add(album12)
         db.session.add(album13)
         db.session.add(album14)

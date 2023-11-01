@@ -93,13 +93,7 @@ function UserProfile({ onSelectedSongChange }){
     }
 
    
-    // const playNextSong = () => {
-    //     if (currentSongIndex < songs.length - 1) {
-    //       setCurrentSongIndex(currentSongIndex + 1);
-    //       setPlaying(!playing); 
-        
-    //     }
-    //   };
+   
       const handleLogout = async (e) => {
         e.preventDefault();
         await dispatch(logout());
@@ -162,7 +156,7 @@ function UserProfile({ onSelectedSongChange }){
                             </div>
                                 ))
                             ) : (
-                            <div>Create Playlist</div>
+                            <div  style={{color:"white" ,textAlign:"center"}}> Create a Playist </div>
                                 )}
                         </div>
 
@@ -186,7 +180,7 @@ function UserProfile({ onSelectedSongChange }){
                             {songs.length>=1 ? (
                               
                                 // <div><img src={randomImage.albums.image} style={{borderRadius:"5px"}} height="400px" width="400px"/></div>
-                                <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}} /></div>
+                                <div><img src={songs[0].albums.image} style={{borderRadius:"5px"}}  height="300px" width="300px"/></div>
                             ):(
                             <div><img src="https://wallpapers.com/images/hd/neon-green-music-notes-eloz08thhwuc7opf.jpg" style={{borderRadius:"5px"} }  height="400px" width="400px" /></div>
                            
