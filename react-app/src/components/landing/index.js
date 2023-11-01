@@ -29,9 +29,13 @@ import { useDispatch } from "react-redux";
 
             const albums = await fetch("/api/albums/")
             const albumjson = await albums.json()
-            const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
-            const playlistjson = await playlist.json()
-            console.log("the playlist is", playlistjson)
+
+            if(sessionUser){
+
+                const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+                const playlistjson = await playlist.json()
+            }
+          
             setAlbums(albumjson)
          
         }

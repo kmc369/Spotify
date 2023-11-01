@@ -1,61 +1,49 @@
 import React, { useEffect, useState } from "react";
-// import './landing.css'
+// import './search.css'
+import CreatePlaylist from "../CreatePlayModal";
 import SignupFormModal from "../SignupFormModal";
 import OpenModalButton from "../OpenModalButton";
 import { useModal } from '../../context/Modal';
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import { Tooltip } from './tooltip';
-import  CreatePlayModal from '../../components/CreatePlayModal'
-import CreatePlaylist from "../../components/CreatePlayModal";
-import TextField from '@mui/material/TextField';
-import AudioPlayer from 'react-h5-audio-player';
-import { logout } from "../../store/session";
-import { useDispatch } from "react-redux";
- const Podcast= ()=>{
-    const dispatch = useDispatch();
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+
+const Podcast = ()=>{
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
     const sessionUser = useSelector(state=> state.session.user)
     const history = useHistory()
-    const [playlist,setPlaylist]= useState({})
     const [search,setSearch] = useState("")
 
-    
-    useEffect(()=>{
-
-       async  function fetchData (){
-
-            const albums = await fetch("/api/albums/")
-            const albumjson = await albums.json()
-            const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
-            const playlistjson = await playlist.json()
-            console.log("the playlist is", playlistjson)
-            setAlbums(albumjson)
-         
-        }
-
-        fetchData()
-    },[setAlbums])
 
 
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    await dispatch(logout());
-    history.push('/')
-  };
-
-  const handlePlaylistUpdate = (updatedPlaylist) => {
-       
-    setPlaylist(updatedPlaylist);
-  };
-
+    const fetchData = async () => {
  
+          
+        if(search){
+            console.log(search)
+            const Type_Albums = await fetch(`/api/albums/podcast/${search}`)
+               
+                const albumjson = await Type_Albums.json();
+                setAlbums(albumjson);
 
-    if(!albums.length){
-        return null
+        }else{
+            const Type_Albums = await fetch(`/api/albums/podcast/`)
+               
+                const albumjson = await Type_Albums.json();
+                setAlbums(albumjson);
+        }
+       
+    }
+
+    useEffect(() => {
+        fetchData(); 
+    }, [search]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchData(); 
     }
 
     return(
@@ -79,33 +67,27 @@ import { useDispatch } from "react-redux";
      
           
                 <div><i class="fa-solid fa-music" style={{color: "white"}}><span style={{color: "rgb(33, 197, 33)"}} className="sidebar-words">Slotify</span></i></div>
-                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}><span className="sidebar-words">Home</span></i></div>
-                <div className="search-container-landing" onClick={()=>history.push(`/search`)} ><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i>
-                    
-                
-                </div>
+                <div><i class="fa-solid fa-house" style={{color: "#ffffff"}}  onClick={()=>history.push('/')}><span className="sidebar-words">Home</span></i></div>
+                {/* <div><i class="fa-solid fa-magnifying-glass" style={{color: "#fcfcfc"}}><span className="sidebar-words" >Search</span></i></div> */}
                 {sessionUser &&
                 <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={()=>history.push('/user') } >Profile</span></i></div>
                 }
-                {sessionUser &&
-                <div><i class="fa-solid fa-right-from-bracket"  onClick={handleLogout} style={{color: "#fcfcfc"}}><span className="sidebar-words" onClick={handleLogout} >Logout</span></i></div>
-                }
              
-          
+               
             </div>
       
          <div className="library-container">
             <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
-                <OpenModalButton modalComponent={<CreatePlaylist onUpdate={handlePlaylistUpdate} />} className="playlist-laanding" buttonText="Create Playlist"/>
+                <OpenModalButton modalComponent={<CreatePlaylist/>} className="playlist-laanding" buttonText="Create Playlist"/>
                 
             </div>
 
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
                 <p>We'll keep you updated on new episodes</p>
-                <button className="playlist-laanding" onClick={()=>history.push('/podcast')} >Browse Podcast</button>            
+                <button className="playlist-laanding" >Browse Podcast</button>            
                 </div>
 
 
@@ -115,6 +97,19 @@ import { useDispatch } from "react-redux";
 
        
             <div className="landing-album-center">
+                 <form className="submit-label-form" onSubmit={handleSubmit}>
+                 <div><i class="fa-solid fa-magnifying-glass magnigy" style={{color: "#fcfcfc"}}></i></div>
+                 <div className="label-container"><label className="label-search-container">
+               
+
+                    <input
+                    className="search-material-textfield"
+                    value={search} 
+                    onChange={(e)=>setSearch(e.target.value)}
+                
+                    />
+                </label></div>
+                </form> 
          
         <div className="landing-albums-container">
         
@@ -130,19 +125,9 @@ import { useDispatch } from "react-redux";
 
         </div>
      </div>
-
-     
-     
      </div>
-
-     
      </>
-
-     
     )
 }
-
-
-
 
 export default Podcast
