@@ -16,6 +16,13 @@ import Podcast from "./components/Podcast";
 
 // const ad = "https://spotify-audio-bucket.s3.amazonaws.com/onlymp3.to+-+Want+A+Break+From+The+ADs+-7OBacT66SCM-192k-1698588820.mp3"
 function App() {
+  const [selectedSong, setSelectedSong] = useState(null);
+
+  const handleSelectedSongChange = (newSelectedSong) => {
+    setSelectedSong(newSelectedSong);
+  };
+
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -34,7 +41,7 @@ function App() {
 
 
           <Route exact path="/user" >
-            <UserProfile />
+            <UserProfile  onSelectedSongChange={handleSelectedSongChange} />
           </Route>
 
         <Route exact path="/user_list/:playlistId/">
@@ -66,7 +73,7 @@ function App() {
         </Switch>
         
       )}
-         {/* {<AudioComponent/>} */}
+         {<AudioComponent prop={selectedSong}/>}
     </>
   );
 }
