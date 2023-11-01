@@ -13,7 +13,9 @@ import TextField from '@mui/material/TextField';
 import AudioPlayer from 'react-h5-audio-player';
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
- const Landing = ()=>{
+ const Landing = ({prop})=>{
+
+    console.log("console.log my pr",prop)
     const dispatch = useDispatch();
     const [albums ,setAlbums] = useState([])
     const { closeModal } = useModal();
@@ -135,9 +137,11 @@ import { useDispatch } from "react-redux";
         </div>
      </div>
 
-     
-     
      </div>
+
+     {/* <div className="entire-audio-container">
+     <AudioPlayer prop={prop}/>
+     </div> */}
 
      
      </>

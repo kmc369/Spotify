@@ -12,6 +12,7 @@ import EditPlaylist from "../EditPlaylistModal";
 import DeletePlaylistModal from "../DeletePlaylistModal";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
+import AudioComponent from "../AudioComponent";
 const PlaylistUserList = ()=>{
     const dispatch = useDispatch();
     const [songs,setSongs] = useState([])
@@ -250,8 +251,8 @@ const PlaylistUserList = ()=>{
                
     
                 </div>
-    
-           
+                                
+{/*            
                             {selectSong &&
                                         <div className="audio-container">
                                             <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
@@ -264,7 +265,7 @@ const PlaylistUserList = ()=>{
                                            showSkipControls={false}
                                            />
                                            </div>
-                                        }
+                                        } */}
     
         </div>
         </>

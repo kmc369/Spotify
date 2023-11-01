@@ -11,7 +11,8 @@ import CreatePlaylist from "../../components/CreatePlayModal";
 import DeletePlaylistModal from "../DeletePlaylistModal";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
-function UserProfile({}){
+import Landing from "../landing";
+function UserProfile({ onSelectedSongChange }){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
     const [showDropdown, setShowDropdown] = useState(false);
@@ -28,6 +29,12 @@ function UserProfile({}){
     const dispatch = useDispatch();
 
 
+    const handleSelectedSongChange = async (element,index,songs) => {
+        
+        await setSelectedSong({element,index,songs})
+        onSelectedSongChange({element,index,songs});
+      };
+    
   const toggleDropdown = (index) => {
     setIndex(index)
     const updatedDropdowns = [...openDropdowns];
@@ -244,7 +251,8 @@ function UserProfile({}){
                                     <div>{index+1}</div>
                                     ):(
                                         // ()=>setSelectedSong({element,index})
-                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index, songs})}  ></i> 
+                                        // ()=>setSelectedSong({element,index, songs}
+                                    <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index,songs)}  ></i> 
                                     {/* {console.log(selectSong,"SONG")} */}
                                     </div>
                                     )}
@@ -314,50 +322,13 @@ function UserProfile({}){
 
 
 
-                    <div className="entire-audio-container">
-                    
-                        {songs.length > 0 && !selectSong &&(
-                            <div className="audio-container">
-                            <img src={songs[currentSongIndex].albums.image} height="70px" width="70px" />
-                            <AudioPlayer
-                                id='audio-button'
-                                src={songs[currentSongIndex].audio_url}
-                                autoPlay={playing}
-                                volume={0.3}
-                                showSkipControls={false}
-                                onEnded={playNextSong}
-                            />
-                            
-                            </div>
-                        )}
-                        </div>
-
-                        <div className="entire-audio-container">
-                    {selectSong && (
-                
-                            <div className="audio-container">
-                                <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
-                               <AudioPlayer 
-
-                               id='audio-button '
-                               src={songs[selectSong.index].audio_url}
-                               autoPlay={true}
-                               volume={0.3}
-                               showSkipControls={false}
-                               />
-                               </div>
-                      
-                    )}
-                    </div>
+                    {/* <AudioComponent prop={selectSong}/> */}
+                  
   
 
 
         
-        {/* {selectSong && selectedSongEl !==null &&
-        <div className="audio-container">
-            <AudioComponent element={selectedSongEl } index={selectedSongIndex} songs={songs} ad={ad} />
-                </div>
-        } */}
+     
 
     </div>
     </>

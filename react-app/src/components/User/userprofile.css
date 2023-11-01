@@ -298,6 +298,7 @@ cursor: pointer;
     position: sticky;
     height:fit-content;
     bottom: 0px;
+    background-color: black;
 }
 .audio-container{
     background-color: black;
