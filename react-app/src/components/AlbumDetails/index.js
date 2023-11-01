@@ -5,9 +5,9 @@ import 'react-h5-audio-player/lib/styles.css';
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import ProfileButton from '../Navigation/ProfileButton';
+import OpenModalButton from "../OpenModalButton";
 
-
-function AlbumDetail(){
+function AlbumDetail({ onSelectedSongChange }){
 
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session?.user)
@@ -17,13 +17,50 @@ function AlbumDetail(){
     const [selectSong, setSelectedSong] =useState(null)
     const {album_id} = useParams()
     const album_num = Number(album_id)
+    const [openDropdowns, setOpenDropdowns] = useState(Array(songs.length).fill(false));
+    const [index,setIndex] = useState(0)
+    const [userPlaylist, setPlaylist]= useState([])
+       
+  const toggleDropdown = (index) => {
+    setIndex(index)
+    const updatedDropdowns = [...openDropdowns];
+    updatedDropdowns[index] = !updatedDropdowns[index];
+    setOpenDropdowns(updatedDropdowns);
+  };
+    const handleSelectedSongChange = async (element,index,songs) => {
+        
+        await setSelectedSong({element,index,songs})
+        onSelectedSongChange({element,index,songs});
+      };
     
+      async function addToPlaylist(element, playlist){
+      
+    
+        const songId = Number(element.id)
+        const playlist_id = Number(playlist.id)
+       
+        const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
+            method:"POST",
+        })
+    
+        toggleDropdown(index);
+    
+        const playlist_songs_json = Playlist_songs.json()
+
+
+    }
+
+
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/${album_num}`)
+            const res_playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+           
+            const playlist_data= await res_playlist.json()
             const data = await res.json()
+            setPlaylist(playlist_data)
             // console.log(data)
-  
+            
            
             if(data.length>1){
                 setSongs(data)
@@ -59,16 +96,25 @@ function AlbumDetail(){
                     <div className="nav-items-container">
                         <div><i class="fa-solid fa-house" style={{color:"lightgray", fontSize:"20px",cursor: "pointer"}} onClick={()=>history.push('/')}></i><span onClick={()=>history.push('/')} className="nav-words-user">Home</span></div>
                         <div><i class="fa-solid fa-magnifying-glass" style={{color:"lightgray",fontSize:"20px"}} onClick={()=>history.push('/search')}></i><span onClick={()=>history.push('/search')} className="nav-words-user">Search</span></div>
+                        {sessionUser &&
+                <div><i class="fa-regular fa-user"  onClick={()=>history.push('/user')} style={{color: "#fcfcfc"}}></i><span className="nav-words-user" onClick={()=>history.push('/user') } >Profile</span></div>
+                }
 
                     </div>
-                    <div className="library-items-container">
+                    <div className="library-items-container"> 
+
                         <div className="library-item"><i className="fa-regular fa-bookmark"  onClick={()=>history.push('/user')} style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span onClick={()=>history.push('/user')}  className="nav-words-user">Library</span></div>
                         <div className="library-items-container1">
                             <p className="popcastwords1">Let find some podcast to add</p>
                             <p className="popcastwords1">We'll keep you updated on new episodes</p>
                             <button className="playlist-laanding12" onClick={()=>history.push('/podcast')} >Browse Podcast</button>            
                          </div>
-                    </div>
+                    </div> 
+
+                    
+
+
+
             </div>
 
 
@@ -131,7 +177,7 @@ function AlbumDetail(){
                                     {hoverIndex !==index? (
                                     <div>{index+1}</div>
                                     ):(
-                                    <div> <i class="fa-solid fa-play"  onClick={()=>setSelectedSong({element,index})} ></i> 
+                                    <div> <i class="fa-solid fa-play"  onClick={()=>handleSelectedSongChange(element,index,songs)} ></i> 
                                   
                                     </div>
                                     )}
@@ -159,7 +205,27 @@ function AlbumDetail(){
                             </td> 
 
                             <td className="column4-container">
-                            <div className="time-item">{element.time} </div>
+                            <div className="time-item">{element.time} 
+                            <span className="playlist-option-container">
+                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
+                    {openDropdowns[index] && (
+                      <ul className="playlist-dropdown-options">
+                        {userPlaylist.map((userPlaylistElement, userIndex) => (
+                          <li
+                            className="playlist-dropdown-option"
+                            style={{ color: 'white' }}
+                            key={userIndex}
+                            onClick={()=>addToPlaylist(element, userPlaylistElement)}
+                            >
+                            {userPlaylistElement.name}
+                            
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </span>
+                            </div>
+                         
                             </td> 
                         </tr>
                         ))}
@@ -174,19 +240,7 @@ function AlbumDetail(){
             </div>
 
        
-                        {selectSong &&
-                                    <div className="audio-container">
-                                        <img  src={songs[selectSong.index].albums.image}  height="70px" width="70px"/>
-                                       <AudioPlayer 
-
-                                       id='audio-button '
-                                       src={songs[selectSong.index].audio_url}
-                                       autoPlay={true}
-                                       volume={0.3}
-                                       showSkipControls={false}
-                                       />
-                                       </div>
-                                    }
+                
 
     </div>
     )

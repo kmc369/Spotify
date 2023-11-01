@@ -9,8 +9,7 @@ const AudioComponent = ({prop})=>{
 
     }
 
-    // console.log(element, "RPOP1" , "prop2",index , "prop3", songs )
-    console.log("the prop is", prop)
+  
 
 
     return(
@@ -23,7 +22,7 @@ const AudioComponent = ({prop})=>{
               <AudioPlayer
                 id='audio-button'
                 src={prop.element.audio_url}
-                autoPlay={true}
+                autoPlay={false}
                 volume={0.3}
                 showSkipControls={false}
               />
