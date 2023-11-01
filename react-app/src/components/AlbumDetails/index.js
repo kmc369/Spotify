@@ -28,13 +28,21 @@ function AlbumDetail({ onSelectedSongChange }){
     setOpenDropdowns(updatedDropdowns);
   };
 
-  const toggleDropdownLibrary = (index) => {
+  const toggleDropdownLibrary = async(element ,index) => {
     // setIndex(index)
     // const updatedDropdowns = [...openDropdowns];
     // updatedDropdowns[index] = !updatedDropdowns[index];
     // console.log("Library")
     // setOpenDropdowns(updatedDropdowns);
-    console.log("index",index)
+    const song_id = element.id
+    const user_id = sessionUser.id
+
+    const res = await fetch(`/api/songs/library/${user_id}/${song_id}`,{
+        method:"POST"
+    })
+    const added_to_library = await res.json()
+    console.log(added_to_library, "song")
+   
   };
 
 
@@ -222,33 +230,27 @@ function AlbumDetail({ onSelectedSongChange }){
                             </td> 
 
                             <td className="column4-container">
-                            <div className="time-item">{element.time} 
-                            <span className="playlist-option-container">
-                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
-                 
-                    {userPlaylist.length >=1?(
-                        openDropdowns[index] && (
-                      <ul className="playlist-dropdown-options">
-                        {userPlaylist.map((userPlaylistElement, userIndex) => (
-                          <li
-                            className="playlist-dropdown-option"
-                            style={{ color: 'white' }}
-                            key={userIndex}
-                            onClick={()=>addToPlaylist(element, userPlaylistElement)}
-                            >
-                            {userPlaylistElement.name}
-                            
-                          </li>
-                        ))}
-                      </ul>
-                    )):(
-                    <i className="fa-regular fa-bookmark" onClick={() => toggleDropdownLibrary(element,index)}></i>   
-                    
-                    )}
-                  </span>
-                            </div>
-                         
-                            </td> 
+                                <div className="time-item">{element.time}
+                                    <span className="playlist-option-container">
+                                    <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
+                                    {openDropdowns[index] && (
+                                        <ul className="playlist-dropdown-options">
+                                        {userPlaylist.map((userPlaylistElement, userIndex) => (
+                                            <li
+                                            className="playlist-dropdown-option"
+                                            style={{ color: 'white' }}
+                                            key={userIndex}
+                                            onClick={() => addToPlaylist(element, userPlaylistElement)}
+                                            >
+                                            {userPlaylistElement.name}
+                                            </li>
+                                        ))}
+                                        </ul>
+                                    )}
+                                    <i className="fa-regular fa-bookmark" onClick={() => toggleDropdownLibrary(element, index)}></i>
+                                    </span>
+                                </div>
+                        </td>
                         </tr>
                         ))}
                     </tbody>

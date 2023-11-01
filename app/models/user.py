@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    image = db.Column(db.String(1000))
+    image = db.Column(db.String(1000) ,default="https://i.pinimg.com/originals/1b/71/b8/1b71b85dd741ad27bffa5c834a7ed797.png")
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Define the many-to-many relationship with songs

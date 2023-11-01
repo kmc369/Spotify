@@ -10,11 +10,14 @@ songs_bp = Blueprint('songs',__name__)
 
 @songs_bp.route("/library/<int:userId>/<int:songId>", methods=["POST"])
 def add_song_to_library(userId,songId):
-    song = Song.query.get(id=songId)
-    user = User.query.get(id=userId)
+    song = Song.query.get(songId)
+    user = User.query.get(userId)
     
     user.songs.append(song)
     db.session.commit()
+    return jsonify({"message":"added success"})
+    
+
     
     
 
