@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import TextField from '@mui/material/TextField';
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -12,8 +13,11 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-
+	
 	const handleSubmit = async (e) => {
+	
+
+
 		e.preventDefault();
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
@@ -31,6 +35,8 @@ function SignupFormModal() {
 
 	return (
 		<>
+
+			<div className="login-container-modal">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
@@ -38,44 +44,46 @@ function SignupFormModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
+				<label className="login-labels">
 					Email
-					<input
+					<TextField
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
+				<label className="login-labels">
 					Username
-					<input
+					<TextField
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
+				<label className="login-labels">
 					Password
-					<input
+					<TextField
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
+				<label className="login-labels">
 					Confirm Password
-					<input
+					<TextField
+						
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button className="button-login" type="submit">Sign Up</button>
 			</form>
+			</div>
 		</>
 	);
 }
