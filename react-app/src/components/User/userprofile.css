@@ -289,8 +289,19 @@ cursor: pointer;
     font-weight: lighter; 
 }
 
+
+
 /* image audio file */
+
+.entire-audio-container{
+    /* border:4px solid green;  */
+    position: sticky;
+    height:fit-content;
+    bottom: 0px;
+}
 .audio-container{
+    background-color: black;
+   
     /* border:4px solid gold; */
     display: flex;
     flex-direction: row;

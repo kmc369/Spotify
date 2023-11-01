@@ -314,7 +314,7 @@ function UserProfile({}){
 
 
 
-                    <div>
+                    <div className="entire-audio-container">
                     
                         {songs.length > 0 && !selectSong &&(
                             <div className="audio-container">
@@ -332,6 +332,7 @@ function UserProfile({}){
                         )}
                         </div>
 
+                        <div className="entire-audio-container">
                     {selectSong && (
                 
                             <div className="audio-container">
@@ -347,6 +348,7 @@ function UserProfile({}){
                                </div>
                       
                     )}
+                    </div>
   
 
 
