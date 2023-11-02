@@ -45,7 +45,7 @@ def upgrade():
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('releasedate', sa.String(), nullable=True),
     sa.Column('artist_id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
