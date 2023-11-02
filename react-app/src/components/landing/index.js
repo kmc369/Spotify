@@ -33,7 +33,7 @@ import * as sessionActions from '../../store/session'
         try {
             const albums = await fetch("/api/albums/");
             const albumjson = await albums.json();
-            console.log("the return albums is", albumjson);
+      
     
             if (sessionUser) {
                 const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`);
@@ -153,7 +153,7 @@ import * as sessionActions from '../../store/session'
         {albums.map((element, index)=>(
             <div id={`album-items`} className={`album${index}`} key={index} onClick={()=>history.push(`/albumDetails/${element.id}`)}>
                <div> <img className="image-album-item" src={element.image}  style={{width:"150px",height:"150px"}} /> </div>
-             ss
+             
                 <div className="landing-album-name">{element.name} </div>
                 <div className="landing-artist-name">{element.artist.name}</div>
                 <div class="landing-type">{element.type} </div>
