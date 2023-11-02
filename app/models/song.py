@@ -22,6 +22,13 @@ class Song(db.Model):
     artists = db.relationship("Artist", back_populates="songs")
     albums = db.relationship("Album", back_populates="songs")
     playlist = db.relationship("Playlist", back_populates="songs")
+    
+    
+    def add_prefix_for_prod(attr):
+        if environment == "production":
+            return f"{SCHEMA}.{attr}"
+        else:
+            return attr
 
     def to_dict(self):
         return {
