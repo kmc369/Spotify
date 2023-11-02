@@ -38,7 +38,7 @@ import * as sessionActions from '../../store/session'
             if (sessionUser) {
                 const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`);
                 const playlistjson = await playlist.json();
-                // Handle the playlistjson data as needed
+      
             }
     
             setAlbums(albumjson);
@@ -146,7 +146,7 @@ import * as sessionActions from '../../store/session'
 
 
        
-            {/* <div className="landing-album-center">
+             <div className="landing-album-center">
          
         <div className="landing-albums-container">
         
@@ -161,7 +161,7 @@ import * as sessionActions from '../../store/session'
         ))}
 
         </div>
-     </div> */}
+     </div> 
 
      </div>
 
