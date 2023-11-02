@@ -72,8 +72,16 @@ const SearchType = ()=>{
             <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
+            {sessionUser? (
                 <OpenModalButton modalComponent={<CreatePlaylist/>} className="playlist-laanding" buttonText="Create Playlist"/>
-                
+            ):(
+                <OpenModalButton
+                className="playlist-laanding"
+                buttonText="Sign Up"
+                onItemClick={closeModal}
+                modalComponent={<SignupFormModal />}
+              />
+            )}
             </div>
 
             <div className="create-first-paylist1">
