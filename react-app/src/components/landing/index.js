@@ -27,26 +27,27 @@ import * as sessionActions from '../../store/session'
     const [search,setSearch] = useState("")
     const { closeModal } = useModal()
     
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //    async  function fetchData (){
+       async  function fetchData (){
 
-    //         const albums = await fetch("/api/albums/")
-    //         const albumjson = await albums.json()
-    //         console.log("the return albums is", albumjson)
 
-    //         if(sessionUser){
+            const albums = await fetch("/api/albums/")
+            const albumjson = await albums.json()
+            console.log("the return albums is", albumjson)
 
-    //             const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
-    //             const playlistjson = await playlist.json()
-    //         }
+            if(sessionUser){
+
+                const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
+                const playlistjson = await playlist.json()
+            }
           
-    //         setAlbums(albumjson)
+            setAlbums(albumjson)
          
-    //     }
+        }
 
-    //     fetchData()
-    // },[setAlbums])
+        fetchData()
+    },[setAlbums])
 
 
 
