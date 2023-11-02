@@ -125,8 +125,9 @@ def delete_song_from_playlist(playlistId, songId):
 @playlist_bp.route("/delete_playlist/<int:playlistId>/<int:userId>", methods=["DELETE"])
 def delete_playlist(playlistId, userId):
     playlist = Playlist.query.get(playlistId)
+    # print("the playlsit is", playlist.to_dict())
     playlist_arr = Playlist.query.filter_by(user_id=userId).all()
-
+    # print("the playlsit arr  is", playlist.to_dict())
     if playlist and playlist in playlist_arr:
         playlist_arr.remove(playlist)
         db.session.delete(playlist)  
