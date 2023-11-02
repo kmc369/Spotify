@@ -18,27 +18,6 @@ const SearchType = ()=>{
 
 
 
-    // useEffect(()=>{
-
-    //     async  function fetchData (e){
-    //         // e.preventDefault()
-    //         console.log("search",search)
-    //          const Type_Albums = await fetch(`/api/albums/albums_type/${search}`)
-           
-    //          const albumjson = await Type_Albums.json()
-          
-    //          setAlbums(albumjson)
-          
-    //      }
- 
-    //      fetchData()
-    //  },[setAlbums,search])
-
-    //  const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     fetchData(); // Call fetchData to update the results when the form is submitted.
-    // }
-
     const fetchData = async () => {
         try {
      
@@ -100,7 +79,7 @@ const SearchType = ()=>{
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
                 <p>We'll keep you updated on new episodes</p>
-                <button className="playlist-laanding" >Browse Podcast</button>            
+                <button className="playlist-laanding" onClick={()=>history.push(`/podcast`)} >Browse Podcast</button>            
                 </div>
 
 

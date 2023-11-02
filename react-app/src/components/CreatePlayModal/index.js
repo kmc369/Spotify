@@ -29,8 +29,8 @@ const submitPlaylist =async (e)=>{
 
     const err = {}
 
-    if(name.length>=15){
-        err.name = "Name must be less than 16 character"
+    if(name.length>10){
+        err.name = "Name must be less than 10 character"
     }
     if(name.length===0){
         err.name="Name cant be empty"
@@ -38,16 +38,17 @@ const submitPlaylist =async (e)=>{
 
     
 
-    if(description.length>=30){
-        err.description = "Description must be less than 31 character"
+    if(description.length>20){
+        err.description = "Description must be less than 20 character"
     }
     if(description.length===0){
         err.description="cant be empty"
     }
 
     if(!image){
-        err.image = "Must have an image"
+        err.image = "cant be empty"
     }
+
 
     setError(err)
 
@@ -118,7 +119,7 @@ const submitPlaylist =async (e)=>{
                     id="file-input" 
                     className="input-image1" 
                     accept="image/*" />
-
+                    
                     </div>
 
                     
@@ -136,6 +137,7 @@ const submitPlaylist =async (e)=>{
                 label="Playlist Name" 
                 variant="outlined"
                 required
+         
                 InputLabelplaylists={{ style: { color: 'white' } }} 
 
             />

@@ -136,11 +136,11 @@ function UserProfile({ onSelectedSongChange }){
                     <div className="playlist-container">
                     <div className="playlist-header"><h3>{sessionUser.username}'s Playlist</h3> </div>
                         {userPlaylist.length>=1 && (!userPlaylist[0].message) ?(
-                         
+                        
                         userPlaylist.map((element, index) => (
                         
-                          
                             <div key={index} className="playlist-items"  >
+                                {console.log(element)}
                               
                               <div className="image-andpop-name">
                                 <img  className="playlist-image-1" height="70px" width="70px" src={userPlaylist[index].image} style={{ borderRadiu:"5px" }} onClick={()=>history.push(`/user_list/${element.id}`)}/>
