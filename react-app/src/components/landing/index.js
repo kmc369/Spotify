@@ -29,22 +29,24 @@ import * as sessionActions from '../../store/session'
     
     useEffect(()=>{
 
-       async  function fetchData (){
-
-
-            const albums = await fetch("/api/albums/")
-            const albumjson = await albums.json()
-            console.log("the return albums is", albumjson)
-
-            if(sessionUser){
-
-                const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
-                const playlistjson = await playlist.json()
+      async function fetchData() {
+        try {
+            const albums = await fetch("/api/albums/");
+            const albumjson = await albums.json();
+            console.log("the return albums is", albumjson);
+    
+            if (sessionUser) {
+                const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`);
+                const playlistjson = await playlist.json();
+                // Handle the playlistjson data as needed
             }
-          
-            setAlbums(albumjson)
-         
+    
+            setAlbums(albumjson);
+        } catch (error) {
+            console.error("An error occurred while fetching data:", error);
+            // You can add further error handling or display error messages as needed.
         }
+    }
 
         fetchData()
     },[setAlbums])
