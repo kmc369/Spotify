@@ -77,12 +77,12 @@ const Podcast = ()=>{
             </div>
       
          <div className="library-container">
-            <div className="create-first-paylist">
+            {/* <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
                 <OpenModalButton modalComponent={<CreatePlaylist/>} className="playlist-laanding" buttonText="Create Playlist"/>
                 
-            </div>
+            </div> */}
 
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
