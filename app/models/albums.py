@@ -45,9 +45,10 @@ class Album(db.Model):
                 "name":self.artists.name
             },
             
-            "user": {"id": self.user.id, 
-                     "username": self.user.username
-                     }
+            # "user": {
+            #             "id": self.user.id, 
+            #          "username": self.user.username
+            #          }
              
         }
 
