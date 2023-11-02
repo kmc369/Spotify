@@ -167,11 +167,11 @@ function AlbumDetail({ onSelectedSongChange }){
 
                     </div>
 
-                    <div className="seperator">
+                    {/* <div className="seperator">
                         <button className="play-button"><i class="fa-solid fa-play" onClick={playSong}></i></button>
                     
                         
-                    </div>
+                    </div> */}
 
 
                 </div>
