@@ -24,11 +24,17 @@ def seed():
         undo_albums()
         undo_artists()
         undo_users()
-    seed_users()
+    # seed_users()
+    # seed_artist()
+    # seed_albums()
+    # seed_playlist()
+    # seed_songs()  
     seed_artist()
     seed_albums()
     seed_playlist()
-    seed_songs()  
+    seed_songs() 
+    seed_users()
+    
     # Add other seed functions here
 
 
