@@ -47,15 +47,16 @@ const submitPlaylist =async (e)=>{
     if (name.length > 10) {
       err.name = "Name must be less than 10 characters";
     }
-    if (name.length === 0) {
-      err.name = "Name can't be empty";
+   
+    if (name.length < 2) {
+      err.name = "Name to short";
     }
   
     if (description.length > 20) {
       err.description = "Description must be less than 20 characters";
     }
-    if (description.length === 0) {
-      err.description = "Description can't be empty";
+    if (description.length <2) {
+      err.description = "Description to short";
     }
   
     if (!image) {

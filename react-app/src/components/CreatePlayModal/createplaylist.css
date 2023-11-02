@@ -14,6 +14,9 @@
   
  
 }
+.button-container-user{
+    margin-top: 10px;
+}
 .name-description{
     display: flex;
     flex-direction: column;
@@ -25,7 +28,7 @@
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    padding:10px;
+    padding:60px;
     background-color: rgba(27, 27, 27,0.95);
 
 }
@@ -55,7 +58,7 @@ border-radius: 10px;
 .custom-file-input-label{
     /* border:2px solid orange; */
     width:99% !important;
-    height: 99% !important;
+    /* height: 150%!important; */
  
 
 }
@@ -89,7 +92,7 @@ border-radius: 10px;
     /* border:3px solid green; */
     width: fit-content;
     position:relative;
-    height: 150px;
+    height: 190px;
     width:50%;
     display: flex;
     flex-direction: column;
@@ -147,20 +150,21 @@ border-radius: 10px;
 
 .playlist-button{
     width: 100px;
+   
 }
 
 .bottom-p{
    color:white;
-   border:2px solid green;
+   /* border:2px solid green; */
 }
 .bottom-p{
-    border:1px solid red;
+    /* border:1px solid red; */
     width:50%;
 
 }
 
 .paragraph-bottom{
-    border:2px solid orange;
+    /* border:2px solid orange; */
   
     /* margin: 0 auto;
     font-size: 12px;
