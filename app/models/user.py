@@ -5,8 +5,9 @@ from flask_login import UserMixin
 # Define the association table for the many-to-many relationship
 user_songs_table = db.Table(
     'user_songs',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('song_id', db.Integer, db.ForeignKey('songs.id'), primary_key=True)
+    db.Model.metadata,
+    db.Column('user_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column('song_id', db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), primary_key=True)
 )
 
 class User(db.Model, UserMixin):

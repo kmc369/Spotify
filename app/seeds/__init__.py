@@ -25,8 +25,8 @@ def seed():
         undo_albums()
         undo_artists()
     seed_songs()  
-    seed_artist()
     seed_users()
+    seed_artist()
     seed_albums()
     seed_playlist()
     # Add other seed functions here
