@@ -22,7 +22,7 @@ const AudioComponent = ({prop})=>{
               <AudioPlayer
                 id='audio-button'
                 src={prop.element.audio_url}
-                autoPlay={false}
+                autoPlay={true}
                 volume={0.3}
                 showSkipControls={false}
               />
