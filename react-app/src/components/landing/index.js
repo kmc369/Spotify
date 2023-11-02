@@ -27,26 +27,29 @@ import * as sessionActions from '../../store/session'
     const [search,setSearch] = useState("")
     const { closeModal } = useModal()
     
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //    async  function fetchData (){
+      async function fetchData() {
+        try {
+            const albums = await fetch("/api/albums/");
+            const albumjson = await albums.json();
+            console.log("the return albums is", albumjson);
+    
+            if (sessionUser) {
+                const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`);
+                const playlistjson = await playlist.json();
+                // Handle the playlistjson data as needed
+            }
+    
+            setAlbums(albumjson);
+        } catch (error) {
+            console.error("An error occurred while fetching data:", error);
+            // You can add further error handling or display error messages as needed.
+        }
+    }
 
-    //         const albums = await fetch("/api/albums/")
-    //         const albumjson = await albums.json()
-    //         console.log("the return albums is", albumjson)
-
-    //         if(sessionUser){
-
-    //             const playlist = await fetch(`/api/playlist/get_playlist/${sessionUser.id}`)
-    //             const playlistjson = await playlist.json()
-    //         }
-          
-    //         setAlbums(albumjson)
-         
-    //     }
-
-    //     fetchData()
-    // },[setAlbums])
+        fetchData()
+    },[setAlbums])
 
 
 
