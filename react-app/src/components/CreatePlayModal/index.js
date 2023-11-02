@@ -26,31 +26,45 @@ const [error,setError] = useState({})
 
 const submitPlaylist =async (e)=>{
     e.preventDefault();
-
-    const err = {}
-
-    if(name.length>10){
-        err.name = "Name must be less than 10 character"
-    }
-    if(name.length===0){
-        err.name="Name cant be empty"
-    }
-
+  
+    const err = {};
+    const ALLOWED_EXTENSIONS = ["pdf", "png", "jpg", "jpeg", "gif", "webp"];
     
-
-    if(description.length>20){
-        err.description = "Description must be less than 20 character"
+    const fileInput = document.getElementById('file-input');
+    const newImage = fileInput.files[0];
+  
+    // Check if a new image was selected
+    if (newImage) {
+      const newFileExtension = newImage.name.split('.').pop();
+      if (!(ALLOWED_EXTENSIONS.includes(newFileExtension))) {
+        err.image = "Not a supported image format. Try jpg, png, pdf, jpeg, gif, or webp";
+      }
+      // Update the fileExtension and image state
+      setImage(URL.createObjectURL(newImage));
+      let fileExtension = newFileExtension;
     }
-    if(description.length===0){
-        err.description="cant be empty"
+  
+    if (name.length > 10) {
+      err.name = "Name must be less than 10 characters";
     }
-
-    if(!image){
-        err.image = "cant be empty"
+    if (name.length === 0) {
+      err.name = "Name can't be empty";
     }
-
-
-    setError(err)
+  
+    if (description.length > 20) {
+      err.description = "Description must be less than 20 characters";
+    }
+    if (description.length === 0) {
+      err.description = "Description can't be empty";
+    }
+  
+    if (!image) {
+      err.image = "Image can't be empty";
+    }
+  
+    setError(err);
+    if (Object.keys(err).length === 0) {
+       
 
     const playlist_form= new FormData();
     if (image !== null) {
@@ -76,11 +90,13 @@ const submitPlaylist =async (e)=>{
         const resData = await res.json();
         // console.log("the res is" ,resData)
         onUpdate(resData)
-        
-    if(Object.values(err).length===0){
-        console.log("we in this thing")
-        closeModal()
+        setError({});
+        closeModal();
+    }else{
+        console.log(error); 
     }
+        
+  
 
 }
 
