@@ -20,49 +20,79 @@ const sessionUser = useSelector(state => state.session.user)
 const [name,setName] = useState(playlist.name)
 const [image,setImage]=useState(playlist.image)
 const [description, setDesc]=useState(playlist.description)
+const [error,setError] = useState({})
 
 
-
-const submitPlaylist =async (e)=>{
+const submitPlaylist = async (e) => {
     e.preventDefault();
-
-    const playlist_form = new FormData();
-
-    const fileInput = document.getElementById('file-input');
-
-    if (fileInput && fileInput.files[0]) {
-        playlist_form.append('image', fileInput.files[0]);
-    }
-
-    playlist_form.append('name', name);
-    playlist_form.append('user_id', sessionUser.id);
-    playlist_form.append('description', description);
-
-   
-   
-
-
-         const res = await fetch(`/api/playlist/edit_playlist/${playlist.id}`,{
-            method:"PUT",
-            body: playlist_form
-        })
-        const res1Data  = await res.json()
-        console.log("the data being returned is", res1Data)
-       
-        setImage(res1Data.image)
-        setName(res1Data.name)
-        setDesc(res1Data.description)
-        onUpdate(res1Data)
-        
-      
   
-      
+    const err = {};
+    const ALLOWED_EXTENSIONS = ["pdf", "png", "jpg", "jpeg", "gif", "webp"];
     
- 
-   
-
-   closeModal()
-}
+    const fileInput = document.getElementById('file-input');
+    const newImage = fileInput.files[0];
+  
+    // Check if a new image was selected
+    if (newImage) {
+      const newFileExtension = newImage.name.split('.').pop();
+      if (!(ALLOWED_EXTENSIONS.includes(newFileExtension))) {
+        err.image = "Not a supported image format. Try jpg, png, pdf, jpeg, gif, or webp";
+      }
+      // Update the fileExtension and image state
+      setImage(URL.createObjectURL(newImage));
+      let fileExtension = newFileExtension;
+    }
+  
+    if (name.length > 10) {
+      err.name = "Name must be less than 10 characters";
+    }
+    if (name.length === 0) {
+      err.name = "Name can't be empty";
+    }
+  
+    if (description.length > 20) {
+      err.description = "Description must be less than 20 characters";
+    }
+    if (description.length === 0) {
+      err.description = "Description can't be empty";
+    }
+  
+    if (!image) {
+      err.image = "Image can't be empty";
+    }
+  
+    setError(err);
+  
+    if (Object.keys(err).length === 0) {
+      const playlist_form = new FormData();
+  
+      if (newImage) {
+        playlist_form.append('image', newImage);
+      }
+  
+      playlist_form.append('name', name);
+      playlist_form.append('user_id', sessionUser.id);
+      playlist_form.append('description', description);
+  
+      const res = await fetch(`/api/playlist/edit_playlist/${playlist.id}`, {
+        method: "PUT",
+        body: playlist_form,
+      });
+  
+      const res1Data = await res.json();
+      console.log("the data being returned is", res1Data);
+      setImage(res1Data.image);
+      setName(res1Data.name);
+      setDesc(res1Data.description);
+      onUpdate(res1Data);
+  
+  
+      setError({});
+      closeModal();
+    } else {
+      console.log(error);
+    }
+  };
 
     return (
         <>
@@ -110,6 +140,7 @@ const submitPlaylist =async (e)=>{
                 InputLabelplaylists={{ style: { color: 'white' } }} 
 
             />
+             <p className="error">{error.name}</p>
             < TextareaAutosize 
             className="text-area"
             value = {description}
@@ -118,6 +149,8 @@ const submitPlaylist =async (e)=>{
         
 
             />
+            <p className="error">{error.description}</p>
+
 
         </div>
             </div>
@@ -125,6 +158,8 @@ const submitPlaylist =async (e)=>{
 
         
         </div>
+        <p className="error">{error.image}</p>
+
         <div className="button-container-user">
             <Button className="playlist-button" variant="outlined" onClick={submitPlaylist}>Submit</Button>
         </div>

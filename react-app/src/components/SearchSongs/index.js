@@ -69,7 +69,7 @@ const SearchType = ()=>{
             </div>
       
          <div className="library-container">
-            <div className="create-first-paylist">
+            {/* <div className="create-first-paylist">
                 <p>Create your first playlist</p>
                 <p>It's easy,we'll help you</p>
             {sessionUser? (
@@ -82,7 +82,7 @@ const SearchType = ()=>{
                 modalComponent={<SignupFormModal />}
               />
             )}
-            </div>
+            </div> */}
 
             <div className="create-first-paylist1">
                 <p>Let find some podcast to add</p>
