@@ -228,6 +228,7 @@ function AlbumDetail({ onSelectedSongChange }){
 
                             <td className="column4-container">
                                 <div className="time-item">{element.time}
+                                {sessionUser && 
                                     <span className="playlist-option-container">
                                     <i className="fa-solid fa-plus" onClick={() => toggleDropdown(index)}></i>
                                     {openDropdowns[index] && (
@@ -246,6 +247,7 @@ function AlbumDetail({ onSelectedSongChange }){
                                     )}
                                     <i className="fa-regular fa-bookmark" style={{marginLeft:"25px"}} onClick={() => toggleDropdownLibrary(element, index)}></i>
                                     </span>
+                                    }
                                 </div>
                         </td>
                         </tr>
