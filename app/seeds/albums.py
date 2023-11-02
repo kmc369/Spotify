@@ -53,7 +53,7 @@ def seed_albums():
       
         db.session.add(album10)
     
-        db.session.add(album11)
+        # db.session.add(album11)
         db.session.add(album12)
         db.session.add(album13)
         db.session.add(album14)
