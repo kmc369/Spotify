@@ -33,6 +33,7 @@ import * as sessionActions from '../../store/session'
 
             const albums = await fetch("/api/albums/")
             const albumjson = await albums.json()
+            console.log("the return albums is", albumjson)
 
             if(sessionUser){
 
