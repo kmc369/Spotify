@@ -125,7 +125,7 @@ function AlbumDetail({ onSelectedSongChange }){
                     </div>
                     <div className="library-items-container"> 
 
-                        <div className="library-item"><i className="fa-regular fa-bookmark"  onClick={()=>history.push('/user')} style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span onClick={()=>history.push('/user')}  className="nav-words-user">Library</span></div>
+                        {/* <div className="library-item"><i className="fa-regular fa-bookmark"  onClick={()=>history.push('/user')} style={{color:"lightgray", fontSize:"20px", marginLeft:"5px"}}></i><span onClick={()=>history.push('/user')}  className="nav-words-user">Library</span></div> */}
                         <div className="library-items-container1">
                             <p className="popcastwords1">Let find some podcast to add</p>
                             <p className="popcastwords1">We'll keep you updated on new episodes</p>
