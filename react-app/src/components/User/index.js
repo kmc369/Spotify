@@ -12,6 +12,8 @@ import DeletePlaylistModal from "../DeletePlaylistModal";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
 import Landing from "../landing";
+
+
 function UserProfile({ onSelectedSongChange }){
     const [songs,setSongs] = useState([])
     const sessionUser = useSelector(state => state.session.user)
@@ -29,11 +31,7 @@ function UserProfile({ onSelectedSongChange }){
     const dispatch = useDispatch();
 
 
-    const handleSelectedSongChange = async (element,index,songs) => {
-        
-        await setSelectedSong({element,index,songs})
-        onSelectedSongChange({element,index,songs});
-      };
+
     
   const toggleDropdown = (index) => {
     setIndex(index)
@@ -42,6 +40,35 @@ function UserProfile({ onSelectedSongChange }){
     setOpenDropdowns(updatedDropdowns);
   };
   
+  const handleSelectedSongChange = async (element,index,songs) => {
+        
+    await setSelectedSong({element,index,songs})
+    onSelectedSongChange({element,index,songs});
+  };
+
+
+  async function addToPlaylist(element, playlist){
+      
+    
+    const songId = Number(element.id)
+    const playlist_id = Number(playlist.id)
+   
+    const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
+        method:"POST",
+    })
+
+    toggleDropdown(index);
+
+    const playlist_songs_json = Playlist_songs.json()
+
+}
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await dispatch(logout());
+    history.push('/')
+  };
+
     useEffect(()=>{
         async function FetchData(){
             const res = await fetch(`/api/songs/user/${sessionUser.id}`)
@@ -75,37 +102,10 @@ function UserProfile({ onSelectedSongChange }){
 
 
 
-    async function addToPlaylist(element, playlist){
-      
-    
-        const songId = Number(element.id)
-        const playlist_id = Number(playlist.id)
-       
-        const Playlist_songs = await fetch(`/api/playlist/add_song/${playlist_id}/${songId}`,{
-            method:"POST",
-        })
-    
-        toggleDropdown(index);
-    
-        const playlist_songs_json = Playlist_songs.json()
-
-
-    }
-
-   
-   
-      const handleLogout = async (e) => {
-        e.preventDefault();
-        await dispatch(logout());
-        history.push('/')
-      };
   
    
 
-    if(!sessionUser ){
-        
-        return null
-    }
+  
 
 
 
